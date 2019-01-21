@@ -7,12 +7,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
-    . "github.com/shonenada/didiyun-go/schema"
+	. "github.com/shonenada/didiyun-go/schema"
 )
-
-type Client struct {
-	AccessToken string
-}
 
 type ListRegionAndZoneCondition struct {
 	Product string `json:"product"`
@@ -29,7 +25,7 @@ type ListRegionResponse struct {
 	Data      []Region `json:"data"`
 }
 
-func (c *Client) ListRegion(product string) ListRegionResponse {
+func (c *Client) ListRegion(product string) (*[]Region, error) {
 	httpClient := &http.Client{}
 	reqBody := &ListRegionRequest{
 		Condition: ListRegionAndZoneCondition{
@@ -39,10 +35,10 @@ func (c *Client) ListRegion(product string) ListRegionResponse {
 
 	reqStr, err := json.Marshal(reqBody)
 	if err != nil {
-		fmt.Errorf("Fail to marshal body: %s", err)
+		fmt.Errorf("Failed to marshal body: %s", err)
 	}
 
-	req, err := http.NewRequest("POST", "https://open.didiyunapi.com/dicloud/i/region/list", bytes.NewBuffer([]byte(reqStr)))
+	req, err := http.NewRequest("POST", LIST_REGION_URL, bytes.NewBuffer([]byte(reqStr)))
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}
@@ -59,28 +55,33 @@ func (c *Client) ListRegion(product string) ListRegionResponse {
 	}
 	ret := ListRegionResponse{}
 	json.Unmarshal([]byte(body), &ret)
-	return ret
+
+	if ret.Errno != 0 {
+		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
+	}
+
+	return &ret.Data, nil
 }
 
-func (c *Client) ListDC2Regions() ListRegionResponse {
+func (c *Client) ListDc2Regions() (*[]Region, error) {
 	return c.ListRegion("dc2")
 }
 
-func (c *Client) ListEBSRegions() ListRegionResponse {
+func (c *Client) ListEbsRegions() (*[]Region, error) {
 	return c.ListRegion("ebs")
 }
 
-func (c *Client) ListEIPRegions() ListRegionResponse {
+func (c *Client) ListEipRegions() (*[]Region, error) {
 	return c.ListRegion("eip")
 }
 
-func (c *Client) ListSGRegions() ListRegionResponse {
+func (c *Client) ListSgRegions() (*[]Region, error) {
 	return c.ListRegion("sg")
 }
 
-func (c *Client) ListSNAPRegions() ListRegionResponse {
+func (c *Client) ListSnapRegions() (*[]Region, error) {
 	return c.ListRegion("snap")
 }
-func (c *Client) ListVPCRegions() ListRegionResponse {
+func (c *Client) ListVpcRegions() (*[]Region, error) {
 	return c.ListRegion("vpc")
 }
