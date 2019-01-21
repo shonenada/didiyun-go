@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+    . "github.com/shonenada/didiyun-go/schema"
 )
 
 type Client struct {
@@ -18,13 +20,6 @@ type ListRegionAndZoneCondition struct {
 
 type ListRegionRequest struct {
 	Condition ListRegionAndZoneCondition `json:"condition"`
-}
-
-type Region struct {
-	AreaName string `json:"areaName"`
-	Id       string `json:"id"`
-	name     string `json:"name"`
-	zone     string `json:"zone"`
 }
 
 type ListRegionResponse struct {
