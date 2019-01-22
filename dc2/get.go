@@ -40,5 +40,5 @@ func (c *Client) Get(request *GetRequest) (*Dc2Info, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return &ret.Data, nil
+	return &ret.Data[0], nil
 }

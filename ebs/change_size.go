@@ -1,4 +1,4 @@
-package eip
+package ebs
 
 import (
 	"encoding/json"

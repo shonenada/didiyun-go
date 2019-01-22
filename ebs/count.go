@@ -20,7 +20,7 @@ type CountResponse struct {
 	Data      []EbsCount `json:"data"`
 }
 
-type EbsDCount struct {
+type EbsCount struct {
 	TotalCount int `json:"totalCnt"`
 }
 
