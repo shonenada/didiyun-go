@@ -3,6 +3,8 @@ package eip
 import (
 	"encoding/json"
 	"fmt"
+
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type ChangeBandWidthRequest struct {
@@ -17,7 +19,7 @@ type ChangeBandWidthInput struct {
 	ChargeWithFlow bool   `json:"chargeWithFlow"`
 }
 
-type ChangeBandWidthhResponse struct {
+type ChangeBandWidthResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
@@ -38,5 +40,5 @@ func (c *Client) ChangeBandWidth(request *ChangeBandWidthRequest) (*Job, error) 
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return ret.Data[0], nil
+	return &ret.Data[0], nil
 }

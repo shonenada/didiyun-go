@@ -1,4 +1,4 @@
-package eip
+package ebs
 
 import (
 	"encoding/json"
@@ -7,32 +7,33 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type DetachRequest struct {
-	RegionId string        `json:"regionId"`
-	Eip      []DetachInput `json:"eip"`
+type ChangeNameRequest struct {
+	RegionId string            `json:"regionId"`
+	Ebs      []ChangeNameInput `json:"ebs"`
 }
 
-type DetachInput struct {
-	EipUuid string `json:"eipUuid"`
+type ChangeNameInput struct {
+	EbsUuid string `json:"ebsUuid"`
+	Name    string `json:"name"`
 }
 
-type DetachResponse struct {
+type ChangeNameResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) Detach(request *DetachRequest) (*Job, error) {
+func (c *Client) ChangeName(request *ChangeNameRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DEATCH_EIP_URL, data)
+	body, err := c.HTTPPost(CHANGE_NAME_EBS_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}
-	ret := DetachResponse{}
+	ret := ChangeNameResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)

@@ -19,7 +19,7 @@ type GetResponse struct {
 	Data      []EipInfo `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) ([]EipInfo, error) {
+func (c *Client) Get(request *GetRequest) (*EipInfo, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
 		"eipUuid":  request.EipUuid,
@@ -33,5 +33,5 @@ func (c *Client) Get(request *GetRequest) ([]EipInfo, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return ret.Data, nil
+	return &ret.Data[0], nil
 }

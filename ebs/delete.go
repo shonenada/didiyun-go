@@ -1,4 +1,4 @@
-package eip
+package ebs
 
 import (
 	"encoding/json"
@@ -7,32 +7,32 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type DetachRequest struct {
+type DeleteRequest struct {
 	RegionId string        `json:"regionId"`
-	Eip      []DetachInput `json:"eip"`
+	Ebs      []DeleteInput `json:"ebs"`
 }
 
-type DetachInput struct {
-	EipUuid string `json:"eipUuid"`
+type DeleteInput struct {
+	EbsUuid string `json:"ebsUuid"`
 }
 
-type DetachResponse struct {
+type DeleteResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) Detach(request *DetachRequest) (*Job, error) {
+func (c *Client) Delete(request *DeleteRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DEATCH_EIP_URL, data)
+	body, err := c.HTTPPost(DELETE_EBS_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}
-	ret := DetachResponse{}
+	ret := DeleteResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)

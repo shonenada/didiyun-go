@@ -1,4 +1,4 @@
-package eip
+package ebs
 
 import (
 	"encoding/json"
@@ -9,11 +9,11 @@ import (
 
 type DetachRequest struct {
 	RegionId string        `json:"regionId"`
-	Eip      []DetachInput `json:"eip"`
+	Ebs      []DetachInput `json:"ebs"`
 }
 
 type DetachInput struct {
-	EipUuid string `json:"eipUuid"`
+	EbsUuid string `json:"ebsUuid"`
 }
 
 type DetachResponse struct {
@@ -28,7 +28,7 @@ func (c *Client) Detach(request *DetachRequest) (*Job, error) {
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DEATCH_EIP_URL, data)
+	body, err := c.HTTPPost(DEATCH_EBS_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}

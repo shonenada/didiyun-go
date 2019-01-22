@@ -1,4 +1,4 @@
-package eip
+package ebs
 
 import (
 	"encoding/json"
@@ -7,32 +7,33 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type DetachRequest struct {
+type AttachRequest struct {
 	RegionId string        `json:"regionId"`
-	Eip      []DetachInput `json:"eip"`
+	Ebs      []AttachInput `json:"ebs"`
 }
 
-type DetachInput struct {
-	EipUuid string `json:"eipUuid"`
+type AttachInput struct {
+	EbsUuid string `json:"ebsUuid"`
+	Dc2Uuid string `json:"dc2Uuid"` // 待绑定的 DC2 的 Uuid
 }
 
-type DetachResponse struct {
+type AttachResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) Detach(request *DetachRequest) (*Job, error) {
+func (c *Client) Attach(request *AttachRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DEATCH_EIP_URL, data)
+	body, err := c.HTTPPost(ATTACH_EBS_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}
-	ret := DetachResponse{}
+	ret := AttachResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)

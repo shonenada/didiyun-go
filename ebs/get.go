@@ -1,4 +1,4 @@
-package dc2
+package ebs
 
 import (
 	"encoding/json"
@@ -8,37 +8,30 @@ import (
 )
 
 type GetRequest struct {
-	// 地域 ID
 	RegionId string `json:"regionId"`
-
-	// 可用区 ID
-	ZoneId string `json:"zoneId,omitempty"`
-
-	// 所查询的 DC2 的 UUID
-	Dc2Uuid string `json:"dc2Uuid"`
+	EbsUuid  string `json:"ebsUuid"`
 }
 
 type GetResponse struct {
 	Errno     int       `json:"errno"`
 	Errmsg    string    `json:"errmsg"`
 	RequestId string    `json:"requestId"`
-	Data      []Dc2Info `json:"data"`
+	Data      []EbsInfo `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*Dc2Info, error) {
+func (c *Client) Get(request *GetRequest) (*EipInfo, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
-		"zoneId":   request.ZoneId,
-		"dc2Uuid":  request.Dc2Uuid,
+		"ebsUuid":  request.EbsUuid,
 	}
-	body, err := c.HTTPGet(GET_DC2_URL, data)
+	body, err := c.HTTPGet(GET_EBS_URL, data)
 	if err != nil {
-		return nil, fmt.Errorf("Error: %s", err)
+		fmt.Errorf("Error: %s", err)
 	}
 	ret := GetResponse{}
-	json.Unmarshal([]byte(body), &ret)
+	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return &ret.Data, nil
+	return &ret.Data[0], nil
 }

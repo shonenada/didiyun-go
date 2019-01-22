@@ -3,6 +3,8 @@ package eip
 import (
 	"encoding/json"
 	"fmt"
+
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type DeleteRequest struct {
@@ -35,5 +37,5 @@ func (c *Client) Delete(request *DeleteRequest) (*Job, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return ret.Data[0], nil
+	return &ret.Data[0], nil
 }

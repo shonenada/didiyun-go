@@ -7,32 +7,34 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type DetachRequest struct {
-	RegionId string        `json:"regionId"`
-	Eip      []DetachInput `json:"eip"`
+type ChangeSizeRequest struct {
+	RegionId string            `json:"regionId"`
+	CouponId string            `json:"couponId,omitempty"`
+	Ebs      []ChangeSizeInput `json:"ebs"`
 }
 
-type DetachInput struct {
-	EipUuid string `json:"eipUuid"`
+type ChangeSizeInput struct {
+	EbsUuid string `json:"ebsUuid"`
+	Size    int64  `json:"size"`
 }
 
-type DetachResponse struct {
+type ChangeSizeResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) Detach(request *DetachRequest) (*Job, error) {
+func (c *Client) ChangeSize(request *ChangeSizeRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DEATCH_EIP_URL, data)
+	body, err := c.HTTPPost(CHANGE_SIZE_EBS_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}
-	ret := DetachResponse{}
+	ret := ChangeSizeResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
