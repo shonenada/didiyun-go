@@ -40,3 +40,5 @@ const ATTACH_EBS_URL = API_BASE + "/storage/ebs/attach"
 const DEATCH_EBS_URL = API_BASE + "/storage/ebs/deatch"
 const CHANGE_NAME_EBS_URL = API_BASE + "/storage/ebs/changeName"
 const CHANGE_SIZE_EBS_URL = API_BASE + "/storage/ebs/changeSize"
+
+const LIST_SNAP_URL = API_BASE + "/storage/snap/list"
