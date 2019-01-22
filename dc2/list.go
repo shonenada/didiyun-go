@@ -30,49 +30,11 @@ type ListDc2Request struct {
 	condition Dc2Condition `json:"condition"`
 }
 
-type Dc2Response struct {
-	// 此 DC2 正在进行的任务，若无任务则没有此字段
-	Job Job `json:"job"`
-
-	// DC2 唯一标识
-	Uuid string `json:"dc2Uuid"`
-
-	// DC2 名称
-	Name string `json:"name"`
-
-	// DC2 创建时间
-	CreateTime int64 `json:"createTime"`
-
-	// DC2 更新时间
-	UpdateTime int64 `json:"updateTime"`
-
-	// DC2 内网 IP
-	Ip string `json:"ip"`
-
-	// DC2 的 tags
-	Tags []string `json:"tags"`
-
-	// DC2 状态
-	Status string `json:"status"`
-
-	// DC2 操作系统发行版及版本号
-	OSType string `json:"osType"`
-
-	// 与 DC2 关联的 EIP 信息，没有 EIP 则没有该字段
-	Eip Eip `json:"eip"`
-
-	// 与 DC2 关联的 EBS 信息，没有 EBS 则没有该字段，如果是通用型 DC2，则必有这个字段，且根盘信息包含在内
-	Ebs []Ebs `json:"ebs"`
-
-	// region 信息
-	Region Region `json:"region"`
-}
-
 type ListDc2Response struct {
-	Errno     int           `json:"errno"`
-	Errmsg    string        `json:"errmsg"`
-	RequestId string        `json:"requestId"`
-	Data      []Dc2Response `json:"data"`
+	Errno     int       `json:"errno"`
+	Errmsg    string    `json:"errmsg"`
+	RequestId string    `json:"requestId"`
+	Data      []Dc2Info `json:"data"`
 }
 
 type ListDc2RequestBuilder struct {
@@ -172,7 +134,7 @@ func (b *ListDc2RequestBuilder) Build() ListDc2Request {
 	}
 }
 
-func (c *Client) ListDc2(reqBody *ListDc2Request) (*[]Dc2Response, error) {
+func (c *Client) ListDc2(reqBody *ListDc2Request) (*[]Dc2Info, error) {
 	httpClient := &http.Client{}
 	reqStr, err := json.Marshal(reqBody)
 	if err != nil {

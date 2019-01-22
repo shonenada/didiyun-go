@@ -21,13 +21,13 @@ type GetDc2Request struct {
 }
 
 type GetDc2Response struct {
-	Errno     int           `json:"errno"`
-	Errmsg    string        `json:"errmsg"`
-	RequestId string        `json:"requestId"`
-	Data      []Dc2Response `json:"data"`
+	Errno     int       `json:"errno"`
+	Errmsg    string    `json:"errmsg"`
+	RequestId string    `json:"requestId"`
+	Data      []Dc2Info `json:"data"`
 }
 
-func (c *Client) GetDc2(reqBody *GetDc2Request) (*[]Dc2Response, error) {
+func (c *Client) GetDc2(reqBody *GetDc2Request) (*[]Dc2Info, error) {
 	httpClient := &http.Client{}
 
 	req, err := http.NewRequest("GET", GET_DC2_URL, nil)

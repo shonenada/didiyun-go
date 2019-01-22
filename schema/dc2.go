@@ -26,36 +26,40 @@ type Dc2Condition struct {
 	Eip string `json:"eip"`
 }
 
-type Eip struct {
-	// EIP 唯一标识
-	Uuid string `json:"eipUuid"`
+type Dc2Info struct {
+	// 此 DC2 正在进行的任务，若无任务则没有此字段
+	Job Job `json:"job"`
 
-	// EIP（DC2 公网 IP）
-	Ip string `json:"ip"`
+	// DC2 唯一标识
+	Uuid string `json:"dc2Uuid"`
 
-	// 创建时间
-	CreateTime string `json:"createTime"`
-
-	// 更新时间
-	UpdateTime string `json:"updateTime"`
-}
-
-type Ebs struct {
-	// EBS 名称
+	// DC2 名称
 	Name string `json:"name"`
 
-	// 唯一标识
-	Uuid string `json:"ebsUuid"`
-
-	// 属性（`Root`为根盘，`Data`为数据盘）
-	Attr string `json:"attr"`
-
-	// 区域信息
-	Region Region `json:"region"`
-
-	// 创建时间
+	// DC2 创建时间
 	CreateTime int64 `json:"createTime"`
 
-	// 更新时间
+	// DC2 更新时间
 	UpdateTime int64 `json:"updateTime"`
+
+	// DC2 内网 IP
+	Ip string `json:"ip"`
+
+	// DC2 的 tags
+	Tags []string `json:"tags"`
+
+	// DC2 状态
+	Status string `json:"status"`
+
+	// DC2 操作系统发行版及版本号
+	OSType string `json:"osType"`
+
+	// 与 DC2 关联的 EIP 信息，没有 EIP 则没有该字段
+	Eip Eip `json:"eip"`
+
+	// 与 DC2 关联的 EBS 信息，没有 EBS 则没有该字段，如果是通用型 DC2，则必有这个字段，且根盘信息包含在内
+	Ebs []Ebs `json:"ebs"`
+
+	// region 信息
+	Region Region `json:"region"`
 }

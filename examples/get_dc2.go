@@ -7,9 +7,10 @@ import (
 
 	didiyun "github.com/shonenada/didiyun-go"
 	dc2 "github.com/shonenada/didiyun-go/dc2"
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
-func PrettyPrintDc2(data *[]dc2.Dc2Response) {
+func PrettyPrintDc2(data *[]Dc2Info) {
 	for i, e := range *data {
 		fmt.Printf("[%d] - Uuid: %s\tName: %s\tIP: %s\tEip: %s\nRegion: %s\n", i+1, e.Uuid, e.Name, e.Ip, e.Eip.Ip, e.Region.Name)
 	}
