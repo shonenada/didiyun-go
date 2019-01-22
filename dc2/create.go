@@ -230,36 +230,16 @@ func (b *CreateDc2RequestBuilder) Build() CreateDc2Request {
 	}
 }
 
-func (c *Client) CreateDc2(reqBody *CreateDc2Request) (*Job, error) {
-	httpClient := &http.Client{}
-	reqStr, err := json.Marshal(reqBody)
+func (c *Client) CreateDc2(request *CreateDc2Request) (*Job, error) {
+	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-
-	req, err := http.NewRequest("POST", CREATE_DC2_URL, bytes.NewBuffer([]byte(reqStr)))
-	if err != nil {
-		fmt.Errorf("Error: %s", err)
-	}
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.AccessToken))
-	resp, err := httpClient.Do(req)
-	if err != nil {
-		fmt.Errorf("Error: %s", err)
-	}
-
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Errorf("Error: %s", err)
-	}
-
+	body, err := c.HTTPPost(CREATE_DC2_URL, data)
 	ret := CreateDc2Response{}
-	json.Unmarshal([]byte(body), &ret)
-
+	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-
 	return &ret.Data[0], nil
 }

@@ -3,8 +3,6 @@ package dc2
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 
 	. "github.com/shonenada/didiyun-go/schema"
 )
@@ -27,34 +25,17 @@ type GetDc2Response struct {
 	Data      []Dc2Info `json:"data"`
 }
 
-func (c *Client) GetDc2(reqBody *GetDc2Request) (*[]Dc2Info, error) {
-	httpClient := &http.Client{}
-
-	req, err := http.NewRequest("GET", GET_DC2_URL, nil)
-
-	qs := req.URL.Query()
-	qs.Add("regionId", reqBody.RegionId)
-	qs.Add("zoneId", reqBody.ZoneId)
-	qs.Add("dc2Uuid", reqBody.Dc2Uuid)
-	req.URL.RawQuery = qs.Encode()
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.AccessToken))
-
-	resp, err := httpClient.Do(req)
-	if err != nil {
-		fmt.Errorf("Error: %s", err)
+func (c *Client) GetDc2(req *GetDc2Request) ([]Dc2Info, error) {
+	data := map[string]string{
+		"regionId": req.RegionId,
+		"zoneId":   req.ZoneId,
+		"dc2Uuid":  req.Dc2Uuid,
 	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Errorf("Error: %s", err)
-	}
+	body, nil := c.HTTPGet(GET_DC2_URL, data)
 	ret := GetDc2Response{}
 	json.Unmarshal([]byte(body), &ret)
-
 	if ret.Errno != 0 {
-		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
+		fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-
-	return &ret.Data, nil
-
+	return ret.Data, nil
 }

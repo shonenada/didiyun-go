@@ -1,5 +1,15 @@
 package dc2
 
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+
+	. "github.com/shonenada/didiyun-go/schema"
+)
+
 type DeleteDc2Request struct {
 	RegionId string           `json:"regionId"`
 	ZoneId   string           `json:"zoneId"`
@@ -20,37 +30,16 @@ type DeleteDc2Response struct {
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) DeleteDc2(reqBody *DeleteDc2Request) (*Job, error) {
-	httpClient := &http.Client{}
-	reqStr, err := json.Marshal(reqBody)
+func (c *Client) DeleteDc2(request *DeleteDc2Request) (*Job, error) {
+	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-
-	req, err := http.NewRequest("POST", DELETE_DC2_URL, bytes.NewBuffer([]byte(reqStr)))
-	if err != nil {
-		fmt.Errorf("Error: %s", err)
-	}
-
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.AccessToken))
-	resp, err := httpClient.Do(req)
-	if err != nil {
-		fmt.Errorf("Error: %s", err)
-	}
-
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Errorf("Error: %s", err)
-	}
-
-	ret := DeteleDc2Response{}
-	json.Unmarshal([]byte(body), &ret)
-
+	body, err := c.HTTPPost(DELETE_DC2_URL, data)
+	ret := DeleteDc2Response{}
+	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-
 	return &ret.Data[0], nil
 }
