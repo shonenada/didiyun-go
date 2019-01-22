@@ -2,6 +2,7 @@ package didiyun
 
 import (
 	"github.com/shonenada/didiyun-go/dc2"
+	"github.com/shonenada/didiyun-go/eip"
 	"github.com/shonenada/didiyun-go/region"
 	"github.com/shonenada/didiyun-go/sshkey"
 )
@@ -24,6 +25,12 @@ func (c *Client) Dc2() *dc2.Client {
 
 func (c *Client) SSHKey() *sshkey.Client {
 	return &sshkey.Client{
+		AccessToken: c.AccessToken,
+	}
+}
+
+func (c *Client) Eip() *eip.Client {
+	return &eip.Client{
 		AccessToken: c.AccessToken,
 	}
 }

@@ -2,8 +2,9 @@ package eip
 
 import (
 	"encoding/json"
+	"fmt"
 
-	"github.com/shonenada/didiyun-go/schame"
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type GetRequest struct {
@@ -18,7 +19,7 @@ type GetResponse struct {
 	Data      []EipInfo `json:"data"`
 }
 
-func (c *Client) List(request *GetRequest) (*[]EipInfo, error) {
+func (c *Client) Get(request *GetRequest) (*[]EipInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)

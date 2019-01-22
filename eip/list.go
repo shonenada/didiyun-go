@@ -2,8 +2,9 @@ package eip
 
 import (
 	"encoding/json"
+	"fmt"
 
-	"github.com/shonenada/didiyun-go/schame"
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type EipCondition struct {
@@ -45,7 +46,63 @@ type ListResponse struct {
 	Data      []EipInfo `json:"data"`
 }
 
-func (c *Client) List(request) {
+type ListRequestBuilder struct {
+	regionId string
+	start    int
+	limit    int
+	simplify bool
+	uuids    []string
+	eip      string
+}
+
+func (b *ListRequestBuilder) SetRegionId(regionId string) {
+	b.regionId = regionId
+}
+
+func (b *ListRequestBuilder) SetStart(start int) {
+	b.start = start
+}
+
+func (b *ListRequestBuilder) SetLimit(limit int) {
+	b.limit = limit
+}
+
+func (b *ListRequestBuilder) SetSimplify(isSimplify bool) {
+	b.simplify = isSimplify
+}
+
+func (b *ListRequestBuilder) SetUuids(uuids []string) {
+	b.uuids = uuids
+}
+
+func (b *ListRequestBuilder) SetEip(eip string) {
+	b.eip = eip
+}
+
+func (b *ListRequestBuilder) Build() ListRequest {
+	start := 0
+	if b.start >= 0 {
+		start = b.start
+	}
+
+	limit := 20
+	if b.limit > 0 {
+		limit = b.limit
+	}
+
+	return ListRequest{
+		RegionId: b.regionId,
+		Start:    start,
+		Limit:    limit,
+		Simplify: b.simplify,
+		condition: EipCondition{
+			Uuids: b.uuids,
+			Eip:   b.eip,
+		},
+	}
+}
+
+func (c *Client) List(request *ListRequest) (*[]EipInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
