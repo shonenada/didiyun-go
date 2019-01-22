@@ -21,3 +21,6 @@ const LIST_IMAGE_URL = API_BASE + "/image/list"
 const LIST_SSHKEY_URL = API_BASE + "/sshkeys/list"
 const CREATE_SSHKEY_URL = API_BASE + "/sshkeys/create"
 const DELETE_SSHKEY_URL = API_BASE + "/sshkeys/delete"
+
+const GET_EIP_URL = API_BASE + "/network/eip"
+const LIST_EIP_URL = API_BASE + "/network/eip/list"
