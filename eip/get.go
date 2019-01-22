@@ -19,19 +19,19 @@ type GetResponse struct {
 	Data      []EipInfo `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*[]EipInfo, error) {
-	data, err := json.Marshal(request)
-	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+func (c *Client) Get(request *GetRequest) ([]EipInfo, error) {
+	data := map[string]string{
+		"regionId": request.RegionId,
+		"eipUuid":  request.EipUuid,
 	}
-	body, err := c.HTTPPost(LIST_EIP_URL, data)
+	body, err := c.HTTPGet(GET_EIP_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}
-	ret := ListResponse{}
+	ret := GetResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return &ret.Data, nil
+	return ret.Data, nil
 }

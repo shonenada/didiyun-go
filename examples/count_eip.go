@@ -5,7 +5,7 @@ import (
 	"os"
 
 	didiyun "github.com/shonenada/didiyun-go"
-	dc2 "github.com/shonenada/didiyun-go/dc2"
+	eip "github.com/shonenada/didiyun-go/eip"
 )
 
 func main() {
@@ -14,11 +14,11 @@ func main() {
 	client := &didiyun.Client{
 		AccessToken: accessToken,
 	}
-	req := dc2.CountRequest{
+	req := eip.CountRequest{
 		RegionId: "gz",
 	}
 
-	if r, e := client.Dc2().Count(&req); e != nil {
+	if r, e := client.Eip().Count(&req); e != nil {
 		fmt.Println(e)
 	} else {
 		fmt.Printf("Total: %d\n", r)

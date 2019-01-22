@@ -39,7 +39,7 @@ func (c *Client) HTTPGet(URL string, params map[string]string) ([]byte, error) {
 
 func (c *Client) HTTPPost(URL string, data []byte) ([]byte, error) {
 	httpClient := &http.Client{}
-	req, err := http.NewRequest("POST", URL, bytes.NewBuffer([]byte(data)))
+	req, err := http.NewRequest("POST", URL, bytes.NewBuffer(data))
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

@@ -29,16 +29,6 @@ type ListRequest struct {
 	condition EipCondition `json:"condition"`
 }
 
-type EipInfo struct {
-	Job        Job      `json:"json"`
-	Uuid       string   `json:"eipUuid"`
-	Ip         string   `json:"ip"`
-	CreateTime int64    `json:"createTime"`
-	UpdateTime int64    `json:"updateTime"`
-	EipTags    []string `json:"eipTags"`
-	Dc2        Dc2Info  `json:"dc2"`
-}
-
 type ListResponse struct {
 	Errno     int       `json:"errno"`
 	Errmsg    string    `json:"errmsg"`
@@ -102,7 +92,7 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 }
 
-func (c *Client) List(request *ListRequest) (*[]EipInfo, error) {
+func (c *Client) List(request *ListRequest) ([]EipInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
@@ -116,5 +106,5 @@ func (c *Client) List(request *ListRequest) (*[]EipInfo, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return &ret.Data, nil
+	return ret.Data, nil
 }
