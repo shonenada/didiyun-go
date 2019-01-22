@@ -54,7 +54,7 @@ type Zone struct {
 // 任务进度
 type Job struct {
 	// 任务唯一标识
-	JobUuid string `json:"jobUuid"`
+	Uuid string `json:"jobUuid"`
 
 	// 当前正在操作的资源Uuid
 	ResourceUuid string `json:"ResourceUuid"`

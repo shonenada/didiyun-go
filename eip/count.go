@@ -9,7 +9,7 @@ import (
 
 type CountRequest struct {
 	RegionId string   `json:"regionId"`
-	EipUuids []string `json:"eipUuids"`
+	EipUuids []string `json:"eipUuids,omitempty"`
 }
 
 type CountResponse struct {
