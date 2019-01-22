@@ -1,16 +1,13 @@
 package dc2
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type CreateDc2Request struct {
+type CreateRequest struct {
 	RegionId                string     `json:"regionId"`     // 地域 ID
 	ZoneId                  string     `json:"zoneId"`       // 可用区 ID
 	AutoContinue            bool       `json:"autoContinue"` // 是否设置 DC2 自动续费
@@ -49,14 +46,14 @@ type EbsInput struct {
 	EbsTags  []string `json:"ebsTags"`
 }
 
-type CreateDc2Response struct {
+type CreateResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
 
-type CreateDc2RequestBuilder struct {
+type CreateRequestBuilder struct {
 	regionId                string
 	zoneId                  string
 	autoContinue            bool
@@ -87,112 +84,112 @@ type CreateDc2RequestBuilder struct {
 	ebsTags     []string
 }
 
-func (b *CreateDc2RequestBuilder) SetRegionId(regionId string) {
+func (b *CreateRequestBuilder) SetRegionId(regionId string) {
 	b.regionId = regionId
 }
 
-func (b *CreateDc2RequestBuilder) SetZoneId(zoneId string) {
+func (b *CreateRequestBuilder) SetZoneId(zoneId string) {
 	b.zoneId = zoneId
 }
 
-func (b *CreateDc2RequestBuilder) SetAutoContinue(isAuto bool) {
+func (b *CreateRequestBuilder) SetAutoContinue(isAuto bool) {
 	b.autoContinue = isAuto
 }
 
-func (b *CreateDc2RequestBuilder) SetPayPeriod(payPeriod int) {
+func (b *CreateRequestBuilder) SetPayPeriod(payPeriod int) {
 	b.payPeriod = payPeriod
 }
 
-func (b *CreateDc2RequestBuilder) SetCount(count int) {
+func (b *CreateRequestBuilder) SetCount(count int) {
 	b.count = count
 }
 
-func (b *CreateDc2RequestBuilder) SetCouponId(couponId string) {
+func (b *CreateRequestBuilder) SetCouponId(couponId string) {
 	b.couponId = couponId
 }
 
-func (b *CreateDc2RequestBuilder) SetSubnetUuid(subnetUuid string) {
+func (b *CreateRequestBuilder) SetSubnetUuid(subnetUuid string) {
 	b.subnetUuid = subnetUuid
 }
 
-func (b *CreateDc2RequestBuilder) SetDc2Model(model string) {
+func (b *CreateRequestBuilder) SetDc2Model(model string) {
 	b.model = model
 }
 
-func (b *CreateDc2RequestBuilder) SetImgUuid(uuid string) {
+func (b *CreateRequestBuilder) SetImgUuid(uuid string) {
 	b.imgUuid = uuid
 }
 
-func (b *CreateDc2RequestBuilder) SetSnapUuid(snapUuid string) {
+func (b *CreateRequestBuilder) SetSnapUuid(snapUuid string) {
 	b.snapUuid = snapUuid
 }
 
-func (b *CreateDc2RequestBuilder) SetPubKeyUuids(pubKeyUuids []string) {
+func (b *CreateRequestBuilder) SetPubKeyUuids(pubKeyUuids []string) {
 	b.pubKeyUuids = pubKeyUuids
 }
 
-func (b *CreateDc2RequestBuilder) SetPassword(password string) {
+func (b *CreateRequestBuilder) SetPassword(password string) {
 	b.password = password
 }
 
-func (b *CreateDc2RequestBuilder) SetRootDiskType(rootDiskType string) {
+func (b *CreateRequestBuilder) SetRootDiskType(rootDiskType string) {
 	b.rootDiskType = rootDiskType
 }
 
-func (b *CreateDc2RequestBuilder) SetDc2Tags(tags []string) {
+func (b *CreateRequestBuilder) SetDc2Tags(tags []string) {
 	b.dc2Tags = tags
 }
 
-func (b *CreateDc2RequestBuilder) InstallProSecurityAgent() {
+func (b *CreateRequestBuilder) InstallProSecurityAgent() {
 	b.proSecurityAgentEnabled = true
 }
 
-func (b *CreateDc2RequestBuilder) InstallMonitoringAgentEnabled() {
+func (b *CreateRequestBuilder) InstallMonitoringAgentEnabled() {
 	b.monitoringAgentEnabled = true
 }
 
-func (b *CreateDc2RequestBuilder) SetSgUuids(sgUuids []string) {
+func (b *CreateRequestBuilder) SetSgUuids(sgUuids []string) {
 	b.sgUuids = sgUuids
 }
 
-func (b *CreateDc2RequestBuilder) SetBandWidth(bw int) {
+func (b *CreateRequestBuilder) SetBandWidth(bw int) {
 	b.eipBandWidth = bw
 }
 
-func (b *CreateDc2RequestBuilder) SetChargeWithFlow(withFlow bool) {
+func (b *CreateRequestBuilder) SetChargeWithFlow(withFlow bool) {
 	b.eipChargeWithFlow = withFlow
 }
 
-func (b *CreateDc2RequestBuilder) SetEipTags(tags []string) {
+func (b *CreateRequestBuilder) SetEipTags(tags []string) {
 	b.eipTags = tags
 }
 
-func (b *CreateDc2RequestBuilder) SetEbsCount(count int) {
+func (b *CreateRequestBuilder) SetEbsCount(count int) {
 	b.ebsCount = count
 }
 
-func (b *CreateDc2RequestBuilder) SetEbsName(name string) {
+func (b *CreateRequestBuilder) SetEbsName(name string) {
 	b.ebsName = name
 }
 
-func (b *CreateDc2RequestBuilder) SetEbsSize(size int64) {
+func (b *CreateRequestBuilder) SetEbsSize(size int64) {
 	b.ebsSize = size
 }
 
-func (b *CreateDc2RequestBuilder) SetDiskType(dtype string) {
+func (b *CreateRequestBuilder) SetDiskType(dtype string) {
 	b.ebsDiskType = dtype
 }
 
-func (b *CreateDc2RequestBuilder) SetEbsSnapUuid(uuid string) {
+func (b *CreateRequestBuilder) SetEbsSnapUuid(uuid string) {
 	b.ebsSnapUuid = uuid
 }
 
-func (b *CreateDc2RequestBuilder) SetEbsTags(tags []string) {
+func (b *CreateRequestBuilder) SetEbsTags(tags []string) {
 	b.ebsTags = tags
 }
 
-func (b *CreateDc2RequestBuilder) Build() CreateDc2Request {
-	return CreateDc2Request{
+func (b *CreateRequestBuilder) Build() CreateRequest {
+	return CreateRequest{
 		RegionId:                b.regionId,
 		ZoneId:                  b.zoneId,
 		AutoContinue:            b.autoContinue,
@@ -230,13 +227,13 @@ func (b *CreateDc2RequestBuilder) Build() CreateDc2Request {
 	}
 }
 
-func (c *Client) CreateDc2(request *CreateDc2Request) (*Job, error) {
+func (c *Client) Create(request *CreateRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CREATE_DC2_URL, data)
-	ret := CreateDc2Response{}
+	ret := CreateResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)

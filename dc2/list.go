@@ -7,7 +7,7 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type ListDc2Request struct {
+type ListRequest struct {
 	// 地域 ID
 	RegionId string `json:"regionId"`
 
@@ -27,14 +27,14 @@ type ListDc2Request struct {
 	condition Dc2Condition `json:"condition"`
 }
 
-type ListDc2Response struct {
+type ListResponse struct {
 	Errno     int       `json:"errno"`
 	Errmsg    string    `json:"errmsg"`
 	RequestId string    `json:"requestId"`
 	Data      []Dc2Info `json:"data"`
 }
 
-type ListDc2RequestBuilder struct {
+type ListRequestBuilder struct {
 	regionId  string
 	zoneId    string
 	start     int
@@ -50,59 +50,59 @@ type ListDc2RequestBuilder struct {
 	eip       string
 }
 
-func (b *ListDc2RequestBuilder) SetRegionId(regionId string) {
+func (b *ListRequestBuilder) SetRegionId(regionId string) {
 	b.regionId = regionId
 }
 
-func (b *ListDc2RequestBuilder) SetZoneId(zoneId string) {
+func (b *ListRequestBuilder) SetZoneId(zoneId string) {
 	b.zoneId = zoneId
 }
 
-func (b *ListDc2RequestBuilder) SetStart(start int) {
+func (b *ListRequestBuilder) SetStart(start int) {
 	b.start = start
 }
 
-func (b *ListDc2RequestBuilder) SetLimit(limit int) {
+func (b *ListRequestBuilder) SetLimit(limit int) {
 	b.limit = limit
 }
 
-func (b *ListDc2RequestBuilder) SetSimplify(simplify bool) {
+func (b *ListRequestBuilder) SetSimplify(simplify bool) {
 	b.simplify = simplify
 }
 
-func (b *ListDc2RequestBuilder) SetVpcUuid(uuid string) {
+func (b *ListRequestBuilder) SetVpcUuid(uuid string) {
 	b.vpcUuid = uuid
 }
 
-func (b *ListDc2RequestBuilder) SetVpcUuids(uuids []string) {
+func (b *ListRequestBuilder) SetVpcUuids(uuids []string) {
 	b.vpcUuids = uuids
 }
 
-func (b *ListDc2RequestBuilder) SetDc2Name(dc2name string) {
+func (b *ListRequestBuilder) SetDc2Name(dc2name string) {
 	b.dc2Name = dc2name
 }
 
-func (b *ListDc2RequestBuilder) SetSgUuid(uuid string) {
+func (b *ListRequestBuilder) SetSgUuid(uuid string) {
 	b.sgUuid = uuid
 }
 
-func (b *ListDc2RequestBuilder) SetDc2Uuids(uuids []string) {
+func (b *ListRequestBuilder) SetDc2Uuids(uuids []string) {
 	b.dc2Uuids = uuids
 }
 
-func (b *ListDc2RequestBuilder) SetSgExclude(isExclude bool) {
+func (b *ListRequestBuilder) SetSgExclude(isExclude bool) {
 	b.sgExclude = isExclude
 }
 
-func (b *ListDc2RequestBuilder) SetIp(ip string) {
+func (b *ListRequestBuilder) SetIp(ip string) {
 	b.ip = ip
 }
 
-func (b *ListDc2RequestBuilder) SetEip(eip string) {
+func (b *ListRequestBuilder) SetEip(eip string) {
 	b.eip = eip
 }
 
-func (b *ListDc2RequestBuilder) Build() ListDc2Request {
+func (b *ListRequestBuilder) Build() ListRequest {
 	start := 0
 	if b.start >= 0 {
 		start = b.start
@@ -113,7 +113,7 @@ func (b *ListDc2RequestBuilder) Build() ListDc2Request {
 		limit = b.limit
 	}
 
-	return ListDc2Request{
+	return ListRequest{
 		RegionId: b.regionId,
 		ZoneId:   b.zoneId,
 		Start:    start,
@@ -131,7 +131,7 @@ func (b *ListDc2RequestBuilder) Build() ListDc2Request {
 	}
 }
 
-func (c *Client) ListDc2(request *ListDc2Request) (*[]Dc2Info, error) {
+func (c *Client) List(request *ListRequest) (*[]Dc2Info, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
@@ -140,7 +140,7 @@ func (c *Client) ListDc2(request *ListDc2Request) (*[]Dc2Info, error) {
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}
-	ret := ListDc2Response{}
+	ret := ListResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)

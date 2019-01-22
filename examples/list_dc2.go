@@ -17,7 +17,6 @@ func PrettyPrintDc2(data *[]Dc2Info) {
 
 func main() {
 	accessToken := os.Getenv("DIDIYUN_ACCESS_TOKEN")
-
 	client := &didiyun.Client{
 		AccessToken: accessToken,
 	}

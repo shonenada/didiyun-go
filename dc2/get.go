@@ -7,7 +7,7 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type GetDc2Request struct {
+type GetRequest struct {
 	// 地域 ID
 	RegionId string `json:"regionId"`
 
@@ -18,21 +18,24 @@ type GetDc2Request struct {
 	Dc2Uuid string `json:"dc2Uuid"`
 }
 
-type GetDc2Response struct {
+type GetResponse struct {
 	Errno     int       `json:"errno"`
 	Errmsg    string    `json:"errmsg"`
 	RequestId string    `json:"requestId"`
 	Data      []Dc2Info `json:"data"`
 }
 
-func (c *Client) GetDc2(req *GetDc2Request) ([]Dc2Info, error) {
+func (c *Client) Get(request *GetRequest) ([]Dc2Info, error) {
 	data := map[string]string{
-		"regionId": req.RegionId,
-		"zoneId":   req.ZoneId,
-		"dc2Uuid":  req.Dc2Uuid,
+		"regionId": request.RegionId,
+		"zoneId":   request.ZoneId,
+		"dc2Uuid":  request.Dc2Uuid,
 	}
-	body, nil := c.HTTPGet(GET_DC2_URL, data)
-	ret := GetDc2Response{}
+	body, err := c.HTTPGet(GET_DC2_URL, data)
+	if err != nil {
+		fmt.Errorf("Error: %s", err)
+	}
+	ret := GetResponse{}
 	json.Unmarshal([]byte(body), &ret)
 	if ret.Errno != 0 {
 		fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)

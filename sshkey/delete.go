@@ -1,16 +1,37 @@
-package dc2
+package sshkey
 
 import (
+	"encoding/json"
+	"fmt"
+
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type DeleteSSHKeyResponse struct {
-	Errno     int                    `json:"errno"`
-	Errmsg    string                 `json:"errmsg"`
-	RequestId string                 `json:"requestId"`
-	Data      []DeleteSSHKeyResponse `json:"data"`
+type DeleteRequest struct {
+	PubKeyUuid string `json:"pubKeyUuid"`
 }
 
-type DeleteSSHKeyResponse struct {
+type DeleteResponse struct {
+	Errno     int            `json:"errno"`
+	Errmsg    string         `json:"errmsg"`
+	RequestId string         `json:"requestId"`
+	Data      []DeleteResult `json:"data"`
+}
+
+type DeleteResult struct {
 	PubKeyUuid string `json:"pubKeyUuid"`
+}
+
+func (c *Client) Delete(request *DeleteRequest) (string, error) {
+	data, err := json.Marshal(request)
+	if err != nil {
+		fmt.Errorf("Failed to marshal body: %s", err)
+	}
+	body, err := c.HTTPPost(DELETE_SSHKEY_URL, data)
+	ret := DeleteResponse{}
+	json.Unmarshal(body, &ret)
+	if ret.Errno != 0 {
+		return "", fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
+	}
+	return ret.Data[0].PubKeyUuid, nil
 }
