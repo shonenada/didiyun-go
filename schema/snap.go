@@ -13,7 +13,7 @@ type SnapEbs struct {
 
 type SnapInfo struct {
 	Job           Job     `json:"job"`
-	SnapUuid      string  `json:"snapUuid"`
+	Uuid          string  `json:"snapUuid"`
 	Name          string  `json:"name"`
 	CanBeReverted bool    `json:"canBeReverted"` // 是否可以回滚
 	IsGeneral     bool    `json:"isGeneral"`     // 是否通用系统(e1,g1,s1) DC2 快照
