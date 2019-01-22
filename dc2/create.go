@@ -53,7 +53,7 @@ type CreateDc2Response struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
-	Data      []Job  `jon:"job"`
+	Data      []Job  `json:"data"`
 }
 
 type CreateDc2RequestBuilder struct {
