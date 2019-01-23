@@ -43,3 +43,7 @@ const CHANGE_SIZE_EBS_URL = API_BASE + "/storage/ebs/changeSize"
 
 const LIST_SNAP_URL = API_BASE + "/storage/snapshot/list"
 const COUNT_SNAP_URL = API_BASE + "/storage/snapshot/count"
+const CREATE_SNAP_URL = API_BASE + "/storage/snapshot/assign"
+const DELETE_SNAP_URL = API_BASE + "/storage/snapshot/delete"
+const REVERT_SNAP_URL = API_BASE + "/storage/snapshot/revert"
+const CHANGE_NAME_SNAP_URL = API_BASE + "/storage/snapshot/changeName"
