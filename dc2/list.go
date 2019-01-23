@@ -24,7 +24,7 @@ type ListRequest struct {
 	Simplify bool `json:"simplify"`
 
 	// 查询 DC2 列表筛选条件
-	condition Dc2Condition `json:"condition"`
+	Condition Dc2Condition `json:"condition"`
 }
 
 type ListResponse struct {
@@ -119,7 +119,7 @@ func (b *ListRequestBuilder) Build() ListRequest {
 		Start:    start,
 		Limit:    limit,
 		Simplify: b.simplify,
-		condition: Dc2Condition{
+		Condition: Dc2Condition{
 			VpcUuids:  b.vpcUuids,
 			VpcUuid:   b.vpcUuid,
 			SgUuid:    b.sgUuid,
