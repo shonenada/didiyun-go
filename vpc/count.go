@@ -1,4 +1,4 @@
-package ebs
+package vpc
 
 import (
 	"encoding/json"
@@ -8,19 +8,17 @@ import (
 )
 
 type CountRequest struct {
-	RegionId string   `json:"regionId"`
-	ZoneId   string   `json:"zoneId,omitempty"`
-	Dc2Uuids []string `json:"dc2Uuids"`
+	RegionId string `json:"regionId"`
 }
 
 type CountResponse struct {
 	Errno     int        `json:"errno"`
 	Errmsg    string     `json:"errmsg"`
 	RequestId string     `json:"requestId"`
-	Data      []EbsCount `json:"data"`
+	Data      []VpcCount `json:"data"`
 }
 
-type EbsCount struct {
+type VpcCount struct {
 	TotalCount int `json:"totalCnt"`
 }
 
@@ -29,7 +27,7 @@ func (c *Client) Count(request *CountRequest) (int, error) {
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(COUNT_EBS_URL, data)
+	body, err := c.HTTPPost(COUNT_VPC_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}

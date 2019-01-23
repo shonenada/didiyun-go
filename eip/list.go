@@ -92,7 +92,7 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 }
 
-func (c *Client) List(request *ListRequest) ([]EipInfo, error) {
+func (c *Client) List(request *ListRequest) (*[]EipInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
@@ -106,5 +106,5 @@ func (c *Client) List(request *ListRequest) ([]EipInfo, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return ret.Data, nil
+	return &ret.Data, nil
 }
