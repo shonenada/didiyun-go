@@ -76,7 +76,7 @@ func (b *ListRequestBuilder) Build() ListRequest {
 		Limit:    limit,
 		Condition: SgCondition{
 			SgUuids:    b.sgUuids,
-			VpcUUid:    b.vpcUuid,
+			VpcUuid:    b.vpcUuid,
 			Dc2Uuid:    b.dc2Uuid,
 			Dc2Exclude: b.dc2Exclude,
 		},

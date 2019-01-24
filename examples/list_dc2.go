@@ -20,11 +20,11 @@ func main() {
 	client := &didiyun.Client{
 		AccessToken: accessToken,
 	}
-	builder := dc2.ListDc2RequestBuilder{}
+	builder := dc2.ListRequestBuilder{}
 	builder.SetRegionId("gz")
 	req := builder.Build()
 
-	if r, e := client.Dc2().ListDc2(&req); e != nil {
+	if r, e := client.Dc2().List(&req); e != nil {
 		fmt.Println(e)
 	} else {
 		PrettyPrintDc2(r)

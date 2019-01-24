@@ -10,9 +10,9 @@ import (
 )
 
 type CheckCIDROverlapRequest struct {
-	RegionId string            `json:"regionId"`
-	VpcUuid  []ChangeNameInput `json:"vpcUuid"`
-	CIDR     string            `json:"cidr"`
+	RegionId string `json:"regionId"`
+	VpcUuid  string `json:"vpcUuid"`
+	CIDR     string `json:"cidr"`
 }
 
 type IsOverLapOutput struct {
@@ -26,14 +26,14 @@ type CheckCIDROverlapResponse struct {
 	Data      []IsOverLapOutput `json:"data"`
 }
 
-func (c *Client) CheckCDIROverlap(request *CheckCIDROverlapRequest) (*[]Job, error) {
+func (c *Client) CheckCDIROverlap(request *CheckCIDROverlapRequest) (*[]IsOverLapOutput, error) {
 	data := map[string]string{
-		"regionId": request.RequestId,
+		"regionId": request.RegionId,
 		"vpcUuid":  request.VpcUuid,
 		"cidr":     request.CIDR,
 	}
 
-	body, err := c.HTTPPost(CHECK_SUBNET_VPC_URL, data)
+	body, err := c.HTTPGet(CHECK_SUBNET_VPC_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}

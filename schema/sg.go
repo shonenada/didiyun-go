@@ -8,16 +8,16 @@ type SgCondition struct {
 }
 
 type SgInfo struct {
-	Job         Job      `json:"job"`
-	SgUuid      string   `json:"sgUuid"`
-	Name        string   `json:"name"`
-	CreateTime  int64    `json:"createTime"`
-	UpdateTime  int64    `json:"updateTime"`
-	IsDefault   bool     `json:"isDefault"`
-	Dc2Count    int      `json:"dcCnt"`
-	SgRuleCount int      `json:"sgRuleCnt"`
-	Region      Region   `json:"region"`
-	Vpc         VpcOuput `json:"vpc"`
+	Job         Job       `json:"job"`
+	SgUuid      string    `json:"sgUuid"`
+	Name        string    `json:"name"`
+	CreateTime  int64     `json:"createTime"`
+	UpdateTime  int64     `json:"updateTime"`
+	IsDefault   bool      `json:"isDefault"`
+	Dc2Count    int       `json:"dcCnt"`
+	SgRuleCount int       `json:"sgRuleCnt"`
+	Region      Region    `json:"region"`
+	Vpc         VpcOutput `json:"vpc"`
 }
 
 type VpcOutput struct {
@@ -39,7 +39,7 @@ type SgOutput struct {
 	IsDefault  bool   `json:"isDefault"`
 }
 
-type SgRuleCondiction struct {
+type SgRuleCondition struct {
 	SgUuid  string `json:"sgUuid,omitempty"`
 	Dc2Uuid string `json:"dc2Uuid,omitempty"`
 	Type    string `json:"type,omitempty"` // 要查询的 SGRule 类型，"Ingress" 为入方向，"Egress" 为出方向

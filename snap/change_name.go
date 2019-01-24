@@ -1,4 +1,4 @@
-package ebs
+package snap
 
 import (
 	"encoding/json"

@@ -17,7 +17,7 @@ type DeleteSubnetInput struct {
 	subnetUuid string `json:"subnetUuid"`
 }
 
-type DeleteResponse struct {
+type DeleteSubnetResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`

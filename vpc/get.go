@@ -19,7 +19,7 @@ type GetResponse struct {
 	Data      []VpcInfo `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*EbsInfo, error) {
+func (c *Client) Get(request *GetRequest) (*VpcInfo, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
 		"vpcUuid":  request.VpcUuid,

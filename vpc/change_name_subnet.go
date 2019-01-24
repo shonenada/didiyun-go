@@ -13,12 +13,12 @@ type SubnetChangeNameRequest struct {
 	Subnet   []SubnetChangeNameInput `json:"subnet"`
 }
 
-type ChangeNameInput struct {
+type SubnetChangeNameInput struct {
 	SubnetUuid string `json:"subnetUuid"`
 	Name       string `json:"name"`
 }
 
-type ChangeNameResponse struct {
+type SubnetChangeNameResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`

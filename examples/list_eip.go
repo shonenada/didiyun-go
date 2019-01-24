@@ -9,8 +9,8 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-func PrettyPrintEip(data []EipInfo) {
-	for i, e := range data {
+func PrettyPrintEip(data *[]EipInfo) {
+	for i, e := range *data {
 		fmt.Printf("[%d] - Uuid: %s\tIP: %s\tDC2: %s\n", i+1, e.Uuid, e.Ip, e.Dc2.Name)
 	}
 }

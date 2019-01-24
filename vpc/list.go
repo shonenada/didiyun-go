@@ -17,7 +17,7 @@ type ListResponse struct {
 	Errno     int       `json:"errno"`
 	Errmsg    string    `json:"errmsg"`
 	RequestId string    `json:"requestId"`
-	Data      []EipInfo `json:"data"`
+	Data      []VpcInfo `json:"data"`
 }
 
 func (c *Client) List(request *ListRequest) (*[]VpcInfo, error) {

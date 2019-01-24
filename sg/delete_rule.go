@@ -16,14 +16,14 @@ type DeleteRuleInput struct {
 	SgRuleUuid string `json:"sgRuleUuid"`
 }
 
-type DeleteResponse struct {
+type DeleteRuleResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) Delete(request *DeleteRuleRequest) (*Job, error) {
+func (c *Client) DeleteRule(request *DeleteRuleRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)

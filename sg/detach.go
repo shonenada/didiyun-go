@@ -17,8 +17,8 @@ type DetachSgInput struct {
 	SgUuid string `json:"SgUuid"`
 }
 
-type DetachSgInput struct {
-	SgUuid string `json:"SgUuid"`
+type DetachDc2Input struct {
+	Dc2Uuid string `json:"dc2Uuid"`
 }
 
 type DetachResponse struct {
