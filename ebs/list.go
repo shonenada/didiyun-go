@@ -10,8 +10,8 @@ import (
 type ListRequest struct {
 	RegionId  string        `json:"regionId"`
 	ZoneId    string        `json:"zoneId,omitempty"`
-	Start     int           `json:"start"`
-	Limit     int           `json:"limit"`
+	Start     int           `json:"start,omitempty"`
+	Limit     int           `json:"limit,omitempty"`
 	Condition ListCondition `json:"condition"`
 }
 
@@ -46,7 +46,7 @@ type Dc2 struct {
 	OSType     string `json:"osType"`
 }
 
-func (c *Client) List(request *ListRequest) ([]EbsInfo, error) {
+func (c *Client) List(request *ListRequest) (*[]EbsInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
@@ -60,5 +60,5 @@ func (c *Client) List(request *ListRequest) ([]EbsInfo, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return ret.Data, nil
+	return &ret.Data, nil
 }

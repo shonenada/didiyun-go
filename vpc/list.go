@@ -9,8 +9,8 @@ import (
 
 type ListRequest struct {
 	RegionId string `json:"regionId"`
-	Start    int    `json:"start"`
-	Limit    int    `json:"limit"`
+	Start    int    `json:"start,omitempty"`
+	Limit    int    `json:"limit,omitempty"`
 }
 
 type ListResponse struct {

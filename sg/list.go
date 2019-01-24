@@ -9,9 +9,9 @@ import (
 
 type ListRequest struct {
 	RegionId  string      `json:"regionId"`
-	Start     int         `json:"start"`
-	Limit     int         `json:"limit"`
-	Condition SgCondition `json:"condition"`
+	Start     int         `json:"start,omitempty"`
+	Limit     int         `json:"limit,omitempty"`
+	Condition SgCondition `json:"condition,omitempty"`
 }
 
 type ListResponse struct {
