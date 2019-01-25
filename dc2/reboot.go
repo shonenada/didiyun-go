@@ -13,7 +13,7 @@ type RebootInput struct {
 
 type RebootRequest struct {
 	RegionId string      `json:"regionId"`
-	ZoneId   string      `json:"zoneId"`
+	ZoneId   string      `json:"zoneId,omitempty"`
 	Dc2      RebootInput `json:"dc2"`
 }
 

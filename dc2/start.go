@@ -13,7 +13,7 @@ type StartInput struct {
 
 type StartRequest struct {
 	RegionId string     `json:"regionId"`
-	ZoneId   string     `json:"zoneId"`
+	ZoneId   string     `json:"zoneId,omitempty"`
 	Dc2      StartInput `json:"dc2"`
 }
 

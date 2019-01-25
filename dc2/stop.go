@@ -13,7 +13,7 @@ type StopInput struct {
 
 type StopRequest struct {
 	RegionId string    `json:"regionId"`
-	ZoneId   string    `json:"zoneId"`
+	ZoneId   string    `json:"zoneId,omitempty"`
 	Dc2      StopInput `json:"dc2"`
 }
 

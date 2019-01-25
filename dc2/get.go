@@ -8,14 +8,9 @@ import (
 )
 
 type GetRequest struct {
-	// 地域 ID
-	RegionId string `json:"regionId"`
-
-	// 可用区 ID
-	ZoneId string `json:"zoneId,omitempty"`
-
-	// 所查询的 DC2 的 UUID
-	Dc2Uuid string `json:"dc2Uuid"`
+	RegionId string `json:"regionId"`         // 地域 ID
+	ZoneId   string `json:"zoneId,omitempty"` // 可用区 ID
+	Dc2Uuid  string `json:"dc2Uuid"`          // 所查询的 DC2 的 UUID
 }
 
 type GetResponse struct {

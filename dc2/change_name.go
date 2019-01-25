@@ -9,7 +9,7 @@ import (
 
 type ChangeNameRequest struct {
 	RegionId string            `json:"regionId"`
-	ZoneId   string            `json:"zoneId"`
+	ZoneId   string            `json:"zoneId,omitempty"`
 	Dc2      []ChangeNameInput `json:"dc2"`
 }
 

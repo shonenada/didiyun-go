@@ -10,7 +10,7 @@ import (
 type CountRequest struct {
 	RegionId string   `json:"regionId"`
 	ZoneId   string   `json:"zoneId,omitempty"`
-	Dc2Uuids []string `json:"dc2Uuids"`
+	Dc2Uuids []string `json:"dc2Uuids,omitempty"`
 }
 
 type CountResponse struct {

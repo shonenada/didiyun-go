@@ -8,23 +8,12 @@ import (
 )
 
 type ListRequest struct {
-	// 地域 ID
-	RegionId string `json:"regionId"`
-
-	// 可用区 ID，希望查询的可用区，不传则表示查询此地域下的所有可用区
-	ZoneId string `json:"zondId"`
-
-	// 查询 DC2 列表起始 index，从 0 开始
-	Start int `json:"start"`
-
-	// 查询 DC2 列表元素数量
-	Limit int `json:"limit"`
-
-	// 是否简化输出
-	Simplify bool `json:"simplify"`
-
-	// 查询 DC2 列表筛选条件
-	Condition Dc2Condition `json:"condition"`
+	RegionId  string       `json:"regionId"`           // 地域 ID
+	ZoneId    string       `json:"zondId,omitempty"`   // 可用区 ID，希望查询的可用区，不传则表示查询此地域下的所有可用区
+	Start     int          `json:"start"`              // 查询 DC2 列表起始 index，从 0 开始
+	Limit     int          `json:"limit"`              // 查询 DC2 列表元素数量
+	Simplify  bool         `json:"simplify,omitempty"` // 是否简化输出
+	Condition Dc2Condition `json:"condition"`          // 查询 DC2 列表筛选条件
 }
 
 type ListResponse struct {

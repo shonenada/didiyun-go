@@ -8,42 +8,42 @@ import (
 )
 
 type CreateRequest struct {
-	RegionId                string     `json:"regionId"`     // 地域 ID
-	ZoneId                  string     `json:"zoneId"`       // 可用区 ID
-	AutoContinue            bool       `json:"autoContinue"` // 是否设置 DC2 自动续费
-	PayPeriod               int        `json:"payPeriod"`    // 购买包月时长，单位为月，不传或传 0 表示后付费
-	Count                   int        `json:"count"`        // 批量购买参数，不传默认购买一台 DC2，不能超过 20
-	CouponId                string     `json:"couponId"`     // 本次创建使用的优惠券 ID
-	SubnetUuid              string     `json:"subnetUuid"`   // 在此指定子网下创建 DC2。如果未传，则会在目标地域的默认 VPC 下对应可用区的默认子网中创建 DC2
-	Dc2Model                string     `json:"dc2Model"`     // 要创建的dc2型号
-	ImgUuid                 string     `json:"imgUuid"`      // 使用何镜像创建 DC2，与 SnapUuid 二选一
-	SnapUuid                string     `json:"snapUuid"`     // 使用何快照创建DC2，与imgUuid二选一
-	PubKeyUuids             []string   `json:"pubKeyUuids"`  // 使用公钥 Uuid 列表进行 DC2 创建，与 password 参数二选一。
+	RegionId                string     `json:"regionId"`               // 地域 ID
+	ZoneId                  string     `json:"zoneId,omitempty"`       // 可用区 ID
+	AutoContinue            bool       `json:"autoContinue,omitempty"` // 是否设置 DC2 自动续费
+	PayPeriod               int        `json:"payPeriod,omitempty"`    // 购买包月时长，单位为月，不传或传 0 表示后付费
+	Count                   int        `json:"count,omitempty"`        // 批量购买参数，不传默认购买一台 DC2，不能超过 20
+	CouponId                string     `json:"couponId,omitempty"`     // 本次创建使用的优惠券 ID
+	SubnetUuid              string     `json:"subnetUuid,omitempty"`   // 在此指定子网下创建 DC2。如果未传，则会在目标地域的默认 VPC 下对应可用区的默认子网中创建 DC2
+	Dc2Model                string     `json:"dc2Model"`               // 要创建的dc2型号
+	ImgUuid                 string     `json:"imgUuid"`                // 使用何镜像创建 DC2，与 SnapUuid 二选一
+	SnapUuid                string     `json:"snapUuid"`               // 使用何快照创建DC2，与imgUuid二选一
+	PubKeyUuids             []string   `json:"pubKeyUuids"`            // 使用公钥 Uuid 列表进行 DC2 创建，与 password 参数二选一。
 	Password                string     `json:"password"`
 	RootDiskSize            int        `json:"rootDiskSize"`
 	RootDiskType            string     `json:"rootDiskType"`
-	Dc2Tags                 []string   `json:"dc2Tags"`
-	Name                    string     `json:"name"`
-	ProSecurityAgentEnabled bool       `json:"proSecurityAgentEnabled"` // 是否同时安装主机安全 Agent 专业版
-	MonitoringAgentEnabled  bool       `json:"monitoringAgentEnabled"`  // 是否同时安装监控 Agent
-	SgUuids                 []string   `json:"sgUuids"`                 // 安全组列表
-	Eip                     EipInput   `json:"eip"`
-	Ebs                     []EbsInput `json:"ebs"`
+	Dc2Tags                 []string   `json:"dc2Tags,omitempty"`
+	Name                    string     `json:"name,omitempty"`
+	ProSecurityAgentEnabled bool       `json:"proSecurityAgentEnabled,omitempty"` // 是否同时安装主机安全 Agent 专业版
+	MonitoringAgentEnabled  bool       `json:"monitoringAgentEnabled,omitempty"`  // 是否同时安装监控 Agent
+	SgUuids                 []string   `json:"sgUuids,omitempty"`                 // 安全组列表
+	Eip                     EipInput   `json:"eip,omitempty"`
+	Ebs                     []EbsInput `json:"ebs,omitempty"`
 }
 
 type EipInput struct {
-	BandWidth      int      `json:"bandWidth"`      // 带宽，为 1-100 之间的值
-	ChargeWithFlow bool     `json:"chargeWithFlow"` // 是否要按流量计费 （为按流量计费时，默认为后付费）
-	EipTags        []string `json:"eipTags"`
+	BandWidth      int      `json:"bandWidth"`                // 带宽，为 1-100 之间的值
+	ChargeWithFlow bool     `json:"chargeWithFlow,omitempty"` // 是否要按流量计费 （为按流量计费时，默认为后付费）
+	EipTags        []string `json:"eipTags,omitempty"`
 }
 
 type EbsInput struct {
-	Count    int      `json:"count"`
-	Name     string   `json:"name"`
+	Count    int      `json:"count,omitempty"`
+	Name     string   `json:"name,omitempty"`
 	Size     int64    `json:"size"`
 	DiskType string   `json:"diskType"`
-	SnapUuid string   `json:"snapUuid"`
-	EbsTags  []string `json:"ebsTags"`
+	SnapUuid string   `json:"snapUuid,omitempty"`
+	EbsTags  []string `json:"ebsTags,omitempty"`
 }
 
 type CreateResponse struct {

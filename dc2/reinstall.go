@@ -12,13 +12,13 @@ type ReinstallInput struct {
 	ImgUuid                 string   `json:"imgUuid"`
 	PubKeyUuids             []string `json:"pubKeyUuids"`
 	Password                string   `json:"password"`
-	ProSecurityAgentEnabled bool     `json:"proSecurityAgentEnabled"`
-	MonitoringAgentEnabled  bool     `json:"monitoringAgentEnabled"`
+	ProSecurityAgentEnabled bool     `json:"proSecurityAgentEnabled,omitempty"`
+	MonitoringAgentEnabled  bool     `json:"monitoringAgentEnabled,omitempty"`
 }
 
 type ReinstallRequest struct {
 	RegionId string         `json:"regionId"`
-	ZoneId   string         `json:"zoneId"`
+	ZoneId   string         `json:"zoneId,omitempty"`
 	Dc2      ReinstallInput `json:"dc2"`
 }
 

@@ -9,8 +9,8 @@ import (
 
 type ChangeSpecRequest struct {
 	RegionId string            `json:"regionId"`
-	ZoneId   string            `json:"zoneId"`
-	CouponId string            `json:"couponId"`
+	ZoneId   string            `json:"zoneId,omitempty"`
+	CouponId string            `json:"couponId,omitempty"`
 	Dc2      []ChangeSpecInput `json:"dc2"`
 }
 

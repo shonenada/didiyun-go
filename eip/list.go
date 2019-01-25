@@ -8,8 +8,8 @@ import (
 )
 
 type EipCondition struct {
-	Uuids []string `json:"eipUuids"`
-	Eip   string   `json:"eip"`
+	Uuids []string `json:"eipUuids,omitempty"`
+	Eip   string   `json:"eip,omitempty"`
 }
 
 type Dc2Info struct {
@@ -25,8 +25,8 @@ type ListRequest struct {
 	RegionId  string       `json:"regionId"`
 	Start     int          `json:"start"`
 	Limit     int          `json:"limit"`
-	Simplify  bool         `json:"simplify"`
-	condition EipCondition `json:"condition"`
+	Simplify  bool         `json:"simplify,omitempty"`
+	condition EipCondition `json:"condition,omitempty"`
 }
 
 type ListResponse struct {
