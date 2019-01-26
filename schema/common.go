@@ -39,7 +39,7 @@ type Region struct {
 	Name string `json:"name"`
 
 	// zone信息
-	Zone string `json:"zone"`
+	Zone []Zone `json:"zone"`
 }
 
 // 可用区信息
