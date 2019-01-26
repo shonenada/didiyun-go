@@ -1,6 +1,8 @@
 package schema
 
 const API_BASE = "https://open.didiyunapi.com/dicloud/i"
+
+const GET_RESULT_JOB_URL = API_BASE + "/result"
 const LIST_REGION_URL = API_BASE + "/region/list"
 
 const GET_DC2_URL = API_BASE + "/compute/dc2"
