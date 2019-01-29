@@ -1,6 +1,6 @@
 # DidiYun Golang SDK
 
-**Unofficial** Go Client for Didiyun
+**UNOFFICIAL** Go Client for Didiyun
 
 ## Getting Started
 
@@ -18,11 +18,11 @@ Use `go get` to retrieve thd SDK, and add into your `GOPATH`:
 $ go get -u github.com/shonenada/didiyun-go
 ```
 
-## Example
+## Usage
 
-### List your DC2
+`didiyun-go` require access token for invoking HTTP API, so you need to genearte on in [API Token](https://app.didiyun.com/#/api/authtoken) before developing with `didiyun-go`.
 
-Before developing with SDK, you need to create a API Token in [API Token](https://app.didiyun.com/#/api/authtoken).
+### List DC2
 
 ```go
 package main
@@ -60,7 +60,44 @@ func main() {
 }
 ```
 
-View [examples/](examples) for more detail.
+### List Ebs
+
+```
+package main
+
+import (
+	"fmt"
+	"os"
+
+	didiyun "github.com/shonenada/didiyun-go"
+	ebs "github.com/shonenada/didiyun-go/ebs"
+)
+
+func PrettyPrint(data *[]ebs.EbsInfo) {
+	for i, e := range *data {
+		fmt.Printf("[%d] - Uuid: %s\tName: %s\tAttr: %s\tDc2: %s\n", i+1, e.EbsUuid, e.Name, e.Attr, e.Dc2.Name)
+	}
+}
+
+func main() {
+	accessToken := os.Getenv("DIDIYUN_ACCESS_TOKEN")
+	client := &didiyun.Client{
+		AccessToken: accessToken,
+	}
+	request := ebs.ListRequest{
+		RegionId: "gz",
+	}
+
+	if r, e := client.Ebs().List(&request); e != nil {
+		fmt.Println(e)
+	} else {
+		PrettyPrint(r)
+	}
+
+}
+```
+
+For more examples please visit [examples/](examples).
 
 ## Contributing
 
