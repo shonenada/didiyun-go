@@ -1,17 +1,10 @@
 package schema
 
 type Eip struct {
-	// EIP 唯一标识
-	Uuid string `json:"eipUuid"`
-
-	// EIP（DC2 公网 IP）
-	Ip string `json:"ip"`
-
-	// 创建时间
-	CreateTime string `json:"createTime"`
-
-	// 更新时间
-	UpdateTime string `json:"updateTime"`
+	Uuid       string `json:"eipUuid"`    // EIP 唯一标识
+	Ip         string `json:"ip"`         // EIP（DC2 公网 IP）
+	CreateTime string `json:"createTime"` // 创建时间
+	UpdateTime string `json:"updateTime"` // 更新时间
 }
 
 type EipInfo struct {

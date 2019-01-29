@@ -12,6 +12,8 @@ This SDK requires Go 1.6 or higher versions.
 
 #### Install from code
 
+Use `go get` to retrieve thd SDK, and add into your `GOPATH`:
+
 ```sh
 $ go get -u github.com/shonenada/didiyun-go
 ```
