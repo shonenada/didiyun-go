@@ -15,9 +15,9 @@ type CreateRequest struct {
 	Count                   int        `json:"count,omitempty"`        // 批量购买参数，不传默认购买一台 DC2，不能超过 20
 	CouponId                string     `json:"couponId,omitempty"`     // 本次创建使用的优惠券 ID
 	SubnetUuid              string     `json:"subnetUuid,omitempty"`   // 在此指定子网下创建 DC2。如果未传，则会在目标地域的默认 VPC 下对应可用区的默认子网中创建 DC2
-	Dc2Model                string     `json:"dc2Model"`               // 要创建的dc2型号
+	Dc2Model                string     `json:"dc2Model"`               // 要创建的 dc2 型号
 	ImgUuid                 string     `json:"imgUuid"`                // 使用何镜像创建 DC2，与 SnapUuid 二选一
-	SnapUuid                string     `json:"snapUuid"`               // 使用何快照创建DC2，与imgUuid二选一
+	SnapUuid                string     `json:"snapUuid"`               // 使用何快照创建 DC2，与 imgUuid 二选一
 	PubKeyUuids             []string   `json:"pubKeyUuids"`            // 使用公钥 Uuid 列表进行 DC2 创建，与 password 参数二选一。
 	Password                string     `json:"password"`
 	RootDiskSize            int        `json:"rootDiskSize"`
