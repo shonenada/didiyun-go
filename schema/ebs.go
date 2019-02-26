@@ -9,22 +9,22 @@ type Ebs struct {
 	UpdateTime int64  `json:"updateTime"` // 更新时间
 }
 
+type EbsSpec struct {
+	DiskType string `json:"diskType"`
+	Model    string `json:"model"`
+	Name     string `json:"name"`
+	Size     string `json:"size"`
+}
+
 type EbsInfo struct {
 	Job        Job      `json:"job"`
 	EbsUuid    string   `json:"ebsUuid"`
 	Name       string   `json:"name"`
 	Attr       string   `json:"attr"` // EBS 属性（`Root` 为根盘，`Data` 为数据盘）
+	Size       string   `json:"size"`
 	CreateTime int64    `json:"createTime"`
 	UpdateTime int64    `json:"updateTime"`
 	EbsTags    []string `json:"ebsTags"`
 	Dc2        Dc2      `json:"dc2"`
-}
-
-type Dc2 struct {
-	Uuid       string `json:"dc2Uuid"`
-	Name       string `json:"name"`
-	CreateTime int64  `json:"createTime"`
-	UpdateTime int64  `json:"updateTime"`
-	Status     string `json:"status"`
-	OSType     string `json:"osType"`
+	Spec       EbsSpec  `json:"spec"`
 }

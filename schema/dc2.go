@@ -25,3 +25,12 @@ type Dc2Info struct {
 	Ebs        []Ebs    `json:"ebs"`        // 与 DC2 关联的 EBS 信息，没有 EBS 则没有该字段，如果是通用型 DC2，则必有这个字段，且根盘信息包含在内
 	Region     Region   `json:"region"`     // region 信息
 }
+
+type Dc2 struct {
+	Uuid       string `json:"dc2Uuid"`
+	Name       string `json:"name"`
+	CreateTime int64  `json:"createTime"`
+	UpdateTime int64  `json:"updateTime"`
+	Status     string `json:"status"`
+	OSType     string `json:"osType"`
+}
