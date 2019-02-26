@@ -103,11 +103,3 @@ type EipSpec struct {
 	// `flow` 为按流量计费
 	ChargeType string `json:"chargeType"`
 }
-
-type EbsSpec struct {
-	// 大小
-	Size int64 `json:"size"`
-
-	// 磁盘类型
-	DistType string `json:"diskType"`
-}
