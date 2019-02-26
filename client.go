@@ -4,6 +4,7 @@ import (
 	"github.com/shonenada/didiyun-go/dc2"
 	"github.com/shonenada/didiyun-go/ebs"
 	"github.com/shonenada/didiyun-go/eip"
+	"github.com/shonenada/didiyun-go/job"
 	"github.com/shonenada/didiyun-go/region"
 	"github.com/shonenada/didiyun-go/sg"
 	"github.com/shonenada/didiyun-go/snap"
@@ -13,6 +14,12 @@ import (
 
 type Client struct {
 	AccessToken string
+}
+
+func (c *Client) Job() *job.Client {
+	return &job.Client{
+		AccessToken: c.AccessToken,
+	}
 }
 
 func (c *Client) Dc2() *dc2.Client {

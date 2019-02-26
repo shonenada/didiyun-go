@@ -22,6 +22,7 @@ func main() {
 	}
 	builder := dc2.ListRequestBuilder{}
 	builder.SetRegionId("gz")
+	builder.SetLimit(50)
 	req := builder.Build()
 
 	if r, e := client.Dc2().List(&req); e != nil {

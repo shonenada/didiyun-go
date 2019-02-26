@@ -8,8 +8,8 @@ import (
 )
 
 type ResultRequest struct {
-	RegionId string   `json:"regionId"`
-	JobUuids []string `json:"jobUuids"`
+	RegionId string `json:"regionId"`
+	JobUuids string `json:"jobUuids"`
 }
 
 type ResultResponse struct {
@@ -22,7 +22,7 @@ type ResultResponse struct {
 func (c *Client) GetResult(request *ResultRequest) (*[]Job, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
-		"eipUuid":  request.EipUuid,
+		"jobUuids": request.JobUuids,
 	}
 	body, err := c.HTTPGet(GET_RESULT_JOB_URL, data)
 	if err != nil {
