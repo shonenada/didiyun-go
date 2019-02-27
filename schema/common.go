@@ -77,29 +77,33 @@ type Job struct {
 
 // DC2 规格
 type Dc2Spec struct {
-	// CPU 数
-	CpuNum int `json:"cpuNum"`
-
-	// GCP 数
-	GpcNum int `json:"gpuNum"`
-
-	// 内存大小
-	MemorySize int64 `json:"memorySize"`
-
-	// 根盘大小
-	DiskSize int64 `json:"diskSize"`
-
-	// DC2型号
-	Model string `json:"model"`
+	CpuNum                int    `json:"cpuNum"` // CPU 数
+	CpuSpeed              int64  `json:"CpuSpeed"`
+	OfferingUuid          string `json:"offeringUuid"`
+	GpcNum                int    `json:"gpuNum"` // GCP 数
+	GpuDeviceOfferingUuid string `json:"gpuDeviceOfferingUuid"`
+	MemorySize            int64  `json:"memorySize"` // 内存大小
+	DiskSize              int64  `json:"diskSize"`   // 根盘大小
+	Name                  string `json:"name"`
+	Model                 string `json:"model"` // DC2型号
+	RootDiskOfferingUuid  string `json:"rootDiskOfferingUuid"`
+	Type                  string `json:"type"`
+	TypeName              string `json:"typeName"`
 }
 
 // EIP规格
 type EipSpec struct {
-	// 带宽
-	Bandwidth int64 `json:"babandwidth"`
-
-	// 计费类型
-	// `bandwidth` 为按带宽计费
-	// `flow` 为按流量计费
-	ChargeType string `json:"chargeType"`
+	Bandwidth         int64  `json:"babandwidth"` // 带宽
+	CreateDate        string `json:"createDate"`
+	ChargeType        string `json:"chargeType"` // 计费类型,`bandwidth` 为按带宽计费;`flow` 为按流量计费
+	Description       string `json:"description"`
+	InboundBandwidth  int64  `json:"inboundBandwidth"`
+	LastOpDate        string `json:"lastOpDate"`
+	Name              string `json:"name"`
+	OfferingUuid      string `json:"offeringUuid"`
+	PeerOfferingUuid  string `json:"peerOfferingUuid"`
+	OutboundBandwidth int64  `json:"outboundBandwidth"`
+	State             string `json:"state"`
+	Type              string `json:"type"`
+	Uuid              string `json:"uuid"`
 }
