@@ -11,7 +11,7 @@ import (
 )
 
 func PrettyPrintDc2(data *Dc2Info) {
-	fmt.Printf("- Uuid: %s\tName: %s\tIP: %s\tEip: %s\nRegion: %s\n", data.Uuid, data.Name, data.Ip, data.Eip.Ip, data.Region.Name)
+	fmt.Printf("- Uuid: %s\tName: %s\tIP: %s\tEip: %s\tEbs: %v", data.Uuid, data.Name, data.Ip, data.Eip.Ip, data.Ebs)
 }
 
 func main() {

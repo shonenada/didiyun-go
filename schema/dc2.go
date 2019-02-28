@@ -19,6 +19,13 @@ type Dc2Vpc struct {
 	VpcUuid    string   `json:"vpcUuid"`
 }
 
+type Dc2Region struct {
+	AreaName string `json:"areaName"` // 区域名称
+	Id       string `json:"id"`       // region id
+	Name     string `json:"name"`     // region name
+	Zone     Zone   `json:"zone"`     // zone信息
+}
+
 type Dc2Info struct {
 	Charge     Charge    `json:"charge"`
 	CreateTime int64     `json:"createTime"` // DC2 创建时间
@@ -31,7 +38,7 @@ type Dc2Info struct {
 	Job        Job       `json:"job"`    // 此 DC2 正在进行的任务，若无任务则没有此字段
 	OSType     string    `json:"osType"` // DC2 操作系统发行版及版本号
 	Platform   string    `json:"platform"`
-	Region     Region    `json:"region"` // region 信息
+	Region     Dc2Region `json:"region"` // region 信息
 	Spec       Dc2Spec   `json:"spec"`
 	Status     string    `json:"status"`     // DC2 状态
 	Tags       []string  `json:"dc2Tags"`    // DC2 的 tags
