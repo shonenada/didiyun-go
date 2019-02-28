@@ -6,7 +6,7 @@ type EbsSpec struct {
 	MinDiskSize int64  `json:"minDiskSize"`
 	Model       string `json:"model"`
 	Name        string `json:"name"`
-	Size        string `json:"size"`
+	Size        int64  `json:"size"`
 }
 
 type EbsInfo struct {
@@ -18,7 +18,7 @@ type EbsInfo struct {
 	Job        Job      `json:"job"`
 	Name       string   `json:"name"`
 	Region     Region   `json:"region"` // 区域信息
-	Size       string   `json:"size"`
+	Size       int64    `json:"size"`
 	Spec       EbsSpec  `json:"spec"`
 	UpdateTime int64    `json:"updateTime"`
 }
