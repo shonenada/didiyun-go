@@ -73,3 +73,27 @@ type EipSpec struct {
 	Type              string `json:"type"`
 	Uuid              string `json:"uuid"`
 }
+
+type BEIP struct {
+	BeipUuid   string `json:"beipUuid"`
+	Ip         string `json:"ip"`
+	CreateTime int    `json:"createTime"`
+	UpdateTime int    `json:"updateTime"`
+}
+
+type VPC struct {
+	VpcUuid    string `json:"vpcUuid"`
+	Name       string `json:"name"`
+	IsDefault  bool   `json:"isDefault"`
+	createTime int    `json:"CreateTime"`
+	updateTime int    `json:"UpdateTime"`
+}
+
+type Flow struct {
+	In  float32 `json:"float32"`
+	Out float32 `json:"float32"`
+}
+
+type SlbSpec struct {
+	OfferingUuid string `json:"offeringUuid"`
+}
