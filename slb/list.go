@@ -35,3 +35,20 @@ type SlbResponse struct {
 	Spec       SlbSpec `json:"spec"`
 	Region     Region  `json:"region"`
 }
+
+func (c *Client) List(request *ListRequest) (*[]SlbRe, error) {
+	data, err := json.Marshal(request)
+	if err != nil {
+		fmt.Errorf("Failed to marshal body: %s", err)
+	}
+	body, err := c.HTTPPost(LIST_SLB_URL, data)
+	if err != nil {
+		fmt.Errorf("Error: %s", err)
+	}
+	ret := ListResponse{}
+	json.Unmarshal(body, &ret)
+	if ret.Errno != 0 {
+		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
+	}
+	return &ret.Data, nil
+}
