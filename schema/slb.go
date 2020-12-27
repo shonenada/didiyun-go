@@ -1,5 +1,20 @@
 package schema
 
+type SlbResponse struct {
+	Job        Job    `json:"job"`
+	SlbUuid    string `json:"slbUuid"`
+	Name       string `json:"name"`
+	Ip         string `json:"ip"`
+	WafStatus  string `json:"wafStatus"`
+	CreateTime int    `json:"createTime"`
+	Updateime  int    `json:"updateTime"`
+	BeIP       BEIP   `json:"beip"`
+	Vpc        VPC    `json:"vpc"`
+	Flow       Flow   `json:"flow"`
+	Spec       Sppc   `json:"spec"`
+	Region     Region `json:"region"`
+}
+
 type SlbCondition struct {
 	SlbUuids []string `json:"slbUuids,omitempty"`
 	VpcUuids []string `json:"vpcUuids,omitempty"`
