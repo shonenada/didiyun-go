@@ -30,13 +30,14 @@ type EIP struct {
 }
 
 type Listener struct {
-	Name         string   `json:"listener"`
-	Algorithm    string   `json:"algorithm"`
-	Protocol     string   `json:"protocol"`
-	ListenerPort int      `json:"listenerPort"`
-	BackProtocol string   `json:"backProtocol"`
-	Monitor      Monitor  `json:"monitor"`
-	Members      []Member `json:"members"`
+	SlbListenerUuid string   `json:"slbListenerUuid,omitempty"`
+	Name            string   `json:"listener"`
+	Algorithm       string   `json:"algorithm"`
+	Protocol        string   `json:"protocol"`
+	ListenerPort    int      `json:"listenerPort"`
+	BackProtocol    string   `json:"backProtocol"`
+	Monitor         Monitor  `json:"monitor"`
+	Members         []Member `json:"members,omitempty"`
 }
 
 type Monitor struct {
