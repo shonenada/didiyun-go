@@ -30,14 +30,14 @@ type EIP struct {
 }
 
 type Listener struct {
-	SlbListenerUuid string   `json:"slbListenerUuid,omitempty"`
-	Name            string   `json:"listener"`
-	Algorithm       string   `json:"algorithm"`
-	Protocol        string   `json:"protocol"`
-	ListenerPort    int      `json:"listenerPort"`
-	BackProtocol    string   `json:"backProtocol"`
-	Monitor         Monitor  `json:"monitor"`
-	Members         []Member `json:"members,omitempty"`
+	SlbListenerUuid string         `json:"slbListenerUuid,omitempty"`
+	Name            string         `json:"listener"`
+	Algorithm       string         `json:"algorithm"`
+	Protocol        string         `json:"protocol"`
+	ListenerPort    int            `json:"listenerPort"`
+	BackProtocol    string         `json:"backProtocol"`
+	Monitor         Monitor        `json:"monitor"`
+	Members         []SimpleMember `json:"members,omitempty"`
 }
 
 type Monitor struct {
@@ -48,8 +48,27 @@ type Monitor struct {
 	UnhealthyThreshold int    `json:"unhealthyThreshold"`
 }
 
-type Member struct {
+type SimpleMember struct {
 	Dc2Uuid string `json:"dc2Uuid"`
 	Weight  int    `json:"weight"`
 	Port    int    `json:"port"`
+}
+
+type ListenerMember struct {
+	SlbMemberUuid string    `json:"slbMemberUuid"`
+	HealthState   string    `json:"healthState,omitempty"`
+	unhealthState string    `json:"unhealthState,omitempty"`
+	port          int       `json:"port"`
+	weight        int       `json:"weight"`
+	createTime    int       `json:"createTime,omitempty"`
+	updateTime    int       `json:"updateTime,omitempty"`
+	Dc2           MemberDc2 `json:"dc2,omitempty"`
+}
+
+type MemberDc2 struct {
+	Dc2Uuid    string `json:"dc2Uuid"`
+	Name       string `json:"name"`
+	Ip         string `json:"ip"`
+	createTime int    `json:"createTime"`
+	updateTime int    `json:"updateTime"`
 }
