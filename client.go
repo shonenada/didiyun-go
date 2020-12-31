@@ -5,6 +5,7 @@ import (
 	"github.com/shonenada/didiyun-go/ebs"
 	"github.com/shonenada/didiyun-go/eip"
 	"github.com/shonenada/didiyun-go/job"
+	"github.com/shonenada/didiyun-go/monitor"
 	"github.com/shonenada/didiyun-go/region"
 	"github.com/shonenada/didiyun-go/sg"
 	"github.com/shonenada/didiyun-go/slb"
@@ -73,6 +74,12 @@ func (c *Client) SSHKey() *sshkey.Client {
 
 func (c *Client) Vpc() *vpc.Client {
 	return &vpc.Client{
+		AccessToken: c.AccessToken,
+	}
+}
+
+func (c *Client) Monitor() *monitor.Client {
+	return &monitor.Client{
 		AccessToken: c.AccessToken,
 	}
 }
