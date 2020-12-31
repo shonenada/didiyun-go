@@ -7,6 +7,7 @@ import (
 	"github.com/shonenada/didiyun-go/job"
 	"github.com/shonenada/didiyun-go/region"
 	"github.com/shonenada/didiyun-go/sg"
+	"github.com/shonenada/didiyun-go/slb"
 	"github.com/shonenada/didiyun-go/snap"
 	"github.com/shonenada/didiyun-go/sshkey"
 	"github.com/shonenada/didiyun-go/vpc"
@@ -48,6 +49,12 @@ func (c *Client) Region() *region.Client {
 
 func (c *Client) Sg() *sg.Client {
 	return &sg.Client{
+		AccessToken: c.AccessToken,
+	}
+}
+
+func (c *Client) Slb() *slb.Client {
+	return &slb.Client{
 		AccessToken: c.AccessToken,
 	}
 }
