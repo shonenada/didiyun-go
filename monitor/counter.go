@@ -32,4 +32,18 @@ type CounterOutput struct {
 }
 
 func (c *Client) GetCounter(request *GetMonitorCounterRequest) (*[]CounterOutput, error) {
+	data, err := json.Marshal(request)
+	if err != nil {
+		fmt.Errorf("Failed to marshal body: %s", err)
+	}
+	body, err := c.HTTPPost(GET_MONITOR_COUNTER, data)
+	if err != nil {
+		return fmt.Errorf("Error: %s", err)
+	}
+	ret := GetMonitorCounterResponse{}
+	json.Unmarshal(body, &ret)
+	if ret.Errno != 0 {
+		return -1, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
+	}
+	return re
 }
