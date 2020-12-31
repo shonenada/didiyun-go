@@ -4,6 +4,16 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
+const METRIC_CPU_UTIL = "cpu.util"
+const METRIC_DISK_READ = "disk.read"
+const METRIC_DISK_WRITE = "disk.write"
+const METRIC_NET_IN = "net.in"
+const METRIC_NET_OUT = "net.out"
+const METRIC_RXBYTES = "rxbytes"
+const METRIC_RXPKTS = "rxpkts"
+const METRIC_TXBYTES = "txbytes"
+const METRIC_TXPKTS = "txpkts"
+
 type ResourceInput struct {
 	ResourceType  string   `json:"resourceType"`
 	ResourceUuids []string `json:"resourceUuids"`
