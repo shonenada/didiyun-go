@@ -41,7 +41,7 @@ type GetMonitorDataResponse struct {
 
 func (c *Client) GetResult(request *GetMonitorDatatRequest) (*[]Job, error) {
 	data, err := json.Marshal(request)
-	body, err := c.HTTPGet(GET_MONITOR_DATA, data)
+	body, err := c.HTTPGet(GET_MONITOR_DATA_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}

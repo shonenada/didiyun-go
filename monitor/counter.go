@@ -49,7 +49,7 @@ func (c *Client) GetCounter(request *GetMonitorCounterRequest) (*[]CounterOutput
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(GET_MONITOR_COUNTER, data)
+	body, err := c.HTTPPost(GET_MONITOR_COUNTER_URL, data)
 	if err != nil {
 		return fmt.Errorf("Error: %s", err)
 	}
