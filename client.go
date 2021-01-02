@@ -11,17 +11,12 @@ import (
 	"github.com/shonenada/didiyun-go/slb"
 	"github.com/shonenada/didiyun-go/snap"
 	"github.com/shonenada/didiyun-go/sshkey"
+	"github.com/shonenada/didiyun-go/tag"
 	"github.com/shonenada/didiyun-go/vpc"
 )
 
 type Client struct {
 	AccessToken string
-}
-
-func (c *Client) Job() *job.Client {
-	return &job.Client{
-		AccessToken: c.AccessToken,
-	}
 }
 
 func (c *Client) Dc2() *dc2.Client {
@@ -38,6 +33,18 @@ func (c *Client) Ebs() *ebs.Client {
 
 func (c *Client) Eip() *eip.Client {
 	return &eip.Client{
+		AccessToken: c.AccessToken,
+	}
+}
+
+func (c *Client) Job() *job.Client {
+	return &job.Client{
+		AccessToken: c.AccessToken,
+	}
+}
+
+func (c *Client) Monitor() *monitor.Client {
+	return &monitor.Client{
 		AccessToken: c.AccessToken,
 	}
 }
@@ -72,14 +79,14 @@ func (c *Client) SSHKey() *sshkey.Client {
 	}
 }
 
-func (c *Client) Vpc() *vpc.Client {
-	return &vpc.Client{
+func (c *Client) Tag() *tag.Client {
+	return &tag.Client{
 		AccessToken: c.AccessToken,
 	}
 }
 
-func (c *Client) Monitor() *monitor.Client {
-	return &monitor.Client{
+func (c *Client) Vpc() *vpc.Client {
+	return &vpc.Client{
 		AccessToken: c.AccessToken,
 	}
 }
