@@ -95,3 +95,8 @@ const LIST_ALGORITHM_SLB_URL = API_BASE + "/i/network/slb/algorithm"
 
 const GET_MONITOR_COUNTER_URL = API_BASE + "/m/api/counter"
 const GET_MONITOR_DATA_URL = API_BASE + "/m/api/data"
+
+const LIST_TAG_URL = API_BASE + "/api/tags/list"
+const ADD_TAG_URL = API_BASE + "/api/tags/add"
+const UPDATE_TAG_URL = API_BASE + "/api/tags/update"
+const DELETE_TAG_URL = API_BASE + "/api/tags/delete"
