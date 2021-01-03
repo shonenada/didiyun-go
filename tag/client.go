@@ -1,5 +1,12 @@
 package tag
 
+import (
+	"bytes"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
 type Client struct {
 	AccessToken string
 }

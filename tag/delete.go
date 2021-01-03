@@ -23,7 +23,7 @@ type DeleteTagResponse struct {
 	Data   []string `json:"data"`
 }
 
-func (c *Client) DeleteTag(request *DeleteTagRequest) (*Job, error) {
+func (c *Client) DeleteTag(request *DeleteTagRequest) (*[]string, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
@@ -34,5 +34,5 @@ func (c *Client) DeleteTag(request *DeleteTagRequest) (*Job, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request: %s", ret.Errmsg)
 	}
-	return &ret.Data[0], nil
+	return &ret.Data, nil
 }

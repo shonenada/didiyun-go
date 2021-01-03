@@ -23,7 +23,7 @@ type AddTagResponse struct {
 	Data   []string `json:"data"`
 }
 
-func (c *Client) AddTag(request *AddTagRequest) (*Job, error) {
+func (c *Client) AddTag(request *AddTagRequest) (*[]string, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
@@ -34,5 +34,5 @@ func (c *Client) AddTag(request *AddTagRequest) (*Job, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request: %s", ret.Errmsg)
 	}
-	return &ret.Data[0], nil
+	return &ret.Data, nil
 }

@@ -21,7 +21,7 @@ type ListTagResponse struct {
 	Data   []string `json:"data"`
 }
 
-func (c *Client) ListTag(request *ListTagRequest) (*Job, error) {
+func (c *Client) ListTag(request *ListTagRequest) (*[]string, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
@@ -32,5 +32,5 @@ func (c *Client) ListTag(request *ListTagRequest) (*Job, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request: %s", ret.Errmsg)
 	}
-	return &ret.Data[0], nil
+	return &ret.Data, nil
 }
