@@ -1,18 +1,18 @@
 package schema
 
 type SlbResponse struct {
-	Job        Job    `json:"job"`
-	SlbUuid    string `json:"slbUuid"`
-	Name       string `json:"name"`
-	Ip         string `json:"ip"`
-	WafStatus  string `json:"wafStatus"`
-	CreateTime int    `json:"createTime"`
-	Updateime  int    `json:"updateTime"`
-	BeIP       BEIP   `json:"beip"`
-	Vpc        VPC    `json:"vpc"`
-	Flow       Flow   `json:"flow"`
-	Spec       Sppc   `json:"spec"`
-	Region     Region `json:"region"`
+	Job        Job     `json:"job"`
+	SlbUuid    string  `json:"slbUuid"`
+	Name       string  `json:"name"`
+	Ip         string  `json:"ip"`
+	WafStatus  string  `json:"wafStatus"`
+	CreateTime int     `json:"createTime"`
+	Updateime  int     `json:"updateTime"`
+	BeIP       BEIP    `json:"beip"`
+	Vpc        VPC     `json:"vpc"`
+	Flow       Flow    `json:"flow"`
+	Spec       SlbSpec `json:"spec"`
+	Region     Region  `json:"region"`
 }
 
 type SlbCondition struct {
@@ -71,4 +71,9 @@ type MemberDc2 struct {
 	Ip         string `json:"ip"`
 	createTime int    `json:"createTime"`
 	updateTime int    `json:"updateTime"`
+}
+
+type Algorithm struct {
+	Code string `json:"code"`
+	Name string `json:"name"`
 }
