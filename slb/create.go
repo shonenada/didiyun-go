@@ -7,7 +7,7 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type CreateRequest struct {
+type CreateSlbRequest struct {
 	RegionId     string     `json:"regionId"`
 	ZondId       string     `json:"zoneId"`
 	AutoContinue bool       `json:"autoContinue"`
@@ -21,20 +21,20 @@ type CreateRequest struct {
 	Listeners    []Listener `json:"listeners"`
 }
 
-type CreateResponse struct {
+type CreateSlbResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) Create(request *CreateRequest) (*Job, error) {
+func (c *Client) Create(request *CreateSlbRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CREATE_SLB_URL, data)
-	ret := CreateResponse{}
+	ret := CreateSlbResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)

@@ -11,14 +11,14 @@ type UpdateListenerRequest struct {
 	SlbListener []Listener `json:"listener"`
 }
 
-type UpdateListenrResponse struct {
+type UpdateListenerResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) UpdateListener(request *UpdateListenerRequest) (*[]SlbRe, error) {
+func (c *Client) UpdateListener(request *UpdateListenerRequest) (*[]Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)

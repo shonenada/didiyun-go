@@ -21,22 +21,7 @@ type ListResponse struct {
 	Data      []SlbResponse `json:"data"`
 }
 
-type SlbResponse struct {
-	Job        Job     `json:"job"`
-	SlbUuid    string  `json:"slbUuid"`
-	Name       string  `json:"name"`
-	Ip         string  `json:"ip"`
-	WafStatus  string  `json:"wafStatus"`
-	CreateTime int     `json:"createTime"`
-	UpdateTime int     `json:"updateTime"`
-	Beip       BEIP    `json:"beip"`
-	vpc        VPC     `json:"vpc"`
-	flow       Flow    `json:"flow"`
-	Spec       SlbSpec `json:"spec"`
-	Region     Region  `json:"region"`
-}
-
-func (c *Client) List(request *ListRequest) (*[]SlbRe, error) {
+func (c *Client) List(request *ListRequest) (*[]SlbResponse, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)

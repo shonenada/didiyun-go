@@ -15,7 +15,7 @@ type DeleteListenerMemberRequest struct {
 
 type DeleteListenerMemberResponse struct {
 	Errno     int    `json:"errno"`
-	ErrMsg    string `json:"errmsg"`
+	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
@@ -23,7 +23,7 @@ type DeleteListenerMemberResponse struct {
 func (c *Client) DeleteListenerMember(request *DeleteListenerMemberRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(DELETE_LISTENER_MEMBER_SLB_URL, data)
 	ret := DeleteListenerMemberResponse{}

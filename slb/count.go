@@ -11,7 +11,7 @@ type CountRequest struct {
 	VpcUuids []string `json:"vpcUuids"`
 }
 
-type CreateResponse struct {
+type CountResponse struct {
 	Errno     int    `json:"errno"`
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
@@ -20,16 +20,16 @@ type CreateResponse struct {
 	} `json:"data"`
 }
 
-func (c *Client) Count(request *CountRequest) (*Job, error) {
+func (c *Client) Count(request *CountRequest) (int, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return -1, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(COUNT_SLB_URL, data)
-	ret := CountRequest{}
+	ret := CountResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
-		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
+		return -1, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return &ret.Data[0], nil
+	return ret.Data[0].TotalCnt, nil
 }

@@ -15,7 +15,7 @@ type DeleteRequest struct {
 
 type DeleteResponse struct {
 	Errno     int    `json:"errno"`
-	ErrMsg    string `json:"errmsg"`
+	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }

@@ -14,6 +14,8 @@ type DeleteListenerRequest struct {
 }
 
 type DeleteListenerResponse struct {
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }

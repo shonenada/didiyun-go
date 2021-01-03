@@ -14,17 +14,8 @@ type ListAlgorithmResponse struct {
 	Data      []Algorithm `json:"data"`
 }
 
-type Algorithm struct {
-	Code string `json:"code"`
-	Name string `json:"name"`
-}
-
 func (c *Client) ListAlgorithm() (*[]Algorithm, error) {
-	data, err := json.Marshal(request)
-	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
-	}
-	body, err := c.HTTPGet(LIST_ALGORITHM_SLB_URL, data)
+	body, err := c.HTTPGet(LIST_ALGORITHM_SLB_URL, nil)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}

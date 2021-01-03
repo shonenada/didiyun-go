@@ -19,7 +19,7 @@ type GetResponse struct {
 	Data      []SlbResponse `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*Job, error) {
+func (c *Client) Get(request *GetRequest) (*[]SlbResponse, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
@@ -30,5 +30,5 @@ func (c *Client) Get(request *GetRequest) (*Job, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return &ret.Data[0], nil
+	return &ret.Data, nil
 }

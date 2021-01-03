@@ -13,7 +13,7 @@ type UpdateListenerMemberRequest struct {
 
 type UpdateListenerMemberResponse struct {
 	Errno     int    `json:"errno"`
-	ErrMsg    string `json:"errmsg"`
+	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
 }
