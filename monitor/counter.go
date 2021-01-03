@@ -24,8 +24,8 @@ type ResourceInput struct {
 }
 
 type GetMonitorCounterRequest struct {
-	RegionId  string     `json:"regionId"`
-	Resources []Resource `json:"resources"`
+	RegionId  string          `json:"regionId"`
+	Resources []ResourceInput `json:"resources"`
 }
 
 type GetMonitorCounterResponse struct {
@@ -47,16 +47,16 @@ type CounterOutput struct {
 func (c *Client) GetCounter(request *GetMonitorCounterRequest) (*[]CounterOutput, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(GET_MONITOR_COUNTER_URL, data)
 	if err != nil {
-		return fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := GetMonitorCounterResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
-		return -1, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
+		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return re
+	return &ret.Data, nil
 }

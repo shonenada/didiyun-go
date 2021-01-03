@@ -39,13 +39,16 @@ type GetMonitorDataResponse struct {
 	Data      []MetricOutput `json:"data"`
 }
 
-func (c *Client) GetResult(request *GetMonitorDatatRequest) (*[]Job, error) {
+func (c *Client) GetResult(request *GetMonitorDatatRequest) (*[]MetricOutput, error) {
 	data, err := json.Marshal(request)
-	body, err := c.HTTPGet(GET_MONITOR_DATA_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	ret := GetMonitorDatatResponse{}
+	body, err := c.HTTPPost(GET_MONITOR_DATA_URL, data)
+	if err != nil {
+		return nil, fmt.Errorf("Error: %s", err)
+	}
+	ret := GetMonitorDataResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
