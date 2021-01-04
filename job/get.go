@@ -26,7 +26,7 @@ func (c *Client) GetResult(request *ResultRequest) (*[]Job, error) {
 	}
 	body, err := c.HTTPGet(GET_RESULT_JOB_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := ResultResponse{}
 	json.Unmarshal(body, &ret)

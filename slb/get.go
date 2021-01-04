@@ -22,7 +22,7 @@ type GetResponse struct {
 func (c *Client) Get(request *GetRequest) (*[]SlbResponse, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(GET_SLB_URL, data)
 	ret := GetResponse{}

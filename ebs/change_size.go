@@ -28,11 +28,11 @@ type ChangeSizeResponse struct {
 func (c *Client) ChangeSize(request *ChangeSizeRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CHANGE_SIZE_EBS_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := ChangeSizeResponse{}
 	json.Unmarshal(body, &ret)

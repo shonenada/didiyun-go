@@ -27,11 +27,11 @@ type DeleteSubnetResponse struct {
 func (c *Client) DeleteSubnet(request *DeleteSubnetRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(DELETE_SUBNET_VPC_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := DeleteSubnetResponse{}
 	json.Unmarshal(body, &ret)

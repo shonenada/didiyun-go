@@ -26,11 +26,11 @@ type DetachResponse struct {
 func (c *Client) Detach(request *DetachRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(DEATCH_EBS_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := DetachResponse{}
 	json.Unmarshal(body, &ret)

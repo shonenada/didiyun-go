@@ -27,7 +27,7 @@ type StopResponse struct {
 func (c *Client) Stop(request *StopRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(STOP_DC2_URL, data)
 	ret := StopResponse{}

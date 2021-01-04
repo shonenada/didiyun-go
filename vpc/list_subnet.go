@@ -29,11 +29,11 @@ type ListSubnetResponse struct {
 func (c *Client) ListSubnet(request *ListSubnetRequest) (*[]SubnetInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(LIST_SUBNET_VPC_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := ListSubnetResponse{}
 	json.Unmarshal(body, &ret)

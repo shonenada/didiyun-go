@@ -27,7 +27,7 @@ type RebootResponse struct {
 func (c *Client) Reboot(request *RebootRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(REBOOT_DC2_URL, data)
 	ret := RebootResponse{}

@@ -23,7 +23,7 @@ type CIDRResponse struct {
 func (c *Client) CIDR() (*[]VPCAvailableCidr, error) {
 	body, err := c.HTTPGet(CIDR_VPC_URL, map[string]string{})
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := CIDRResponse{}
 	json.Unmarshal(body, &ret)

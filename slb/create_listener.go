@@ -15,7 +15,7 @@ type CreateListenerRequest struct {
 func (c *Client) CreateListener(request *CreateListenerRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CREATE_LISTENER_SLB_URL, data)
 	ret := ChangeNameResponse{}

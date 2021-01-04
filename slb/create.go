@@ -31,7 +31,7 @@ type CreateSlbResponse struct {
 func (c *Client) Create(request *CreateSlbRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CREATE_SLB_URL, data)
 	ret := CreateSlbResponse{}

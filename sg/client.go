@@ -53,7 +53,7 @@ func (c *Client) HTTPPost(URL string, data []byte) ([]byte, error) {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 
 	return body, nil

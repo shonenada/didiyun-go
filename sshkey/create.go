@@ -22,7 +22,7 @@ type CreateResponse struct {
 func (c *Client) Create(request *CreateRequest) (*SSHKeyInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CREATE_SSHKEY_URL, data)
 	ret := CreateResponse{}

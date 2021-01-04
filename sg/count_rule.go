@@ -28,11 +28,11 @@ type SgRuleCount struct {
 func (c *Client) CountRule(request *CountRuleRequest) (int, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return -1, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(COUNT_SG_RULE_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return -1, fmt.Errorf("Error: %s", err)
 	}
 	ret := CountRuleResponse{}
 	json.Unmarshal(body, &ret)

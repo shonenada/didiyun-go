@@ -26,7 +26,7 @@ func (c *Client) Get(request *GetRequest) (*EbsInfo, error) {
 	}
 	body, err := c.HTTPGet(GET_EBS_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := GetResponse{}
 	json.Unmarshal(body, &ret)

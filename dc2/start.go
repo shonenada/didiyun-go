@@ -27,7 +27,7 @@ type StartResponse struct {
 func (c *Client) Start(request *StartRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(START_DC2_URL, data)
 	ret := StartResponse{}

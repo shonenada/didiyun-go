@@ -24,7 +24,7 @@ type ListTagResponse struct {
 func (c *Client) ListTag(request *ListTagRequest) (*[]string, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(LIST_TAG_URL, data)
 	ret := ListTagResponse{}

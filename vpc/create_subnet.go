@@ -29,7 +29,7 @@ type CreateSubnetResponse struct {
 func (c *Client) CreateSubnet(request *CreateSubnetRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CREATE_SUBNET_VPC_URL, data)
 	ret := CreateSubnetResponse{}

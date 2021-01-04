@@ -123,11 +123,11 @@ func (b *ListRequestBuilder) Build() ListRequest {
 func (c *Client) List(request *ListRequest) (*[]Dc2Info, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(LIST_DC2_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := ListResponse{}
 	json.Unmarshal(body, &ret)

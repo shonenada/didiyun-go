@@ -28,11 +28,11 @@ type SubnetChangeNameResponse struct {
 func (c *Client) SunbetChangeName(request *SubnetChangeNameRequest) (*[]Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CHANGE_NAME_SUBNET_VPC_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := SubnetChangeNameResponse{}
 	json.Unmarshal(body, &ret)

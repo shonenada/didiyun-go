@@ -24,7 +24,7 @@ type ChangeNameResponse struct {
 func (c *Client) ChangeName(request *ChangeNameRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CHANGE_NAME_SLB_URL, data)
 	ret := ChangeNameResponse{}

@@ -27,11 +27,11 @@ type SubnetCount struct {
 func (c *Client) CountSubnet(request *CountSubnetRequest) (int, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(COUNT_SUBNET_VPC_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := CountSubnetResponse{}
 	json.Unmarshal(body, &ret)

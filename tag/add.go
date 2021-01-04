@@ -26,7 +26,7 @@ type AddTagResponse struct {
 func (c *Client) AddTag(request *AddTagRequest) (*[]string, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(ADD_TAG_URL, data)
 	ret := AddTagResponse{}

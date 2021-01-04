@@ -30,7 +30,7 @@ type DeleteResponse struct {
 func (c *Client) Delete(request *DeleteRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(DELETE_DC2_URL, data)
 	ret := DeleteResponse{}

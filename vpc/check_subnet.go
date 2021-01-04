@@ -35,7 +35,7 @@ func (c *Client) CheckCDIROverlap(request *CheckCIDROverlapRequest) (*[]IsOverLa
 
 	body, err := c.HTTPGet(CHECK_SUBNET_VPC_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := CheckCIDROverlapResponse{}
 	json.Unmarshal(body, &ret)

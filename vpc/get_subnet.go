@@ -28,7 +28,7 @@ func (c *Client) GetSubnet(request *GetSubnetRequest) (*SubnetInfo, error) {
 	}
 	body, err := c.HTTPGet(GET_SUBNET_VPC_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := GetSubnetResponse{}
 	json.Unmarshal(body, &ret)

@@ -21,7 +21,7 @@ type UpdateListenerMemberResponse struct {
 func (c *Client) UpdateListenerMember(request *UpdateListenerMemberRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(UPDATE_LISTENER_MEMBER_SLB_URL, data)
 	ret := UpdateListenerMemberResponse{}

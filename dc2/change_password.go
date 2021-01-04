@@ -28,7 +28,7 @@ type ChangePasswordResponse struct {
 func (c *Client) ChangePassword(request *ChangePasswordRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CHANGE_PASSWORD_DC2_URL, data)
 	ret := ChangePasswordResponse{}

@@ -28,11 +28,11 @@ type RevertResponse struct {
 func (c *Client) Revert(request *RevertRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(REVERT_SNAP_URL, data)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := RevertResponse{}
 	json.Unmarshal(body, &ret)

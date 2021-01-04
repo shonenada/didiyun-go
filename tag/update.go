@@ -26,7 +26,7 @@ type UpdateTagResponse struct {
 func (c *Client) UpdateTag(request *UpdateTagRequest) (*[]string, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(UPDATE_TAG_URL, data)
 	ret := UpdateTagResponse{}

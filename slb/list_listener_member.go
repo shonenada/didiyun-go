@@ -26,7 +26,7 @@ type ListListenerMemberResponse struct {
 func (c *Client) ListListenerMember(request *ListListenerMemberRequest) (*[]ListenerMember, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(LIST_LISTENER_MEMBER_SLB_URL, data)
 	ret := ListListenerMemberResponse{}

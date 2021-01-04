@@ -17,7 +17,7 @@ type ListAlgorithmResponse struct {
 func (c *Client) ListAlgorithm() (*[]Algorithm, error) {
 	body, err := c.HTTPGet(LIST_ALGORITHM_SLB_URL, nil)
 	if err != nil {
-		fmt.Errorf("Error: %s", err)
+		return nil, fmt.Errorf("Error: %s", err)
 	}
 	ret := ListAlgorithmResponse{}
 	json.Unmarshal(body, &ret)

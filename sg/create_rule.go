@@ -22,7 +22,7 @@ type CreateRuleResponse struct {
 func (c *Client) CreateRule(request *CreateRuleRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		fmt.Errorf("Failed to marshal body: %s", err)
+		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(CREATE_SG_RULE_URL, data)
 	ret := CreateRuleResponse{}
