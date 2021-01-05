@@ -62,7 +62,7 @@ func main() {
 
 ### List Ebs
 
-```
+```go
 package main
 
 import (
