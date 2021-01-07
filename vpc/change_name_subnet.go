@@ -25,7 +25,7 @@ type SubnetChangeNameResponse struct {
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) SunbetChangeName(request *SubnetChangeNameRequest) (*[]Job, error) {
+func (c *Client) SunbetChangeName(request *SubnetChangeNameRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
@@ -39,5 +39,5 @@ func (c *Client) SunbetChangeName(request *SubnetChangeNameRequest) (*[]Job, err
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return &ret.Data, nil
+	return &ret.Data[0], nil
 }

@@ -24,7 +24,7 @@ type ChangeNameResponse struct {
 	Data      []Job  `json:"data"`
 }
 
-func (c *Client) ChangeName(request *ChangeNameRequest) (*[]Job, error) {
+func (c *Client) ChangeName(request *ChangeNameRequest) (*Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
@@ -38,5 +38,5 @@ func (c *Client) ChangeName(request *ChangeNameRequest) (*[]Job, error) {
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)
 	}
-	return &ret.Data, nil
+	return &ret.Data[0], nil
 }
