@@ -13,7 +13,7 @@ type DeleteRequest struct {
 }
 
 type DeleteInput struct {
-	vpcUuid string `json:"vpcUuid"`
+	VpcUuid string `json:"vpcUuid"`
 }
 
 type DeleteResponse struct {
