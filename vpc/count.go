@@ -25,11 +25,11 @@ type VpcCount struct {
 func (c *Client) Count(request *CountRequest) (int, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		return nil, fmt.Errorf("Failed to marshal body: %s", err)
+		return -1, fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(COUNT_VPC_URL, data)
 	if err != nil {
-		return nil, fmt.Errorf("Error: %s", err)
+		return -1, fmt.Errorf("Error: %s", err)
 	}
 	ret := CountResponse{}
 	json.Unmarshal(body, &ret)

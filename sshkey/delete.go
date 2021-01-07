@@ -25,7 +25,7 @@ type DeleteResult struct {
 func (c *Client) Delete(request *DeleteRequest) (string, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		return nil, fmt.Errorf("Failed to marshal body: %s", err)
+		return "", fmt.Errorf("Failed to marshal body: %s", err)
 	}
 	body, err := c.HTTPPost(DELETE_SSHKEY_URL, data)
 	ret := DeleteResponse{}
