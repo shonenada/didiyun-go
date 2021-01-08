@@ -11,7 +11,7 @@ import (
 
 func PrettyPrint(data *[]ImageInfo) {
 	for i, e := range *data {
-		fmt.Printf("[%d] - Uuid: %s\tName: %s\tOS: %s - %s\tPaltform: %s\tScenes: %s\tType: %s\n", i+1, e.Uuid, e.Name, e.OsFamily, e.OsVersion, e.Platform, e.Scenes, e.Type)
+		fmt.Printf("[%d] - Uuid: %s\tName: %s\tOS: %s(%s) - %s\tPaltform: %s\tScenes: %s\tType: %s\n", i+1, e.Uuid, e.Name, e.OsFamily, e.OsArch, e.OsVersion, e.Platform, e.Scenes, e.ImgType)
 	}
 }
 
