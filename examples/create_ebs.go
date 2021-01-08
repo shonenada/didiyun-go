@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	ebs "github.com/shonenada/didiyun-go/ebs"
+	didiyun "didiyun-go"
+	ebs "didiyun-go/ebs"
 )
 
 func main() {

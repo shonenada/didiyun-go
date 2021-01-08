@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	snap "github.com/shonenada/didiyun-go/snap"
+	didiyun "didiyun-go"
+	snap "didiyun-go/snap"
 )
 
 func main() {

@@ -1,18 +1,18 @@
 package didiyun
 
 import (
-	"github.com/shonenada/didiyun-go/dc2"
-	"github.com/shonenada/didiyun-go/ebs"
-	"github.com/shonenada/didiyun-go/eip"
-	"github.com/shonenada/didiyun-go/job"
-	"github.com/shonenada/didiyun-go/monitor"
-	"github.com/shonenada/didiyun-go/region"
-	"github.com/shonenada/didiyun-go/sg"
-	"github.com/shonenada/didiyun-go/slb"
-	"github.com/shonenada/didiyun-go/snap"
-	"github.com/shonenada/didiyun-go/sshkey"
-	"github.com/shonenada/didiyun-go/tag"
-	"github.com/shonenada/didiyun-go/vpc"
+	"didiyun-go/dc2"
+	"didiyun-go/ebs"
+	"didiyun-go/eip"
+	"didiyun-go/job"
+	"didiyun-go/monitor"
+	"didiyun-go/region"
+	"didiyun-go/sg"
+	"didiyun-go/slb"
+	"didiyun-go/snap"
+	"didiyun-go/sshkey"
+	"didiyun-go/tag"
+	"didiyun-go/vpc"
 )
 
 type Client struct {

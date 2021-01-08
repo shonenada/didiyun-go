@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	. "github.com/shonenada/didiyun-go/schema"
+	didiyun "didiyun-go"
+	. "didiyun-go/schema"
 )
 
 func PrettyPrintSSHKeyInfo(data *[]SSHKeyInfo) {

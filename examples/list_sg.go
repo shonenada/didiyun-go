@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	. "github.com/shonenada/didiyun-go/schema"
-	sg "github.com/shonenada/didiyun-go/sg"
+	didiyun "didiyun-go"
+	. "didiyun-go/schema"
+	sg "didiyun-go/sg"
 )
 
 func PrettyPrint(data *[]SgInfo) {

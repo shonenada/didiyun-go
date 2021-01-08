@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	ebs "github.com/shonenada/didiyun-go/ebs"
-	. "github.com/shonenada/didiyun-go/schema"
+	didiyun "didiyun-go"
+	ebs "didiyun-go/ebs"
+	. "didiyun-go/schema"
 )
 
 func PrettyPrint(data *EbsInfo) {
