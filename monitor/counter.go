@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	. "didiyun-go/schema"
 )
 
 const METRIC_CPU_UTIL = "cpu.util"

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	eip "github.com/shonenada/didiyun-go/eip"
-	. "github.com/shonenada/didiyun-go/schema"
+	didiyun "didiyun-go"
+	eip "didiyun-go/eip"
+	. "didiyun-go/schema"
 )
 
 func main() {
