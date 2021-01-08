@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "didiyun-go"
-	. "didiyun-go/schema"
-	slb "didiyun-go/slb"
+	didiyun "github.com/shonenada/didiyun-go"
+	. "github.com/shonenada/didiyun-go/schema"
+	slb "github.com/shonenada/didiyun-go/slb"
 )
 
 func PrettyPrint(data *[]SlbResponse) {

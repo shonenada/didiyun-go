@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "didiyun-go"
-	. "didiyun-go/schema"
-	vpc "didiyun-go/vpc"
+	didiyun "github.com/shonenada/didiyun-go"
+	. "github.com/shonenada/didiyun-go/schema"
+	vpc "github.com/shonenada/didiyun-go/vpc"
 )
 
 func PrettyPrint(data *[]VpcInfo) {

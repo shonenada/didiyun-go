@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "didiyun-go"
-	vpc "didiyun-go/vpc"
+	didiyun "github.com/shonenada/didiyun-go"
+	vpc "github.com/shonenada/didiyun-go/vpc"
 )
 
 func main() {

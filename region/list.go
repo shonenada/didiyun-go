@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	. "didiyun-go/schema"
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type ListRegionAndZoneCondition struct {

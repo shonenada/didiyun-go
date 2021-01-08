@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	didiyun "didiyun-go"
-	job "didiyun-go/job"
-	. "didiyun-go/schema"
+	didiyun "github.com/shonenada/didiyun-go"
+	job "github.com/shonenada/didiyun-go/job"
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
 func PrettyPrintJob(data *[]Job) {

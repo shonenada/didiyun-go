@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "didiyun-go"
-	eip "didiyun-go/eip"
-	. "didiyun-go/schema"
+	didiyun "github.com/shonenada/didiyun-go"
+	eip "github.com/shonenada/didiyun-go/eip"
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
 func PrettyPrintEip(data *[]EipInfo) {

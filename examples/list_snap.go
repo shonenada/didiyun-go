@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"didiyun-go"
-	. "didiyun-go/schema"
-	"didiyun-go/snap"
+	"github.com/shonenada/didiyun-go"
+	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/snap"
 )
 
 func PrettyPrintEip(data []SnapInfo) {

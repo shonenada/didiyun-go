@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "didiyun-go/schema"
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type GetRequest struct {

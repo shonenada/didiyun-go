@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	didiyun "didiyun-go"
-	dc2 "didiyun-go/dc2"
-	. "didiyun-go/schema"
+	didiyun "github.com/shonenada/didiyun-go"
+	dc2 "github.com/shonenada/didiyun-go/dc2"
+	. "github.com/shonenada/didiyun-go/schema"
 )
 
 func PrettyPrintDc2(data *Dc2Info) {

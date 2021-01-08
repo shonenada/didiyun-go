@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "didiyun-go"
-	sg "didiyun-go/sg"
+	didiyun "github.com/shonenada/didiyun-go"
+	sg "github.com/shonenada/didiyun-go/sg"
 )
 
 func main() {
