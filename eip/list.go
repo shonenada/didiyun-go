@@ -12,15 +12,6 @@ type EipCondition struct {
 	Eip   string   `json:"eip,omitempty"`
 }
 
-type Dc2Info struct {
-	Uuid       string `json:"dc2Uuid"`
-	Name       string `json:"name"`
-	CreateTime int64  `json:"createTime"`
-	UpdateTime int64  `json:"updateTime"`
-	Status     string `json:"status"`
-	OsType     string `json:"osType"`
-}
-
 type ListRequest struct {
 	RegionId  string       `json:"regionId"`
 	Start     int          `json:"start"`

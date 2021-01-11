@@ -1,15 +1,16 @@
 package schema
 
 type EipInfo struct {
-	Charge     Charge   `json:"charge"`
-	CreateTime string   `json:"createTime"` // 创建时间
-	EipId      string   `json:"eipId"`
-	EipTags    []string `json:"eipTags"`
-	Ip         string   `json:"ip"` // EIP（DC2 公网 IP）
-	Region     Region   `json:"region"`
-	Spec       EipSpec  `json:"spec"`
-	State      string   `json:"state"`
-	Status     string   `json:"status"`
-	UpdateTime string   `json:"updateTime"` // 更新时间
-	Uuid       string   `json:"eipUuid"`    // EIP 唯一标识
+	Job  Job      `json:"job"`
+	Uuid string   `json:"eipUuid"`
+	Ip   string   `json:"ip"`
+	Tags []string `json:"eipTags"`
+	Dc2  struct {
+		Dc2Uuid    string `json:"dc2Uuid"`
+		Name       string `json:name"`
+		Status     string `json:"status"`
+		OsType     string `json:"osType"`
+		CreateTime int64  `json:"createTime"`
+		UpdateTime int64  `json:"updateTime"`
+	} `json:"dc2"`
 }
