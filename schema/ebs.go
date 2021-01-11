@@ -1,24 +1,24 @@
 package schema
 
-type EbsSpec struct {
-	DiskType    string `json:"diskType"`
-	MaxDiskSize int64  `json:"maxDiskSize"`
-	MinDiskSize int64  `json:"minDiskSize"`
-	Model       string `json:"model"`
-	Name        string `json:"name"`
-	Size        int64  `json:"size"`
+type EbsDc2 struct {
+	Dc2Uuid    string `json:"dc2Uuid"`
+	Name       string `json:"name"`
+	Status     string `json:"status"`
+	OsType     string `json:"osType"`
+	CreateTime int64  `json:"createTime"`
+	UpdateTime int64  `json:"updateTime"`
 }
 
 type EbsInfo struct {
-	Attr       string   `json:"attr"` // EBS 属性（`Root` 为根盘，`Data` 为数据盘）
+	Attr       string   `json:"attr"`
 	CreateTime int64    `json:"createTime"`
-	Dc2        Dc2      `json:"dc2"`
-	EbsTags    []string `json:"ebsTags"`
+	DeviceName string   `json:"deviceName"`
+	EbsId      string   `json:"ebsId"`
 	EbsUuid    string   `json:"ebsUuid"`
-	Job        Job      `json:"job"`
+	EbsTags    []string `json:"ebsTags"`
 	Name       string   `json:"name"`
-	Region     Region   `json:"region"` // 区域信息
+	Region     Region   `json:"region"`
 	Size       int64    `json:"size"`
-	Spec       EbsSpec  `json:"spec"`
 	UpdateTime int64    `json:"updateTime"`
+	Dc2        EbsDc2   `json:"dc2"`
 }

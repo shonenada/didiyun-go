@@ -26,6 +26,28 @@ type Dc2Region struct {
 	Zone     Zone   `json:"zone"`     // zone信息
 }
 
+type Dc2EbsSpec struct {
+	DiskType    string `json:"diskType"`
+	MaxDiskSize int64  `json:"maxDiskSize"`
+	MinDiskSize int64  `json:"minDiskSize"`
+	Model       string `json:"model"`
+	Name        string `json:"name"`
+	Size        int64  `json:"size"`
+}
+
+type Dc2EbsInfo struct {
+	Attr       string     `json:"attr"` // EBS 属性（`Root` 为根盘，`Data` 为数据盘）
+	CreateTime int64      `json:"createTime"`
+	Dc2        Dc2        `json:"dc2"`
+	EbsTags    []string   `json:"ebsTags"`
+	EbsUuid    string     `json:"ebsUuid"`
+	Job        Job        `json:"job"`
+	Name       string     `json:"name"`
+	Region     Region     `json:"region"` // 区域信息
+	Size       int64      `json:"size"`
+	Spec       Dc2EbsSpec `json:"spec"`
+	UpdateTime int64      `json:"updateTime"`
+}
 type Dc2EipInfo struct {
 	Charge     Charge   `json:"charge"`
 	CreateTime string   `json:"createTime"` // 创建时间
