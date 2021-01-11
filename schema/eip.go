@@ -2,6 +2,7 @@ package schema
 
 type EipInfo struct {
 	Job  Job      `json:"job"`
+	Id   string   `json:"eipId"`
 	Uuid string   `json:"eipUuid"`
 	Ip   string   `json:"ip"`
 	Tags []string `json:"eipTags"`
