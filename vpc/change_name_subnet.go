@@ -9,14 +9,14 @@ import (
 )
 
 type SubnetChangeNameRequest struct {
-	RegionId string                  `json:"regionId"`
-	VpcUuid  string                  `json:"vpcUuid"`
-	Subnet   []SubnetChangeNameInput `json:"subnet"`
+	RegionId string                   `json:"regionId"`
+	Uuid     string                   `json:"vpcUuid"`
+	Subnet   []SubnetChangeNameParams `json:"subnet"`
 }
 
-type SubnetChangeNameInput struct {
-	SubnetUuid string `json:"subnetUuid"`
-	Name       string `json:"name"`
+type SubnetChangeNameParams struct {
+	Uuid string `json:"subnetUuid"`
+	Name string `json:"name"`
 }
 
 type SubnetChangeNameResponse struct {

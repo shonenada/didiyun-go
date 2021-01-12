@@ -11,8 +11,9 @@ import (
 type CountRequest struct {
 	RegionId string `json:"regionId"`
 	ZoneId   string `json:"zoneId,omitempty"`
+	Name     string `json:"snapName,omitempty"`
+	Dc2Uuid  string `json:"dc2Uuid,omitempty"`
 	EbsUuid  string `json:"ebsUuid,omitempty"`
-	SnapName string `json:"snapName,omitempty"`
 }
 
 type CountResponse struct {

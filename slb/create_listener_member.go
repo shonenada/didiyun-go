@@ -9,8 +9,8 @@ import (
 )
 
 type CreateListenerMemberRequest struct {
-	PoolUuid string         `json:"poolUuid"`
-	Members  []SimpleMember `json:"members"`
+	PoolUuid string           `json:"poolUuid"`
+	Members  []ListenerMember `json:"members"`
 }
 
 type CreateListenerMemberResponse struct {

@@ -8,14 +8,14 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type StartInput struct {
-	Dc2Uuid string `json:"dc2Uuid"`
+type StartParams struct {
+	Uuid string `json:"dc2Uuid"`
 }
 
 type StartRequest struct {
-	RegionId string     `json:"regionId"`
-	ZoneId   string     `json:"zoneId,omitempty"`
-	Dc2      StartInput `json:"dc2"`
+	RegionId string      `json:"regionId"`
+	ZoneId   string      `json:"zoneId,omitempty"`
+	Dc2      StartParams `json:"dc2"`
 }
 
 type StartResponse struct {

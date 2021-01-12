@@ -11,18 +11,16 @@ import (
 type CountSubnetRequest struct {
 	RegionId string `json:"regionId"`
 	ZoneId   string `json:"zoneId,omitempty"`
-	VpcUuid  string `json:"vpcUuid"`
+	Uuid     string `json:"vpcUuid"`
 }
 
 type CountSubnetResponse struct {
-	Errno     int           `json:"errno"`
-	Errmsg    string        `json:"errmsg"`
-	RequestId string        `json:"requestId"`
-	Data      []SubnetCount `json:"data"`
-}
-
-type SubnetCount struct {
-	TotalCount int `json:"totalCnt"`
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
+	RequestId string `json:"requestId"`
+	Data      []struct {
+		TotalCount int `json:"totalCnt"`
+	} `json:"data"`
 }
 
 func (c *Client) CountSubnet(request *CountSubnetRequest) (int, error) {

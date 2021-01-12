@@ -8,15 +8,15 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type ChangePasswordInput struct {
-	Dc2Uuid  string `json:"dc2Uuid"`
-	Password string `json:"password"`
+type ChangePasswordRequest struct {
+	RegionId string                 `json:"regionId"`
+	ZoneId   string                 `json:"zoneId,omitempty"`
+	Dc2      []ChangePasswordParams `json:"dc2"`
 }
 
-type ChangePasswordRequest struct {
-	RegionId string                `json:"regionId"`
-	ZoneId   string                `json:"zoneId,omitempty"`
-	Dc2      []ChangePasswordInput `json:"dc2"`
+type ChangePasswordParams struct {
+	Uuid     string `json:"dc2Uuid"`
+	Password string `json:"password"`
 }
 
 type ChangePasswordResponse struct {

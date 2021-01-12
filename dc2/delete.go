@@ -9,16 +9,16 @@ import (
 )
 
 type DeleteRequest struct {
-	RegionId  string        `json:"regionId"`
-	ZoneId    string        `json:"zoneId,omitempty"`
-	Dc2       []DeleteInput `json:"dc2"`                 // 要删除的DC2信息，一次不能超过20台
-	DeleteEip bool          `json:"deleteEip,omitempty"` // 是否同时删除 DC2 上绑定的 EIP
-	DeleteEbs bool          `json:"deleteEbs,omitempty"` // 是否同时删除 DC2 上绑定的 EBS
-	IgnoreSLB bool          `json:"ignoreSlb,omitempty"` // 是否忽略 DC2 上绑定的负载均衡
+	RegionId    string         `json:"regionId"`
+	ZoneId      string         `json:"zoneId,omitempty"`
+	Dc2         []DeleteParams `json:"dc2"`                 // 要删除的DC2信息，一次不能超过20台
+	IsDeleteEip bool           `json:"deleteEip,omitempty"` // 是否同时删除 DC2 上绑定的 EIP
+	IsDeleteEbs bool           `json:"deleteEbs,omitempty"` // 是否同时删除 DC2 上绑定的 EBS
+	IsIgnoreSLB bool           `json:"ignoreSlb,omitempty"` // 是否忽略 DC2 上绑定的负载均衡
 }
 
-type DeleteInput struct {
-	Dc2Uuid string `json:"dc2Uuid"` // 需要删除规格的 DC2 的uuid
+type DeleteParams struct {
+	Uuid string `json:"dc2Uuid"` // 需要删除规格的 DC2 的uuid
 }
 
 type DeleteResponse struct {

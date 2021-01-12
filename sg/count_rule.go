@@ -10,20 +10,18 @@ import (
 
 type CountRuleRequest struct {
 	RegionId string `json:"regionId"`
-	SgUuid   string `json:"sgUuid,omitempty"`
+	Uuid     string `json:"sgUuid,omitempty"`
 	Dc2Uuid  string `json:"dc2Uuid,omitempty"`
 	Type     string `json:"type"`
 }
 
 type CountRuleResponse struct {
-	Errno     int           `json:"errno"`
-	Errmsg    string        `json:"errmsg"`
-	RequestId string        `json:"requestId"`
-	Data      []SgRuleCount `json:"data"`
-}
-
-type SgRuleCount struct {
-	TotalCount int `json:"totalCnt"`
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
+	RequestId string `json:"requestId"`
+	Data      []struct {
+		TotalCount int `json:"totalCnt"`
+	} `json:"data"`
 }
 
 func (c *Client) CountRule(request *CountRuleRequest) (int, error) {

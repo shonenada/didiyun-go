@@ -9,12 +9,12 @@ import (
 )
 
 type DeleteRequest struct {
-	RegionId string        `json:"regionId"`
-	Vpc      []DeleteInput `json:"vpc"`
+	RegionId string         `json:"regionId"`
+	Vpc      []DeleteParams `json:"vpc"`
 }
 
-type DeleteInput struct {
-	VpcUuid string `json:"vpcUuid"`
+type DeleteParams struct {
+	Uuid string `json:"vpcUuid"`
 }
 
 type DeleteResponse struct {

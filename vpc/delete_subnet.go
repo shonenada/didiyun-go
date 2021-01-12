@@ -9,13 +9,13 @@ import (
 )
 
 type DeleteSubnetRequest struct {
-	RegionId string              `json:"regionId"`
-	VpcUuid  []DeleteSubnetInput `json:"vpcUuid"`
-	Subnet   []DeleteSubnetInput `json:"subnet"`
+	RegionId string               `json:"regionId"`
+	Uuid     string               `json:"vpcUuid"`
+	Subnet   []DeleteSubnetParams `json:"subnet"`
 }
 
-type DeleteSubnetInput struct {
-	subnetUuid string `json:"subnetUuid"`
+type DeleteSubnetParams struct {
+	Uuid string `json:"subnetUuid"`
 }
 
 type DeleteSubnetResponse struct {

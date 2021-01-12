@@ -9,8 +9,8 @@ import (
 )
 
 type CreateListenerRequest struct {
-	SlbUuid     string     `json:"slbUuid"`
-	SlbListener []Listener `json:"slbListener"`
+	Uuid     string     `json:"slbUuid"`
+	Listener []Listener `json:"slbListener"`
 }
 
 func (c *Client) CreateListener(request *CreateListenerRequest) (*Job, error) {

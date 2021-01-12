@@ -9,14 +9,14 @@ import (
 )
 
 type ChangeNameRequest struct {
-	RegionId string            `json:"regionId"`
-	ZoneId   string            `json:"zoneId,omitempty"`
-	Dc2      []ChangeNameInput `json:"dc2"`
+	RegionId string             `json:"regionId"`
+	ZoneId   string             `json:"zoneId,omitempty"`
+	Dc2      []ChangeNameParams `json:"dc2"`
 }
 
-type ChangeNameInput struct {
-	Dc2Uuid string `json:"dc2Uuid"`
-	Name    string `json:"name"`
+type ChangeNameParams struct {
+	Uuid string `json:"dc2Uuid"`
+	Name string `json:"name"`
 }
 
 type ChangeNameResponse struct {

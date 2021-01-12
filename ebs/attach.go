@@ -9,12 +9,12 @@ import (
 )
 
 type AttachRequest struct {
-	RegionId string        `json:"regionId"`
-	Ebs      []AttachInput `json:"ebs"`
+	RegionId string         `json:"regionId"`
+	Ebs      []AttachParams `json:"ebs"`
 }
 
-type AttachInput struct {
-	EbsUuid string `json:"ebsUuid"`
+type AttachParams struct {
+	Uuid    string `json:"ebsUuid"`
 	Dc2Uuid string `json:"dc2Uuid"` // 待绑定的 DC2 的 Uuid
 }
 

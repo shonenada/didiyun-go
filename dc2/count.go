@@ -9,26 +9,24 @@ import (
 )
 
 type CountRequest struct {
-	RegionId  string   `json:"regionId"`
-	ZoneId    string   `json:"zoneId,omitempty"`
-	VpcUuids  []string `json:"vpcUuids,omitempty"`
-	Dc2Name   string   `json:"dc2Name,omitempty"`
-	SgUuid    string   `json:"sgUuid,omitempty"`
-	Dc2Uuids  []string `json:"dc2Uuids,omitempty"`
-	SgExclude bool     `json:"sgExclude,omitempty"`
-	Ip        string   `json:"ip,omitempty"`
-	Eip       string   `json:"eip,omitempty"`
-}
-
-type Dc2Count struct {
-	TotalCount int `json:"totalCnt"`
+	RegionId    string   `json:"regionId"`
+	ZoneId      string   `json:"zoneId,omitempty"`
+	Name        string   `json:"dc2Name,omitempty"`
+	SgUuid      string   `json:"sgUuid,omitempty"`
+	IsSgExclude bool     `json:"sgExclude,omitempty"`
+	Ip          string   `json:"ip,omitempty"`
+	Eip         string   `json:"eip,omitempty"`
+	Uuids       []string `json:"dc2Uuids,omitempty"`
+	VpcUuids    []string `json:"vpcUuids,omitempty"`
 }
 
 type CountResponse struct {
-	Errno     int        `json:"errno"`
-	Errmsg    string     `json:"errmsg"`
-	RequestId string     `json:"requestId"`
-	Data      []Dc2Count `json:"data"`
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
+	RequestId string `json:"requestId"`
+	Data      []struct {
+		TotalCount `json:"totalCnt"`
+	} `json:"data"`
 }
 
 func (c *Client) Count(request *CountRequest) (int, error) {

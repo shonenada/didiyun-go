@@ -9,14 +9,14 @@ import (
 )
 
 type RevertRequest struct {
-	RegionId string        `json:"regionId"`
-	Snap     []RevertInput `json:"snap"`
-	StartDc2 bool          `json:"startDc2"` // 还原后是否需要同时启动 DC2
-	StopDc2  bool          `json:"stopDc2"`  // 还原前，是否执行关闭 DC2
+	RegionId   string         `json:"regionId"`
+	Snap       []RevertParams `json:"snap"`
+	IsStartDc2 bool           `json:"startDc2"` // 还原后是否需要同时启动 DC2
+	IsStopDc2  bool           `json:"stopDc2"`  // 还原前，是否执行关闭 DC2
 }
 
-type RevertInput struct {
-	SnapUuid string `json:"snapUuid"`
+type RevertParams struct {
+	Uuid string `json:"snapUuid"`
 }
 
 type RevertResponse struct {

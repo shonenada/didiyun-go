@@ -9,13 +9,13 @@ import (
 )
 
 type ChangeBandWidthRequest struct {
-	RegionId string                 `json:"regionId"`
-	Eip      []ChangeBandWidthInput `json:"eip"`
-	CouponId string                 `json:"couponId,omitempty"`
+	RegionId string                  `json:"regionId"`
+	Eip      []ChangeBandWidthParams `json:"eip"`
+	CouponId string                  `json:"couponId,omitempty"`
 }
 
-type ChangeBandWidthInput struct {
-	EipUuid        string `json:"eipUuid"`
+type ChangeBandWidthParams struct {
+	Uuid           string `json:"eipUuid"`
 	BandWidth      int    `json:"bandWidth"`
 	ChargeWithFlow bool   `json:"chargeWithFlow,omitempty"`
 }

@@ -9,12 +9,12 @@ import (
 )
 
 type CreateSubnetRequest struct {
-	RegionId string              `json:"regionId"`
-	VpcUuid  string              `json:"vpcUuid"`
-	Subnet   []CreateSubnetInput `json:"subnet"`
+	RegionId string               `json:"regionId"`
+	Uuid     string               `json:"vpcUuid"`
+	Subnet   []CreateSubnetParams `json:"subnet"`
 }
 
-type CreateSubnetInput struct {
+type CreateSubnetParams struct {
 	Name   string `json:"name"`
 	CIDR   string `json:"cidr"` // Subnet 网段，格式如 "10.0.0.0/16"
 	ZoneId string `json:"zoneId"`

@@ -17,7 +17,7 @@ type ListSubnetRequest struct {
 }
 
 type SubnetCondition struct {
-	VpcUuid string `json:"vpcUuid,omitempty"`
+	Uuid string `json:"vpcUuid,omitempty"`
 }
 
 type ListSubnetResponse struct {

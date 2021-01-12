@@ -9,16 +9,16 @@ import (
 )
 
 type AttachRequest struct {
-	RegionId string           `json:"regionId"`
-	Sg       []AttachSgInput  `json:"sg"`
-	Dc2      []AttachDc2Input `json:"dc2"`
+	RegionId string            `json:"regionId"`
+	Sg       []AttachSgParams  `json:"sg"`
+	Dc2      []AttachDc2Params `json:"dc2"`
 }
 
-type AttachSgInput struct {
+type AttachSgParams struct {
 	SgUuid string `json:"sgUuid"`
 }
 
-type AttachDc2Input struct {
+type AttachDc2Params struct {
 	Dc2Uuid string `json:"dc2Uuid"`
 }
 

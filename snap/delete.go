@@ -9,12 +9,12 @@ import (
 )
 
 type DeleteRequest struct {
-	RegionId string        `json:"regionId"`
-	Snap     []DeleteInput `json:"snap"`
+	RegionId string         `json:"regionId"`
+	Snap     []DeleteParams `json:"snap"`
 }
 
-type DeleteInput struct {
-	SnapUuid string `json:"ebsUuid"`
+type DeleteParams struct {
+	Uuid string `json:"ebsUuid"`
 }
 
 type DeleteResponse struct {

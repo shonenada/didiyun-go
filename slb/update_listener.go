@@ -9,7 +9,7 @@ import (
 )
 
 type UpdateListenerRequest struct {
-	SlbListener []Listener `json:"listener"`
+	Listener []Listener `json:"listener"`
 }
 
 type UpdateListenerResponse struct {

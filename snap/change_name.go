@@ -9,13 +9,13 @@ import (
 )
 
 type ChangeNameRequest struct {
-	RegionId string            `json:"regionId"`
-	Snap     []ChangeNameInput `json:"snap"`
+	RegionId string             `json:"regionId"`
+	Snap     []ChangeNameParams `json:"snap"`
 }
 
-type ChangeNameInput struct {
-	SnapUuid string `json:"snapUuid"`
-	Name     string `json:"name"`
+type ChangeNameParams struct {
+	Uuid string `json:"snapUuid"`
+	Name string `json:"name"`
 }
 
 type ChangeNameResponse struct {

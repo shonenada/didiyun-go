@@ -9,12 +9,12 @@ import (
 )
 
 type DetachRequest struct {
-	RegionId string        `json:"regionId"`
-	Ebs      []DetachInput `json:"ebs"`
+	RegionId string         `json:"regionId"`
+	Ebs      []DetachParams `json:"ebs"`
 }
 
-type DetachInput struct {
-	EbsUuid string `json:"ebsUuid"`
+type DetachParams struct {
+	Uuid string `json:"ebsUuid"`
 }
 
 type DetachResponse struct {

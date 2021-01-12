@@ -10,8 +10,8 @@ import (
 
 type ChangeNameRequest struct {
 	Slb []struct {
-		SlbUuid string `json:"slbUuid"`
-		Name    string `json:"name"`
+		Uuid string `json:"slbUuid"`
+		Name string `json:"name"`
 	} `json:"slb"`
 }
 

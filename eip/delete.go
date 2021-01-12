@@ -9,12 +9,12 @@ import (
 )
 
 type DeleteRequest struct {
-	RegionId string        `json:"regionId"`
-	Eip      []DeleteInput `json:"eip"`
+	RegionId string         `json:"regionId"`
+	Eip      []DeleteParams `json:"eip"`
 }
 
-type DeleteInput struct {
-	EipUuid string `json:"eipUuid"`
+type DeleteParams struct {
+	Uuid string `json:"eipUuid"`
 }
 
 type DeleteResponse struct {

@@ -9,15 +9,15 @@ import (
 )
 
 type CreateRequest struct {
-	RegionId       string   `json:"regionId"`
-	AutoContinue   bool     `json:"autoContinue,omitempty"`
-	PayPeriod      int      `json:"payPeriod,omitempty"`
-	CouponId       string   `json:"couponId,omitempty"`
-	Count          int      `json:"count,omitempty"`
-	BandWidth      int      `json:bandwidth,omitempty"`
-	ChargeWithFlow bool     `json:"chargeWithFlow,omitempty"`
-	BindingUuid    string   `json:"bindingUuid,omitempty"`
-	EipTags        []string `json:"EipTags"`
+	RegionId         string   `json:"regionId"`
+	IsAutoContinue   bool     `json:"autoContinue,omitempty"`
+	PayPeriod        int      `json:"payPeriod,omitempty"`
+	CouponId         string   `json:"couponId,omitempty"`
+	Count            int      `json:"count,omitempty"`
+	BandWidth        int      `json:bandwidth,omitempty"`
+	IsChargeWithFlow bool     `json:"chargeWithFlow,omitempty"`
+	BindingUuid      string   `json:"bindingUuid,omitempty"`
+	Tags             []string `json:"EipTags"`
 }
 
 type CreateResponse struct {

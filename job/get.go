@@ -10,7 +10,7 @@ import (
 
 type ResultRequest struct {
 	RegionId string `json:"regionId"`
-	JobUuids string `json:"jobUuids"`
+	Uuids    string `json:"jobUuids"`
 }
 
 type ResultResponse struct {

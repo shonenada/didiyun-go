@@ -10,9 +10,9 @@ import (
 
 type CreateRequest struct {
 	RegionId string `json:"regionId"`
+	Name     string `json:"snapName"`
 	Dc2Uuid  string `json:"dc2Uuid"` // 根据 DC2 创建快照，与 ebsUuid 参数二选一
 	EbsUuid  string `json:"ebsUuid"` // 根据 EBS 创建快照，与 dc2Uuid 参数二选一
-	SnapName string `json:"snapName"`
 }
 
 type CreateResponse struct {

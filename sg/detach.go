@@ -9,17 +9,17 @@ import (
 )
 
 type DetachRequest struct {
-	RegionId string           `json:"regionId"`
-	Sg       []DetachSgInput  `json:"sg"`
-	Dc2      []DetachDc2Input `json:"dc2"`
+	RegionId string            `json:"regionId"`
+	Sg       []DetachSgParams  `json:"sg"`
+	Dc2      []DetachDc2Params `json:"dc2"`
 }
 
-type DetachSgInput struct {
-	SgUuid string `json:"SgUuid"`
+type DetachSgParams struct {
+	Uuid string `json:"SgUuid"`
 }
 
-type DetachDc2Input struct {
-	Dc2Uuid string `json:"dc2Uuid"`
+type DetachDc2Params struct {
+	Uuid string `json:"dc2Uuid"`
 }
 
 type DetachResponse struct {

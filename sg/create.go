@@ -9,15 +9,23 @@ import (
 )
 
 type CreateRequest struct {
-	RegionId string              `json:"regionId"`
-	Name     string              `json:"name"`
-	VpcUuid  string              `json:"vpcUuid,omitempty"`
-	SgRule   []CreateSgRuleInput `json:"sgRule,omitempty"`
-	Dc2      []Dc2CreateSgInput  `json:"dc2,omitempty"`
+	RegionId string               `json:"regionId"`
+	Name     string               `json:"name"`
+	VpcUuid  string               `json:"vpcUuid,omitempty"`
+	SgRule   []CreateSgRuleParams `json:"sgRule,omitempty"`
+	Dc2      []Dc2CreateSgParams  `json:"dc2,omitempty"`
 }
 
-type Dc2CreateSgInput struct {
-	Dc2Uuid string `json:"dc2Uuid"`
+type CreateSgRuleParams struct {
+	Type        string `json:"type"`
+	Protocol    string `json:"protocol"`
+	StartPort   int    `json:"startPort"`
+	EndPort     int    `json:"endPort"`
+	AllowedCidr string `json:"allowedCidr"`
+}
+
+type Dc2CreateSgParams struct {
+	Uuid string `json:"dc2Uuid"`
 }
 
 type CreateResponse struct {

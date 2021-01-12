@@ -9,9 +9,9 @@ import (
 )
 
 type CreateRuleRequest struct {
-	RegionId string              `json:"regionId"`
-	SgUuid   string              `json:"sgUuid"`
-	SgRule   []CreateSgRuleInput `json:"sgRule"`
+	RegionId string               `json:"regionId"`
+	Uuid     string               `json:"sgUuid"`
+	SgRule   []CreateSgRuleParams `json:"sgRule"`
 }
 type CreateRuleResponse struct {
 	Errno     int    `json:"errno"`

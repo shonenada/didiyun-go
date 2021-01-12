@@ -12,7 +12,7 @@ import (
 
 type CheckCIDROverlapRequest struct {
 	RegionId string `json:"regionId"`
-	VpcUuid  string `json:"vpcUuid"`
+	Uuid     string `json:"vpcUuid"`
 	CIDR     string `json:"cidr"`
 }
 

@@ -10,7 +10,7 @@ import (
 
 type DeleteRequest struct {
 	Slb []struct {
-		slbUuid string `json:"slbUuid"`
+		Uuid string `json:"slbUuid"`
 	} `json:"slb"`
 }
 

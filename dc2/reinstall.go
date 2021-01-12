@@ -8,19 +8,19 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type ReinstallInput struct {
-	Dc2Uuid                 string   `json:"dc2Uuid"`
-	ImgUuid                 string   `json:"imgUuid"`
-	PubKeyUuids             []string `json:"pubKeyUuids"`
-	Password                string   `json:"password"`
-	ProSecurityAgentEnabled bool     `json:"proSecurityAgentEnabled,omitempty"`
-	MonitoringAgentEnabled  bool     `json:"monitoringAgentEnabled,omitempty"`
+type ReinstallParams struct {
+	Uuid                      string   `json:"dc2Uuid"`
+	ImgUuid                   string   `json:"imgUuid"`
+	PubKeyUuids               []string `json:"pubKeyUuids"`
+	Password                  string   `json:"password"`
+	IsProSecurityAgentEnabled bool     `json:"proSecurityAgentEnabled,omitempty"`
+	IsMonitoringAgentEnabled  bool     `json:"monitoringAgentEnabled,omitempty"`
 }
 
 type ReinstallRequest struct {
-	RegionId string         `json:"regionId"`
-	ZoneId   string         `json:"zoneId,omitempty"`
-	Dc2      ReinstallInput `json:"dc2"`
+	RegionId string          `json:"regionId"`
+	ZoneId   string          `json:"zoneId,omitempty"`
+	Dc2      ReinstallParams `json:"dc2"`
 }
 
 type ReinstallResponse struct {

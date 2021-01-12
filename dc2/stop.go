@@ -8,14 +8,14 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type StopInput struct {
-	Dc2Uuid string `json:"dc2Uuid"`
+type StopParams struct {
+	Uuid string `json:"dc2Uuid"`
 }
 
 type StopRequest struct {
-	RegionId string    `json:"regionId"`
-	ZoneId   string    `json:"zoneId,omitempty"`
-	Dc2      StopInput `json:"dc2"`
+	RegionId string     `json:"regionId"`
+	ZoneId   string     `json:"zoneId,omitempty"`
+	Dc2      StopParams `json:"dc2"`
 }
 
 type StopResponse struct {

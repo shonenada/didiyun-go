@@ -11,14 +11,14 @@ import (
 type GetRequest struct {
 	RegionId string `json:"regionId"`         // 地域 ID
 	ZoneId   string `json:"zoneId,omitempty"` // 可用区 ID
-	Dc2Uuid  string `json:"dc2Uuid"`          // 所查询的 DC2 的 UUID
+	Uuid     string `json:"dc2Uuid"`          // 所查询的 DC2 的 UUID
 }
 
 type GetResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []Dc2Info `json:"data"`
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
+	RequestId string `json:"requestId"`
+	Data      []Dc2  `json:"data"`
 }
 
 func (c *Client) Get(request *GetRequest) (*Dc2Info, error) {

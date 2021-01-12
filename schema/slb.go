@@ -15,14 +15,6 @@ type SlbResponse struct {
 	Region     Region  `json:"region"`
 }
 
-type SlbCondition struct {
-	SlbUuids []string `json:"slbUuids,omitempty"`
-	VpcUuids []string `json:"vpcUuids,omitempty"`
-	Beips    []string `json:"beips,omitempty"`
-	Dc2Ips   []string `json:"dc2ips,omitempty"`
-	Ips      []string `json:"ips,omitempty"`
-}
-
 type EIP struct {
 	Name           string `json:"name",omitempty`
 	Bandwidth      string `json:"bandwidth"`
@@ -30,14 +22,20 @@ type EIP struct {
 }
 
 type Listener struct {
-	SlbListenerUuid string         `json:"slbListenerUuid,omitempty"`
-	Name            string         `json:"listener"`
-	Algorithm       string         `json:"algorithm"`
-	Protocol        string         `json:"protocol"`
-	ListenerPort    int            `json:"listenerPort"`
-	BackProtocol    string         `json:"backProtocol"`
-	Monitor         Monitor        `json:"monitor"`
-	Members         []SimpleMember `json:"members,omitempty"`
+	SlbListenerUuid string           `json:"slbListenerUuid,omitempty"`
+	Name            string           `json:"listener"`
+	Algorithm       string           `json:"algorithm"`
+	Protocol        string           `json:"protocol"`
+	ListenerPort    int              `json:"listenerPort"`
+	BackProtocol    string           `json:"backProtocol"`
+	Monitor         Monitor          `json:"monitor"`
+	Members         []ListenerMember `json:"members,omitempty"`
+}
+
+type ListenerMember struct {
+	Dc2Uuid string `json:"dc2Uuid"`
+	Weight  int    `json:"weight"`
+	Port    int    `json:"port"`
 }
 
 type Monitor struct {
@@ -46,12 +44,6 @@ type Monitor struct {
 	Timeout            int    `json:"timeout"`
 	HealthyThreshold   int    `json:"healthyThreshold"`
 	UnhealthyThreshold int    `json:"unhealthyThreshold"`
-}
-
-type SimpleMember struct {
-	Dc2Uuid string `json:"dc2Uuid"`
-	Weight  int    `json:"weight"`
-	Port    int    `json:"port"`
 }
 
 type ListenerMember struct {

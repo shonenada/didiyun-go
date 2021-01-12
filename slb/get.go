@@ -10,7 +10,7 @@ import (
 
 type GetRequest struct {
 	RegionId string `json:"regionId"`
-	SlbUuid  string `json:"slbUuid"`
+	Uuid     string `json:"slbUuid"`
 }
 
 type GetResponse struct {

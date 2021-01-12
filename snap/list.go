@@ -9,18 +9,18 @@ import (
 )
 
 type SnapCondition struct {
-	Dc2Uuid  string `json:"dc2Uuid,omitempty"`
-	EbsUuid  string `json:"ebsUuid,omitempty"`
-	SnapName string `json:"snapName,omitempty"`
+	Name    string `json:"snapName,omitempty"`
+	Dc2Uuid string `json:"dc2Uuid,omitempty"`
+	EbsUuid string `json:"ebsUuid,omitempty"`
 }
 
 type ListRequest struct {
-	RegionId  string        `json:"regionId"`
-	ZoneId    string        `json:"zoneId,omitempty"`
-	Start     int           `json:"start"`
-	Limit     int           `json:"limit"`
-	Simplify  bool          `json:"simplify,omitempty"`
-	condition SnapCondition `json:"condition,omitempty"`
+	RegionId   string        `json:"regionId"`
+	ZoneId     string        `json:"zoneId,omitempty"`
+	Start      int           `json:"start"`
+	Limit      int           `json:"limit"`
+	IsSimplify bool          `json:"simplify,omitempty"`
+	condition  SnapCondition `json:"condition,omitempty"`
 }
 
 type ListResponse struct {
@@ -31,14 +31,14 @@ type ListResponse struct {
 }
 
 type ListRequestBuilder struct {
-	regionId string
-	zoneId   string
-	start    int
-	limit    int
-	simplify bool
-	dc2Uuid  string
-	ebsUuid  string
-	snapName string
+	regionId   string
+	zoneId     string
+	start      int
+	limit      int
+	isSimplify bool
+	dc2Uuid    string
+	ebsUuid    string
+	snapName   string
 }
 
 func (b *ListRequestBuilder) SetRegionId(regionId string) {
@@ -57,8 +57,8 @@ func (b *ListRequestBuilder) SetLimit(limit int) {
 	b.limit = limit
 }
 
-func (b *ListRequestBuilder) SetSimplify(isSimplify bool) {
-	b.simplify = isSimplify
+func (b *ListRequestBuilder) SetIsSimplify(isSimplify bool) {
+	b.isSimplify = isSimplify
 }
 
 func (b *ListRequestBuilder) SetDc2Uuids(uuid string) {
@@ -85,11 +85,11 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 
 	return ListRequest{
-		RegionId: b.regionId,
-		ZoneId:   b.zoneId,
-		Start:    start,
-		Limit:    limit,
-		Simplify: b.simplify,
+		RegionId:   b.regionId,
+		ZoneId:     b.zoneId,
+		Start:      start,
+		Limit:      limit,
+		IsSimplify: b.isSimplify,
 		condition: SnapCondition{
 			Dc2Uuid:  b.dc2Uuid,
 			EbsUuid:  b.ebsUuid,

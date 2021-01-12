@@ -9,14 +9,14 @@ import (
 )
 
 type ChangeSizeRequest struct {
-	RegionId string            `json:"regionId"`
-	CouponId string            `json:"couponId,omitempty"`
-	Ebs      []ChangeSizeInput `json:"ebs"`
+	RegionId string             `json:"regionId"`
+	CouponId string             `json:"couponId,omitempty"`
+	Ebs      []ChangeSizeParams `json:"ebs"`
 }
 
-type ChangeSizeInput struct {
-	EbsUuid string `json:"ebsUuid"`
-	Size    int64  `json:"size"`
+type ChangeSizeParams struct {
+	Uuid string `json:"ebsUuid"`
+	Size int64  `json:"size"`
 }
 
 type ChangeSizeResponse struct {

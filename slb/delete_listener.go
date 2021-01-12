@@ -10,7 +10,7 @@ import (
 
 type DeleteListenerRequest struct {
 	SlbListener []struct {
-		SlbListenerUuid string `json:"slbListenerUuid"`
+		Uuid string `json:"slbListenerUuid"`
 	} `json:"slbListener"`
 }
 

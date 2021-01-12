@@ -9,13 +9,13 @@ import (
 )
 
 type ChangeNameRequest struct {
-	RegionId string            `json:"regionId"`
-	Sg       []ChangeNameInput `json:"sg"`
+	RegionId string             `json:"regionId"`
+	Sg       []ChangeNameParams `json:"sg"`
 }
 
-type ChangeNameInput struct {
-	SgUuid string `json:"sgUuid"`
-	Name   string `json:"name"`
+type ChangeNameParams struct {
+	Uuid string `json:"sgUuid"`
+	Name string `json:"name"`
 }
 
 type ChangeNameResponse struct {

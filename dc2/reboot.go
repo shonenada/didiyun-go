@@ -8,14 +8,14 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type RebootInput struct {
-	Dc2Uuid string `json:"dc2Uuid"`
+type RebootRequest struct {
+	RegionId string       `json:"regionId"`
+	ZoneId   string       `json:"zoneId,omitempty"`
+	Dc2      RebootParams `json:"dc2"`
 }
 
-type RebootRequest struct {
-	RegionId string      `json:"regionId"`
-	ZoneId   string      `json:"zoneId,omitempty"`
-	Dc2      RebootInput `json:"dc2"`
+type RebootParams struct {
+	Uuid string `json:"dc2Uuid"`
 }
 
 type RebootResponse struct {

@@ -14,11 +14,11 @@ type EipCondition struct {
 }
 
 type ListRequest struct {
-	RegionId  string       `json:"regionId"`
-	Start     int          `json:"start"`
-	Limit     int          `json:"limit"`
-	Simplify  bool         `json:"simplify,omitempty"`
-	condition EipCondition `json:"condition,omitempty"`
+	RegionId   string       `json:"regionId"`
+	Start      int          `json:"start"`
+	Limit      int          `json:"limit"`
+	IsSimplify bool         `json:"simplify,omitempty"`
+	condition  EipCondition `json:"condition,omitempty"`
 }
 
 type ListResponse struct {
@@ -29,12 +29,12 @@ type ListResponse struct {
 }
 
 type ListRequestBuilder struct {
-	regionId string
-	start    int
-	limit    int
-	simplify bool
-	uuids    []string
-	eip      string
+	regionId   string
+	start      int
+	limit      int
+	isSimplify bool
+	uuids      []string
+	eip        string
 }
 
 func (b *ListRequestBuilder) SetRegionId(regionId string) {
@@ -49,8 +49,8 @@ func (b *ListRequestBuilder) SetLimit(limit int) {
 	b.limit = limit
 }
 
-func (b *ListRequestBuilder) SetSimplify(isSimplify bool) {
-	b.simplify = isSimplify
+func (b *ListRequestBuilder) SetIsSimplify(isSimplify bool) {
+	b.isSimplify = isSimplify
 }
 
 func (b *ListRequestBuilder) SetUuids(uuids []string) {
@@ -73,10 +73,10 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 
 	return ListRequest{
-		RegionId: b.regionId,
-		Start:    start,
-		Limit:    limit,
-		Simplify: b.simplify,
+		RegionId:   b.regionId,
+		Start:      start,
+		Limit:      limit,
+		IsSimplify: b.iSsimplify,
 		condition: EipCondition{
 			Uuids: b.uuids,
 			Eip:   b.eip,

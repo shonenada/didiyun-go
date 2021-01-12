@@ -9,13 +9,13 @@ import (
 )
 
 type AttachRequest struct {
-	RegionId string        `json:"regionId"`
-	Eip      []AttachInput `json:"eip"`
+	RegionId string         `json:"regionId"`
+	Eip      []AttachParams `json:"eip"`
 }
 
-type AttachInput struct {
-	EipUuid     string `json:"eipUuid"`
-	BindingUuid string `json:"bindingUuid"` // 待绑定的 DC2 的 Uuid
+type AttachParams struct {
+	Uuid    string `json:"eipUuid"`
+	Dc2Uuid string `json:"bindingUuid"` // 待绑定的 DC2 的 Uuid
 }
 
 type AttachResponse struct {

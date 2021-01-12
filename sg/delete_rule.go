@@ -9,12 +9,12 @@ import (
 )
 
 type DeleteRuleRequest struct {
-	RegionId string            `json:"regionId"`
-	SgRule   []DeleteRuleInput `json:"sgRule"`
+	RegionId string             `json:"regionId"`
+	SgRule   []DeleteRuleParams `json:"sgRule"`
 }
 
-type DeleteRuleInput struct {
-	SgRuleUuid string `json:"sgRuleUuid"`
+type DeleteRuleParams struct {
+	RuleUuid string `json:"sgRuleUuid"`
 }
 
 type DeleteRuleResponse struct {

@@ -10,21 +10,19 @@ import (
 
 type CountRequest struct {
 	RegionId   string   `json:"regionId"`
-	SgUuids    []string `json:"sgUuids,omitempty"`
+	Uuids      []string `json:"sgUuids,omitempty"`
 	VpcUuid    string   `json:"vpcUuid,omitempty"`
 	Dc2Uuid    string   `json:"dc2Uuid,omitempty"`
 	Dc2Exclude bool     `json:"dc2Exclude,omitempty"`
 }
 
 type CountResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []SgCount `json:"data"`
-}
-
-type SgCount struct {
-	TotalCount int `json:"totalCnt"`
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
+	RequestId string `json:"requestId"`
+	Data      []struct {
+		TotalCount int `json:"totalCnt"`
+	} `json:"data"`
 }
 
 func (c *Client) Count(request *CountRequest) (int, error) {

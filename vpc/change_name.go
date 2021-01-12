@@ -9,13 +9,13 @@ import (
 )
 
 type ChangeNameRequest struct {
-	RegionId string            `json:"regionId"`
-	Vpc      []ChangeNameInput `json:"vpc"`
+	RegionId string             `json:"regionId"`
+	Vpc      []ChangeNameParams `json:"vpc"`
 }
 
-type ChangeNameInput struct {
-	VpcUuid string `json:"vpcUuid"`
-	Name    string `json:"name"`
+type ChangeNameParams struct {
+	Uuid string `json:"vpcUuid"`
+	Name string `json:"name"`
 }
 
 type ChangeNameResponse struct {

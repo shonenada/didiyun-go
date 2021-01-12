@@ -9,8 +9,8 @@ import (
 )
 
 type Dc2Condition struct {
-	Dc2Name   string   `json:"dc2Name"`   // 模糊查询 DC2 名字
-	Dc2Uuids  []string `json:"dc2Uuids"`  // 查询包含在此 UUID 列表内的 DC2
+	Name      string   `json:"dc2Name"`   // 模糊查询 DC2 名字
+	Uuids     []string `json:"dc2Uuids"`  // 查询包含在此 UUID 列表内的 DC2
 	Eip       string   `json:"eip"`       // 精确匹配公网EIP
 	Ip        string   `json:"ip"`        // 精确匹配内网IP
 	SgUuid    string   `json:"sgUuid"`    // 查询此 SG 下的 DC2 列表
@@ -20,12 +20,12 @@ type Dc2Condition struct {
 }
 
 type ListRequest struct {
-	RegionId  string       `json:"regionId"`           // 地域 ID
-	ZoneId    string       `json:"zondId,omitempty"`   // 可用区 ID，希望查询的可用区，不传则表示查询此地域下的所有可用区
-	Start     int          `json:"start"`              // 查询 DC2 列表起始 index，从 0 开始
-	Limit     int          `json:"limit"`              // 查询 DC2 列表元素数量
-	Simplify  bool         `json:"simplify,omitempty"` // 是否简化输出
-	Condition Dc2Condition `json:"condition"`          // 查询 DC2 列表筛选条件
+	RegionId   string       `json:"regionId"`           // 地域 ID
+	ZoneId     string       `json:"zondId,omitempty"`   // 可用区 ID，希望查询的可用区，不传则表示查询此地域下的所有可用区
+	Start      int          `json:"start"`              // 查询 DC2 列表起始 index，从 0 开始
+	Limit      int          `json:"limit"`              // 查询 DC2 列表元素数量
+	IsSimplify bool         `json:"simplify,omitempty"` // 是否简化输出
+	Condition  Dc2Condition `json:"condition"`          // 查询 DC2 列表筛选条件
 }
 
 type ListResponse struct {
@@ -36,19 +36,19 @@ type ListResponse struct {
 }
 
 type ListRequestBuilder struct {
-	regionId  string
-	zoneId    string
-	start     int
-	limit     int
-	simplify  bool
-	vpcUuid   string
-	vpcUuids  []string
-	dc2Name   string
-	sgUuid    string
-	dc2Uuids  []string
-	sgExclude bool
-	ip        string
-	eip       string
+	regionId   string
+	zoneId     string
+	start      int
+	limit      int
+	isSimplify bool
+	vpcUuid    string
+	vpcUuids   []string
+	name       string
+	sgUuid     string
+	uuids      []string
+	sgExclude  bool
+	ip         string
+	eip        string
 }
 
 func (b *ListRequestBuilder) SetRegionId(regionId string) {
@@ -67,8 +67,8 @@ func (b *ListRequestBuilder) SetLimit(limit int) {
 	b.limit = limit
 }
 
-func (b *ListRequestBuilder) SetSimplify(simplify bool) {
-	b.simplify = simplify
+func (b *ListRequestBuilder) SetIsSimplify(isSimplify bool) {
+	b.isSimplify = isSimplify
 }
 
 func (b *ListRequestBuilder) SetVpcUuid(uuid string) {
@@ -79,16 +79,16 @@ func (b *ListRequestBuilder) SetVpcUuids(uuids []string) {
 	b.vpcUuids = uuids
 }
 
-func (b *ListRequestBuilder) SetDc2Name(dc2name string) {
-	b.dc2Name = dc2name
+func (b *ListRequestBuilder) SetName(name string) {
+	b.name = name
 }
 
 func (b *ListRequestBuilder) SetSgUuid(uuid string) {
 	b.sgUuid = uuid
 }
 
-func (b *ListRequestBuilder) SetDc2Uuids(uuids []string) {
-	b.dc2Uuids = uuids
+func (b *ListRequestBuilder) SetUuids(uuids []string) {
+	b.uuids = uuids
 }
 
 func (b *ListRequestBuilder) SetSgExclude(isExclude bool) {
@@ -121,10 +121,11 @@ func (b *ListRequestBuilder) Build() ListRequest {
 		Limit:    limit,
 		Simplify: b.simplify,
 		Condition: Dc2Condition{
+			Name:      b.name,
 			VpcUuids:  b.vpcUuids,
 			VpcUuid:   b.vpcUuid,
 			SgUuid:    b.sgUuid,
-			Dc2Uuids:  b.dc2Uuids,
+			Uuids:     b.uuids,
 			SgExclude: b.sgExclude,
 			Ip:        b.ip,
 			Eip:       b.eip,

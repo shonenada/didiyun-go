@@ -59,11 +59,3 @@ type SgRuleInfo struct {
 	Sg          SgOutput  `json:"sg"`
 	Vpc         VpcOutput `json:"vpc"`
 }
-
-type CreateSgRuleInput struct {
-	Type        string `json:"type"`
-	Protocol    string `json:"protocol"`
-	StartPort   int    `json:"startPort"`
-	EndPort     int    `json:"endPort"`
-	AllowedCidr string `json:"allowedCidr"`
-}

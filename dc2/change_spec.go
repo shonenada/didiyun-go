@@ -9,10 +9,15 @@ import (
 )
 
 type ChangeSpecRequest struct {
-	RegionId string            `json:"regionId"`
-	ZoneId   string            `json:"zoneId,omitempty"`
-	CouponId string            `json:"couponId,omitempty"`
-	Dc2      []ChangeSpecInput `json:"dc2"`
+	RegionId string             `json:"regionId"`
+	ZoneId   string             `json:"zoneId,omitempty"`
+	CouponId string             `json:"couponId,omitempty"`
+	Dc2      []ChangeSpecParams `json:"dc2"`
+}
+
+type ChangeSpecParams struct {
+	Uuid  string `json:"dc2Uuid"`
+	Model string `json:"dc2Model"`
 }
 
 type ChangeSpecResponse struct {
@@ -20,11 +25,6 @@ type ChangeSpecResponse struct {
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []Job  `json:"data"`
-}
-
-type ChangeSpecInput struct {
-	Dc2Uuid  string `json:"dc2Uuid"`
-	Dc2Model string `json:"dc2Model"`
 }
 
 func (c *Client) ChangeSpec(request *ChangeSpecRequest) (*Job, error) {

@@ -9,7 +9,7 @@ import (
 )
 
 type DeleteRequest struct {
-	PubKeyUuid string `json:"pubKeyUuid"`
+	Uuid string `json:"pubKeyUuid"`
 }
 
 type DeleteResponse struct {
