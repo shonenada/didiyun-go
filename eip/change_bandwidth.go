@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -31,7 +32,7 @@ func (c *Client) ChangeBandWidth(request *ChangeBandWidthRequest) (*Job, error) 
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(CHANGE_BANDWIDTH_EIP_URL, data)
+	body, err := c.HTTPPost(api.CHANGE_BANDWIDTH_EIP_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

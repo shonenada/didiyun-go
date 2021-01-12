@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -44,7 +45,7 @@ func (c *Client) GetResult(request *GetMonitorDatatRequest) (*[]MetricOutput, er
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(GET_MONITOR_DATA_URL, data)
+	body, err := c.HTTPPost(api.GET_MONITOR_DATA_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

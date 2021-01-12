@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -26,7 +27,7 @@ func (c *Client) ListTag(request *ListTagRequest) (*[]string, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(LIST_TAG_URL, data)
+	body, err := c.HTTPPost(api.LIST_TAG_URL, data)
 	ret := ListTagResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

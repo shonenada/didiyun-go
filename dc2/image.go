@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -22,7 +23,7 @@ func (c *Client) ListImage(request *ListImageRequest) (*[]ImageInfo, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
 	}
-	body, err := c.HTTPGet(LIST_IMAGE_URL, data)
+	body, err := c.HTTPGet(api.LIST_IMAGE_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

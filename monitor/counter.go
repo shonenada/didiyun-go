@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -49,7 +50,7 @@ func (c *Client) GetCounter(request *GetMonitorCounterRequest) (*[]CounterOutput
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(GET_MONITOR_COUNTER_URL, data)
+	body, err := c.HTTPPost(api.GET_MONITOR_COUNTER_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

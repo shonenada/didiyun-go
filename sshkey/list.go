@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -15,7 +16,7 @@ type ListResponse struct {
 }
 
 func (c *Client) List() (*[]SSHKeyInfo, error) {
-	body, err := c.HTTPGet(LIST_SSHKEY_URL, nil)
+	body, err := c.HTTPGet(api.LIST_SSHKEY_URL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

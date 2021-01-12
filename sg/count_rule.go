@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -30,7 +31,7 @@ func (c *Client) CountRule(request *CountRuleRequest) (int, error) {
 	if err != nil {
 		return -1, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(COUNT_SG_RULE_URL, data)
+	body, err := c.HTTPPost(api.COUNT_SG_RULE_URL, data)
 	if err != nil {
 		return -1, fmt.Errorf("Error: %s", err)
 	}

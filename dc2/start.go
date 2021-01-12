@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -29,7 +30,7 @@ func (c *Client) Start(request *StartRequest) (*Job, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(START_DC2_URL, data)
+	body, err := c.HTTPPost(api.START_DC2_URL, data)
 	ret := StartResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

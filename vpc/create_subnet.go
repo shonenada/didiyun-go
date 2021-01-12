@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -31,7 +32,7 @@ func (c *Client) CreateSubnet(request *CreateSubnetRequest) (*Job, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(CREATE_SUBNET_VPC_URL, data)
+	body, err := c.HTTPPost(api.CREATE_SUBNET_VPC_URL, data)
 	ret := CreateSubnetResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

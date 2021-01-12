@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -28,7 +29,7 @@ func (c *Client) Count(request *CountRequest) (int, error) {
 	if err != nil {
 		return -1, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(COUNT_EIP_URL, data)
+	body, err := c.HTTPPost(api.COUNT_EIP_URL, data)
 	if err != nil {
 		return -1, fmt.Errorf("Error: %s", err)
 	}

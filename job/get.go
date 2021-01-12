@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -24,7 +25,7 @@ func (c *Client) GetResult(request *ResultRequest) (*[]Job, error) {
 		"regionId": request.RegionId,
 		"jobUuids": request.JobUuids,
 	}
-	body, err := c.HTTPGet(GET_RESULT_JOB_URL, data)
+	body, err := c.HTTPGet(api.GET_RESULT_JOB_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

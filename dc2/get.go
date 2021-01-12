@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -26,7 +27,7 @@ func (c *Client) Get(request *GetRequest) (*Dc2Info, error) {
 		"zoneId":   request.ZoneId,
 		"dc2Uuid":  request.Dc2Uuid,
 	}
-	body, err := c.HTTPGet(GET_DC2_URL, data)
+	body, err := c.HTTPGet(apiGET_DC2_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

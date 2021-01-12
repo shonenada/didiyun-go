@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -26,7 +27,7 @@ func (c *Client) GetSubnet(request *GetSubnetRequest) (*SubnetInfo, error) {
 		"vpcUuid":    request.VpcUuid,
 		"subnetUuid": request.SubnetUuid,
 	}
-	body, err := c.HTTPGet(GET_SUBNET_VPC_URL, data)
+	body, err := c.HTTPGet(api.GET_SUBNET_VPC_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -33,7 +34,7 @@ func (c *Client) CheckCDIROverlap(request *CheckCIDROverlapRequest) (*[]IsOverLa
 		"cidr":     request.CIDR,
 	}
 
-	body, err := c.HTTPGet(CHECK_SUBNET_VPC_URL, data)
+	body, err := c.HTTPGet(api.CHECK_SUBNET_VPC_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

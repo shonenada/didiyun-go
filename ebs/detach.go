@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -28,7 +29,7 @@ func (c *Client) Detach(request *DetachRequest) (*Job, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DEATCH_EBS_URL, data)
+	body, err := c.HTTPPost(api.DEATCH_EBS_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -27,7 +28,7 @@ func (c *Client) Delete(request *DeleteRequest) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DELETE_SSHKEY_URL, data)
+	body, err := c.HTTPPost(api.DELETE_SSHKEY_URL, data)
 	ret := DeleteResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

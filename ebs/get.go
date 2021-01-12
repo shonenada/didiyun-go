@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -24,7 +25,7 @@ func (c *Client) Get(request *GetRequest) (*EbsInfo, error) {
 		"regionId": request.RegionId,
 		"ebsUuid":  request.EbsUuid,
 	}
-	body, err := c.HTTPGet(GET_EBS_URL, data)
+	body, err := c.HTTPGet(api.GET_EBS_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

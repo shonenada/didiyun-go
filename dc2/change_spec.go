@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -31,7 +32,7 @@ func (c *Client) ChangeSpec(request *ChangeSpecRequest) (*Job, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(CHANGE_SPEC_DC2_URL, data)
+	body, err := c.HTTPPost(api.CHANGE_SPEC_DC2_URL, data)
 	ret := ChangeSpecResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

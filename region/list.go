@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -38,7 +39,7 @@ func (c *Client) ListRegion(product string) (*[]Region, error) {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
 
-	req, err := http.NewRequest("POST", LIST_REGION_URL, bytes.NewBuffer([]byte(reqStr)))
+	req, err := http.NewRequest("POST", api.LIST_REGION_URL, bytes.NewBuffer([]byte(reqStr)))
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}

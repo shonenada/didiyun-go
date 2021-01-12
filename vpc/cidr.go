@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -21,7 +22,7 @@ type CIDRResponse struct {
 }
 
 func (c *Client) CIDR() (*[]VPCAvailableCidr, error) {
-	body, err := c.HTTPGet(CIDR_VPC_URL, map[string]string{})
+	body, err := c.HTTPGet(api.CIDR_VPC_URL, map[string]string{})
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

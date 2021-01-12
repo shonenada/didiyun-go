@@ -4,8 +4,20 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
+
+type Dc2Condition struct {
+	Dc2Name   string   `json:"dc2Name"`   // 模糊查询 DC2 名字
+	Dc2Uuids  []string `json:"dc2Uuids"`  // 查询包含在此 UUID 列表内的 DC2
+	Eip       string   `json:"eip"`       // 精确匹配公网EIP
+	Ip        string   `json:"ip"`        // 精确匹配内网IP
+	SgUuid    string   `json:"sgUuid"`    // 查询此 SG 下的 DC2 列表
+	SgExclude bool     `json:"sgExclude"` // 为 `true` 时表示查询不在此 SG 下的 DC2 列表
+	VpcUuid   string   `json:"vpcUuid"`   // 查询指定 VPC 下的 DC2 列表
+	VpcUuids  []string `json:"vpcUuids"`  // 查询多个 VPC 下的 DC2 列表
+}
 
 type ListRequest struct {
 	RegionId  string       `json:"regionId"`           // 地域 ID
@@ -17,10 +29,10 @@ type ListRequest struct {
 }
 
 type ListResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []Dc2Info `json:"data"`
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
+	RequestId string `json:"requestId"`
+	Data      []Dc2  `json:"data"`
 }
 
 type ListRequestBuilder struct {
@@ -120,12 +132,12 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 }
 
-func (c *Client) List(request *ListRequest) (*[]Dc2Info, error) {
+func (c *Client) List(request *ListRequest) (*[]Dc2, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(LIST_DC2_URL, data)
+	body, err := c.HTTPPost(api.LIST_DC2_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

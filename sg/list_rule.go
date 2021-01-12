@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -82,7 +83,7 @@ func (c *Client) ListRule(request *ListRuleRequest) (*[]SgRuleInfo, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(LIST_SG_RULE_URL, data)
+	body, err := c.HTTPPost(api.LIST_SG_RULE_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

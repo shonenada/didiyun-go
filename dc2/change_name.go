@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -30,7 +31,7 @@ func (c *Client) ChangeName(request *ChangeNameRequest) (*Job, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(CHANGE_NAME_DC2_URL, data)
+	body, err := c.HTTPPost(api.CHANGE_NAME_DC2_URL, data)
 	ret := ChangeNameResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

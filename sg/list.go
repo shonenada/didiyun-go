@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
@@ -88,7 +89,7 @@ func (c *Client) List(request *ListRequest) (*[]SgInfo, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(LIST_SG_URL, data)
+	body, err := c.HTTPPost(api.LIST_SG_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}
