@@ -1,7 +1,7 @@
 package schema
 
 type EbsDc2 struct {
-	Dc2Uuid    string `json:"dc2Uuid"`
+	Uuid       string `json:"dc2Uuid"`
 	Name       string `json:"name"`
 	Status     string `json:"status"`
 	OsType     string `json:"osType"`
@@ -9,7 +9,7 @@ type EbsDc2 struct {
 	UpdateTime int64  `json:"updateTime"`
 }
 
-type EbsInfo struct {
+type Ebs struct {
 	Attr       string   `json:"attr"`
 	CreateTime int64    `json:"createTime"`
 	DeviceName string   `json:"deviceName"`

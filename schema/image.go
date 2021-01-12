@@ -1,6 +1,6 @@
 package schema
 
-type ImageInfo struct {
+type Image struct {
 	Uuid              string           `json:"imgUuid"`
 	Name              string           `json:"name"`
 	Description       string           `json:"description"`

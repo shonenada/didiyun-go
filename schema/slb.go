@@ -15,6 +15,18 @@ type SlbResponse struct {
 	Region     Region  `json:"region"`
 }
 
+type Flow struct {
+	In  float32 `json:"float32"`
+	Out float32 `json:"float32"`
+}
+
+type BEIP struct {
+	BeipUuid   string `json:"beipUuid"`
+	Ip         string `json:"ip"`
+	CreateTime int    `json:"createTime"`
+	UpdateTime int    `json:"updateTime"`
+}
+
 type EIP struct {
 	Name           string `json:"name",omitempty`
 	Bandwidth      string `json:"bandwidth"`
@@ -31,13 +43,6 @@ type Listener struct {
 	Monitor         Monitor          `json:"monitor"`
 	Members         []ListenerMember `json:"members,omitempty"`
 }
-
-type ListenerMember struct {
-	Dc2Uuid string `json:"dc2Uuid"`
-	Weight  int    `json:"weight"`
-	Port    int    `json:"port"`
-}
-
 type Monitor struct {
 	Protocol           string `json:"protocol"`
 	Interval           int    `json:"interval"`
@@ -47,13 +52,14 @@ type Monitor struct {
 }
 
 type ListenerMember struct {
-	SlbMemberUuid string    `json:"slbMemberUuid"`
+	Dc2Uuid       string    `json:"dc2Uuid",omitempty`
+	SlbMemberUuid string    `json:"slbMemberUuid",omitempty`
 	HealthState   string    `json:"healthState,omitempty"`
-	unhealthState string    `json:"unhealthState,omitempty"`
-	port          int       `json:"port"`
-	weight        int       `json:"weight"`
-	createTime    int       `json:"createTime,omitempty"`
-	updateTime    int       `json:"updateTime,omitempty"`
+	UnhealthState string    `json:"unhealthState,omitempty"`
+	Port          int       `json:"port",omitempty`
+	Weight        int       `json:"weight",omitempty`
+	CreateTime    int       `json:"createTime,omitempty"`
+	UpdateTime    int       `json:"updateTime,omitempty"`
 	Dc2           MemberDc2 `json:"dc2,omitempty"`
 }
 
@@ -68,4 +74,8 @@ type MemberDc2 struct {
 type Algorithm struct {
 	Code string `json:"code"`
 	Name string `json:"name"`
+}
+
+type SlbSpec struct {
+	OfferingUuid string `json:"offeringUuid"`
 }

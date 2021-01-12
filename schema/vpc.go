@@ -1,5 +1,13 @@
 package schema
 
+type VPC struct {
+	VpcUuid    string `json:"vpcUuid"`
+	Name       string `json:"name"`
+	IsDefault  bool   `json:"isDefault"`
+	createTime int    `json:"CreateTime"`
+	updateTime int    `json:"UpdateTime"`
+}
+
 type VpcInfo struct {
 	Job        Job    `json:"job"`
 	Uuid       string `json:"vpcUuid"`

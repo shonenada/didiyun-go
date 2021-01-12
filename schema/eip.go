@@ -18,3 +18,20 @@ type EipInfo struct {
 		UpdateTime int64  `json:"updateTime"`
 	} `json:"dc2"`
 }
+
+// EIP 规格
+type EipSpec struct {
+	Bandwidth         int64  `json:"babandwidth"` // 带宽
+	CreateDate        string `json:"createDate"`
+	ChargeType        string `json:"chargeType"` // 计费类型,`bandwidth` 为按带宽计费;`flow` 为按流量计费
+	Description       string `json:"description"`
+	InboundBandwidth  int64  `json:"inboundBandwidth"`
+	LastOpDate        string `json:"lastOpDate"`
+	Name              string `json:"name"`
+	OfferingUuid      string `json:"offeringUuid"`
+	OutboundBandwidth int64  `json:"outboundBandwidth"`
+	PeerOfferingUuid  string `json:"peerOfferingUuid"`
+	State             string `json:"state"`
+	Type              string `json:"type"`
+	Uuid              string `json:"uuid"`
+}
