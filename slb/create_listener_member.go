@@ -5,12 +5,12 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type CreateListenerMemberRequest struct {
-	PoolUuid string           `json:"poolUuid"`
-	Members  []ListenerMember `json:"members"`
+	PoolUuid string                  `json:"poolUuid"`
+	Members  []schema.ListenerMember `json:"members"`
 }
 
 type CreateListenerMemberResponse struct {

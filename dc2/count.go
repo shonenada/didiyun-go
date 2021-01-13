@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type CountRequest struct {
@@ -25,7 +24,7 @@ type CountResponse struct {
 	Errmsg    string `json:"errmsg"`
 	RequestId string `json:"requestId"`
 	Data      []struct {
-		TotalCount `json:"totalCnt"`
+		TotalCount int `json:"totalCnt"`
 	} `json:"data"`
 }
 

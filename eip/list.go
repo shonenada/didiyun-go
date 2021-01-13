@@ -76,7 +76,7 @@ func (b *ListRequestBuilder) Build() ListRequest {
 		RegionId:   b.regionId,
 		Start:      start,
 		Limit:      limit,
-		IsSimplify: b.iSsimplify,
+		IsSimplify: b.isSimplify,
 		condition: EipCondition{
 			Uuids: b.uuids,
 			Eip:   b.eip,

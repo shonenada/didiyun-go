@@ -9,7 +9,7 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-func PrettyPrint(data *[]EbsInfo) {
+func PrettyPrint(data *[]Ebs) {
 	for i, e := range *data {
 		fmt.Printf("[%d] - Uuid: %s\tName: %s\tAttr: %s\tDc2: %s\n", i+1, e.EbsUuid, e.Name, e.Attr, e.Dc2.Name)
 	}

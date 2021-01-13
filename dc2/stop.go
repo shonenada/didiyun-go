@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type StopParams struct {
@@ -19,13 +19,13 @@ type StopRequest struct {
 }
 
 type StopResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) Stop(request *StopRequest) (*Job, error) {
+func (c *Client) Stop(request *StopRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

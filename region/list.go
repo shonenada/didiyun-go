@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type ListRegionAndZoneCondition struct {
@@ -20,13 +20,13 @@ type ListRegionRequest struct {
 }
 
 type ListRegionResponse struct {
-	Errno     int      `json:"errno"`
-	Errmsg    string   `json:"errmsg"`
-	RequestId string   `json:"requestId"`
-	Data      []Region `json:"data"`
+	Errno     int             `json:"errno"`
+	Errmsg    string          `json:"errmsg"`
+	RequestId string          `json:"requestId"`
+	Data      []schema.Region `json:"data"`
 }
 
-func (c *Client) ListRegion(product string) (*[]Region, error) {
+func (c *Client) ListRegion(product string) (*[]schema.Region, error) {
 	httpClient := &http.Client{}
 	reqBody := &ListRegionRequest{
 		Condition: ListRegionAndZoneCondition{
@@ -64,25 +64,25 @@ func (c *Client) ListRegion(product string) (*[]Region, error) {
 	return &ret.Data, nil
 }
 
-func (c *Client) ListDc2Regions() (*[]Region, error) {
+func (c *Client) ListDc2Regions() (*[]schema.Region, error) {
 	return c.ListRegion("dc2")
 }
 
-func (c *Client) ListEbsRegions() (*[]Region, error) {
+func (c *Client) ListEbsRegions() (*[]schema.Region, error) {
 	return c.ListRegion("ebs")
 }
 
-func (c *Client) ListEipRegions() (*[]Region, error) {
+func (c *Client) ListEipRegions() (*[]schema.Region, error) {
 	return c.ListRegion("eip")
 }
 
-func (c *Client) ListSgRegions() (*[]Region, error) {
+func (c *Client) ListSgRegions() (*[]schema.Region, error) {
 	return c.ListRegion("sg")
 }
 
-func (c *Client) ListSnapRegions() (*[]Region, error) {
+func (c *Client) ListSnapRegions() (*[]schema.Region, error) {
 	return c.ListRegion("snap")
 }
-func (c *Client) ListVpcRegions() (*[]Region, error) {
+func (c *Client) ListVpcRegions() (*[]schema.Region, error) {
 	return c.ListRegion("vpc")
 }

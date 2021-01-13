@@ -5,8 +5,14 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
+
+type SgRuleCondition struct {
+	SgUuid  string `json:"sgUuid,omitempty"`
+	Dc2Uuid string `json:"dc2Uuid,omitempty"`
+	Type    string `json:"type,omitempty"` // 要查询的 SGRule 类型，"Ingress" 为入方向，"Egress" 为出方向
+}
 
 type ListRuleRequest struct {
 	RegionId  string          `json:"regionId"`
@@ -16,10 +22,10 @@ type ListRuleRequest struct {
 }
 
 type ListRuleResponse struct {
-	Errno     int          `json:"errno"`
-	Errmsg    string       `json:"errmsg"`
-	RequestId string       `json:"requestId"`
-	Data      []SgRuleInfo `json:"data"`
+	Errno     int                 `json:"errno"`
+	Errmsg    string              `json:"errmsg"`
+	RequestId string              `json:"requestId"`
+	Data      []schema.SgRuleInfo `json:"data"`
 }
 
 type ListRuleRequestBuilder struct {
@@ -78,7 +84,7 @@ func (b *ListRuleRequestBuilder) Build() ListRuleRequest {
 	}
 }
 
-func (c *Client) ListRule(request *ListRuleRequest) (*[]SgRuleInfo, error) {
+func (c *Client) ListRule(request *ListRuleRequest) (*[]schema.SgRuleInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

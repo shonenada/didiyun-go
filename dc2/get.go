@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type GetRequest struct {
@@ -15,19 +15,19 @@ type GetRequest struct {
 }
 
 type GetResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Dc2  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Dc2 `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*Dc2Info, error) {
+func (c *Client) Get(request *GetRequest) (*schema.Dc2, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
 		"zoneId":   request.ZoneId,
-		"dc2Uuid":  request.Dc2Uuid,
+		"dc2Uuid":  request.Uuid,
 	}
-	body, err := c.HTTPGet(apiGET_DC2_URL, data)
+	body, err := c.HTTPGet(api.GET_DC2_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

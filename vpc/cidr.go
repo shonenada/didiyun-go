@@ -1,13 +1,10 @@
 package vpc
 
-// 获取 VPC 可用网段
-
 import (
 	"encoding/json"
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type VPCAvailableCidr struct {

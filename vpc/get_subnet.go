@@ -5,26 +5,26 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type GetSubnetRequest struct {
 	RegionId   string `json:"regionId"`
-	VpcUuid    string `json:"vpcUuid"`
+	Uuid       string `json:"vpcUuid"`
 	SubnetUuid string `json:"subnetUuid"`
 }
 
 type GetSubnetResponse struct {
-	Errno     int          `json:"errno"`
-	Errmsg    string       `json:"errmsg"`
-	RequestId string       `json:"requestId"`
-	Data      []SubnetInfo `json:"data"`
+	Errno     int                 `json:"errno"`
+	Errmsg    string              `json:"errmsg"`
+	RequestId string              `json:"requestId"`
+	Data      []schema.SubnetInfo `json:"data"`
 }
 
-func (c *Client) GetSubnet(request *GetSubnetRequest) (*SubnetInfo, error) {
+func (c *Client) GetSubnet(request *GetSubnetRequest) (*schema.SubnetInfo, error) {
 	data := map[string]string{
 		"regionId":   request.RegionId,
-		"vpcUuid":    request.VpcUuid,
+		"vpcUuid":    request.Uuid,
 		"subnetUuid": request.SubnetUuid,
 	}
 	body, err := c.HTTPGet(api.GET_SUBNET_VPC_URL, data)

@@ -5,21 +5,21 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type UpdateListenerMemberRequest struct {
-	Members []ListenerMember `json:"members"`
+	Members []schema.ListenerMember `json:"members"`
 }
 
 type UpdateListenerMemberResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) UpdateListenerMember(request *UpdateListenerMemberRequest) (*Job, error) {
+func (c *Client) UpdateListenerMember(request *UpdateListenerMemberRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

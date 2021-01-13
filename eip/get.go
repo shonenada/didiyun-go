@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type GetRequest struct {
@@ -14,16 +14,16 @@ type GetRequest struct {
 }
 
 type GetResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []EipInfo `json:"data"`
+	Errno     int              `json:"errno"`
+	Errmsg    string           `json:"errmsg"`
+	RequestId string           `json:"requestId"`
+	Data      []schema.EipInfo `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*EipInfo, error) {
+func (c *Client) Get(request *GetRequest) (*schema.EipInfo, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
-		"eipUuid":  request.EipUuid,
+		"eipUuid":  request.Uuid,
 	}
 	body, err := c.HTTPGet(api.GET_EIP_URL, data)
 	if err != nil {

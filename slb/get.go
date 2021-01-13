@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type GetRequest struct {
@@ -18,6 +18,21 @@ type GetResponse struct {
 	Errmsg    string        `json:"errmsg"`
 	RequestId string        `json:"requestId"`
 	Data      []SlbResponse `json:"data"`
+}
+
+type SlbResponse struct {
+	Job        schema.Job     `json:"job"`
+	SlbUuid    string         `json:"slbUuid"`
+	Name       string         `json:"name"`
+	Ip         string         `json:"ip"`
+	WafStatus  string         `json:"wafStatus"`
+	CreateTime int            `json:"createTime"`
+	Updateime  int            `json:"updateTime"`
+	BeIP       schema.BEIP    `json:"beip"`
+	Vpc        schema.VPC     `json:"vpc"`
+	Flow       schema.Flow    `json:"flow"`
+	Spec       schema.SlbSpec `json:"spec"`
+	Region     schema.Region  `json:"region"`
 }
 
 func (c *Client) Get(request *GetRequest) (*[]SlbResponse, error) {

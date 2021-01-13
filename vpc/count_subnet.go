@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type CountSubnetRequest struct {

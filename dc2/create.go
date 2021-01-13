@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type CreateRequest struct {
@@ -48,10 +48,10 @@ type EbsParams struct {
 }
 
 type CreateResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
 type CreateRequestBuilder struct {
@@ -158,7 +158,7 @@ func (b *CreateRequestBuilder) SetBandWidth(bw int) {
 }
 
 func (b *CreateRequestBuilder) SetIsChargeWithFlow(withFlow bool) {
-	b.isEipChargeWithFlow = withFlow
+	b.eipIsChargeWithFlow = withFlow
 }
 
 func (b *CreateRequestBuilder) SetEipTags(tags []string) {
@@ -193,18 +193,18 @@ func (b *CreateRequestBuilder) Build() CreateRequest {
 	return CreateRequest{
 		RegionId:                  b.regionId,
 		ZoneId:                    b.zoneId,
-		AutoContinue:              b.isAutoContinue,
+		IsAutoContinue:            b.isAutoContinue,
 		PayPeriod:                 b.payPeriod,
 		Count:                     b.count,
 		CouponId:                  b.couponId,
 		SubnetUuid:                b.subnetUuid,
-		Dc2Model:                  b.model,
+		Model:                     b.model,
 		ImgUuid:                   b.imgUuid,
 		SnapUuid:                  b.snapUuid,
 		PubKeyUuids:               b.pubKeyUuids,
 		Password:                  b.password,
 		RootDiskType:              b.rootDiskType,
-		Dc2Tags:                   b.dc2Tags,
+		Tags:                      b.dc2Tags,
 		IsProSecurityAgentEnabled: b.isProSecurityAgentEnabled,
 		IsMonitoringAgentEnabled:  b.isMonitoringAgentEnabled,
 		SgUuids:                   b.sgUuids,
@@ -228,7 +228,7 @@ func (b *CreateRequestBuilder) Build() CreateRequest {
 	}
 }
 
-func (c *Client) Create(request *CreateRequest) (*Job, error) {
+func (c *Client) Create(request *CreateRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

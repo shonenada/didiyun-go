@@ -1,20 +1,5 @@
 package schema
 
-type SlbResponse struct {
-	Job        Job     `json:"job"`
-	SlbUuid    string  `json:"slbUuid"`
-	Name       string  `json:"name"`
-	Ip         string  `json:"ip"`
-	WafStatus  string  `json:"wafStatus"`
-	CreateTime int     `json:"createTime"`
-	Updateime  int     `json:"updateTime"`
-	BeIP       BEIP    `json:"beip"`
-	Vpc        VPC     `json:"vpc"`
-	Flow       Flow    `json:"flow"`
-	Spec       SlbSpec `json:"spec"`
-	Region     Region  `json:"region"`
-}
-
 type Flow struct {
 	In  float32 `json:"float32"`
 	Out float32 `json:"float32"`

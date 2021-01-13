@@ -10,7 +10,7 @@ import (
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-func PrettyPrint(data *EbsInfo) {
+func PrettyPrint(data *Ebs) {
 	fmt.Printf("- Uuid: %s\tName: %s\tAttr: %s\n", data.EbsUuid, data.Name, data.Attr)
 }
 

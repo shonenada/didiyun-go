@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type CreateRequest struct {
@@ -14,13 +14,13 @@ type CreateRequest struct {
 }
 
 type CreateResponse struct {
-	Errno     int          `json:"errno"`
-	Errmsg    string       `json:"errmsg"`
-	RequestId string       `json:"requestId"`
-	Data      []SSHKeyInfo `json:"data"`
+	Errno     int                 `json:"errno"`
+	Errmsg    string              `json:"errmsg"`
+	RequestId string              `json:"requestId"`
+	Data      []schema.SSHKeyInfo `json:"data"`
 }
 
-func (c *Client) Create(request *CreateRequest) (*SSHKeyInfo, error) {
+func (c *Client) Create(request *CreateRequest) (*schema.SSHKeyInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

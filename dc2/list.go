@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type Dc2Condition struct {
@@ -29,10 +29,10 @@ type ListRequest struct {
 }
 
 type ListResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Dc2  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Dc2 `json:"data"`
 }
 
 type ListRequestBuilder struct {
@@ -115,11 +115,11 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 
 	return ListRequest{
-		RegionId: b.regionId,
-		ZoneId:   b.zoneId,
-		Start:    start,
-		Limit:    limit,
-		Simplify: b.simplify,
+		RegionId:   b.regionId,
+		ZoneId:     b.zoneId,
+		Start:      start,
+		Limit:      limit,
+		IsSimplify: b.isSimplify,
 		Condition: Dc2Condition{
 			Name:      b.name,
 			VpcUuids:  b.vpcUuids,
@@ -133,7 +133,7 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 }
 
-func (c *Client) List(request *ListRequest) (*[]Dc2, error) {
+func (c *Client) List(request *ListRequest) (*[]schema.Dc2, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

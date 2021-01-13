@@ -5,15 +5,15 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type CreateListenerRequest struct {
-	Uuid     string     `json:"slbUuid"`
-	Listener []Listener `json:"slbListener"`
+	Uuid     string            `json:"slbUuid"`
+	Listener []schema.Listener `json:"slbListener"`
 }
 
-func (c *Client) CreateListener(request *CreateListenerRequest) (*Job, error) {
+func (c *Client) CreateListener(request *CreateListenerRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

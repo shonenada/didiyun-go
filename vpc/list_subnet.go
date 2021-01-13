@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type ListSubnetRequest struct {
@@ -21,13 +21,13 @@ type SubnetCondition struct {
 }
 
 type ListSubnetResponse struct {
-	Errno     int          `json:"errno"`
-	Errmsg    string       `json:"errmsg"`
-	RequestId string       `json:"requestId"`
-	Data      []SubnetInfo `json:"data"`
+	Errno     int                 `json:"errno"`
+	Errmsg    string              `json:"errmsg"`
+	RequestId string              `json:"requestId"`
+	Data      []schema.SubnetInfo `json:"data"`
 }
 
-func (c *Client) ListSubnet(request *ListSubnetRequest) (*[]SubnetInfo, error) {
+func (c *Client) ListSubnet(request *ListSubnetRequest) (*[]schema.SubnetInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

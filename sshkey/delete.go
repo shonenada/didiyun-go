@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type DeleteRequest struct {
@@ -13,14 +12,12 @@ type DeleteRequest struct {
 }
 
 type DeleteResponse struct {
-	Errno     int            `json:"errno"`
-	Errmsg    string         `json:"errmsg"`
-	RequestId string         `json:"requestId"`
-	Data      []DeleteResult `json:"data"`
-}
-
-type DeleteResult struct {
-	PubKeyUuid string `json:"pubKeyUuid"`
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
+	RequestId string `json:"requestId"`
+	Data      []struct {
+		PubKeyUuid string `json:"pubKeyUuid"`
+	} `json:"data"`
 }
 
 func (c *Client) Delete(request *DeleteRequest) (string, error) {

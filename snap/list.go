@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type SnapCondition struct {
@@ -24,10 +24,10 @@ type ListRequest struct {
 }
 
 type ListResponse struct {
-	Errno     int        `json:"errno"`
-	Errmsg    string     `json:"errmsg"`
-	RequestId string     `json:"requestId"`
-	Data      []SnapInfo `json:"data"`
+	Errno     int               `json:"errno"`
+	Errmsg    string            `json:"errmsg"`
+	RequestId string            `json:"requestId"`
+	Data      []schema.SnapInfo `json:"data"`
 }
 
 type ListRequestBuilder struct {
@@ -91,14 +91,14 @@ func (b *ListRequestBuilder) Build() ListRequest {
 		Limit:      limit,
 		IsSimplify: b.isSimplify,
 		condition: SnapCondition{
-			Dc2Uuid:  b.dc2Uuid,
-			EbsUuid:  b.ebsUuid,
-			SnapName: b.snapName,
+			Dc2Uuid: b.dc2Uuid,
+			EbsUuid: b.ebsUuid,
+			Name:    b.snapName,
 		},
 	}
 }
 
-func (c *Client) List(request *ListRequest) ([]SnapInfo, error) {
+func (c *Client) List(request *ListRequest) ([]schema.SnapInfo, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

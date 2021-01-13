@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type ListImageRequest struct {
@@ -13,13 +13,13 @@ type ListImageRequest struct {
 }
 
 type ListImageResponse struct {
-	Errno     int         `json:"errno"`
-	Errmsg    string      `json:"errmsg"`
-	RequestId string      `json:"requestId"`
-	Data      []ImageInfo `json:"data"`
+	Errno     int            `json:"errno"`
+	Errmsg    string         `json:"errmsg"`
+	RequestId string         `json:"requestId"`
+	Data      []schema.Image `json:"data"`
 }
 
-func (c *Client) ListImage(request *ListImageRequest) (*[]ImageInfo, error) {
+func (c *Client) ListImage(request *ListImageRequest) (*[]schema.Image, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
 	}
