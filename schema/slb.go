@@ -14,8 +14,8 @@ type Slb struct {
 	Vpc        SlbVpc  `json:"vpc"`
 	Flow       Flow    `json:"flow"`
 	Spec       SlbSpec `json:"spec"`
-	Job        Job     `json:"job"`
 	Region     Region  `json:"region"`
+	Job        Job     `json:"job"`
 	CreateTime int     `json:"createTime"`
 	Updateime  int     `json:"updateTime"`
 }
@@ -26,9 +26,9 @@ type Flow struct {
 }
 
 type EIP struct {
-	Name           string `json:"name",omitempty`
-	Bandwidth      string `json:"bandwidth"`
-	ChargeWithFlow bool   `json:"chargeWithFlow"`
+	Name             string `json:"name",omitempty`
+	Bandwidth        string `json:"bandwidth"`
+	IsChargeWithFlow bool   `json:"chargeWithFlow"`
 }
 
 type Listener struct {

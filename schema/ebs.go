@@ -2,12 +2,12 @@ package schema
 
 type Ebs struct {
 	Id         string   `json:"ebsId"`
-	Name       string   `json:"name"`
 	Uuid       string   `json:"ebsUuid"`
+	Name       string   `json:"name"`
 	DeviceName string   `json:"deviceName"`
-	Tags       []string `json:"ebsTags"`
 	Attr       string   `json:"attr"`
 	Size       int64    `json:"size"`
+	Tags       []string `json:"ebsTags"`
 	Dc2        EbsDc2   `json:"dc2"`
 	Region     Region   `json:"region"`
 	CreateTime int64    `json:"createTime"`

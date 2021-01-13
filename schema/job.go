@@ -1,11 +1,11 @@
 package schema
 
 type Job struct {
+	Uuid         string  `json:"jobUuid"`
+	Type         string  `json:"type"`
+	ResourceUuid string  `json:"resourceUuid"`
 	IsDone       bool    `json:"done"`
 	Progress     float64 `json:"progress"`
-	ResourceUuid string  `json:"resourceUuid"`
 	Result       string  `json:"result"`
 	IsSuccess    bool    `json:"success"`
-	Type         string  `json:"type"`
-	Uuid         string  `json:"jobUuid"`
 }

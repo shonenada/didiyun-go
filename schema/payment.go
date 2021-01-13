@@ -1,9 +1,9 @@
 package schema
 
 type Period struct {
-	AutoRenewCnt int    `json:"autoRenewCnt"`
-	IsAutoSwitch bool   `json:"autoSwitch"`
-	PayType      string `json:"payType"`
+	AutoRenewCount int    `json:"autoRenewCnt"`
+	IsAutoSwitch   bool   `json:"autoSwitch"`
+	PayType        string `json:"payType"`
 }
 
 type ChargePeriod struct {
