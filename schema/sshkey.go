@@ -1,7 +1,7 @@
 package schema
 
-type SSHKeyInfo struct {
-	PubKeyUuid  string `json:"pubKeyUuid"`
+type SSHKey struct {
+	Uuid        string `json:"pubKeyUuid"`
 	Name        string `json:"name"`
 	Key         string `json:"key"`
 	Fingerprint string `json:"fingerprint"`

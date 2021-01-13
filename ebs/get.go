@@ -4,27 +4,28 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type GetRequest struct {
 	RegionId string `json:"regionId"`
-	EbsUuid  string `json:"ebsUuid"`
+	Uuid     string `json:"ebsUuid"`
 }
 
 type GetResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []EbsInfo `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Ebs `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*EbsInfo, error) {
+func (c *Client) Get(request *GetRequest) (*schema.Ebs, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
-		"ebsUuid":  request.EbsUuid,
+		"ebsUuid":  request.Uuid,
 	}
-	body, err := c.HTTPGet(GET_EBS_URL, data)
+	body, err := c.HTTPGet(api.GET_EBS_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

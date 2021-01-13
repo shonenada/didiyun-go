@@ -4,32 +4,33 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type AttachRequest struct {
-	RegionId string        `json:"regionId"`
-	Eip      []AttachInput `json:"eip"`
+	RegionId string         `json:"regionId"`
+	Eip      []AttachParams `json:"eip"`
 }
 
-type AttachInput struct {
-	EipUuid     string `json:"eipUuid"`
-	BindingUuid string `json:"bindingUuid"` // 待绑定的 DC2 的 Uuid
+type AttachParams struct {
+	Uuid    string `json:"eipUuid"`
+	Dc2Uuid string `json:"bindingUuid"` // 待绑定的 DC2 的 Uuid
 }
 
 type AttachResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) Attach(request *AttachRequest) (*Job, error) {
+func (c *Client) Attach(request *AttachRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(ATTACH_EIP_URL, data)
+	body, err := c.HTTPPost(api.ATTACH_EIP_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

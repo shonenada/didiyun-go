@@ -4,33 +4,34 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type ChangeNameRequest struct {
-	RegionId string            `json:"regionId"`
-	ZoneId   string            `json:"zoneId,omitempty"`
-	Dc2      []ChangeNameInput `json:"dc2"`
+	RegionId string             `json:"regionId"`
+	ZoneId   string             `json:"zoneId,omitempty"`
+	Dc2      []ChangeNameParams `json:"dc2"`
 }
 
-type ChangeNameInput struct {
-	Dc2Uuid string `json:"dc2Uuid"`
-	Name    string `json:"name"`
+type ChangeNameParams struct {
+	Uuid string `json:"dc2Uuid"`
+	Name string `json:"name"`
 }
 
 type ChangeNameResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) ChangeName(request *ChangeNameRequest) (*Job, error) {
+func (c *Client) ChangeName(request *ChangeNameRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(CHANGE_NAME_DC2_URL, data)
+	body, err := c.HTTPPost(api.CHANGE_NAME_DC2_URL, data)
 	ret := ChangeNameResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

@@ -1,4 +1,4 @@
-package schema
+package api
 
 const API_BASE = "https://open.didiyunapi.com/dicloud"
 

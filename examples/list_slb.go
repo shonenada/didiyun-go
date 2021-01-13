@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	. "github.com/shonenada/didiyun-go/schema"
-	slb "github.com/shonenada/didiyun-go/slb"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/slb"
 )
 
-func PrettyPrint(data *[]SlbResponse) {
+func PrettyPrint(data *[]schema.Slb) {
 	for i, e := range *data {
-		fmt.Printf("[%d] - Uuid: %s\tName: %s\tI$ : %s\tRegion: %s\n", i+1, e.SlbUuid, e.Name, e.Ip, e.Region.Name)
+		fmt.Printf("[%d] - Uuid: %s\tName: %s\tI$ : %s\tRegion: %s\n", i+1, e.Uuid, e.Name, e.Ip, e.Region.Name)
 	}
 }
 

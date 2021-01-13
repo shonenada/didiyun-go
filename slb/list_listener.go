@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type ListListenerRequest struct {
@@ -22,18 +23,18 @@ type ListListenerResponse struct {
 }
 
 type ListenerResponse struct {
-	Job            Job           `json:"job"`
-	SlbListenrUuid string        `json:"slbListenerUuid"`
-	Protocol       string        `json:"protocol"`
-	ListenerPort   int           `json:"listenerPort"`
-	BackProtocol   string        `json:"backProtocol"`
-	MemberPorts    []int         `json:"memberPorts"`
-	PoolUuid       string        `json:"poolUiid"`
-	CreateTime     int           `json:"createTime"`
-	UpdateTime     int           `json:"updateTime"`
-	Algorithm      Algorithm     `json:"algorithm"`
-	HealthStatus   HealthStatus  `json:"healthStatus"`
-	Monitor        HealthMonitor `json:"monitor"`
+	Job            schema.Job       `json:"job"`
+	SlbListenrUuid string           `json:"slbListenerUuid"`
+	Protocol       string           `json:"protocol"`
+	ListenerPort   int              `json:"listenerPort"`
+	BackProtocol   string           `json:"backProtocol"`
+	MemberPorts    []int            `json:"memberPorts"`
+	PoolUuid       string           `json:"poolUiid"`
+	CreateTime     int              `json:"createTime"`
+	UpdateTime     int              `json:"updateTime"`
+	Algorithm      schema.Algorithm `json:"algorithm"`
+	HealthStatus   HealthStatus     `json:"healthStatus"`
+	Monitor        HealthMonitor    `json:"monitor"`
 }
 
 type HealthStatus struct {
@@ -55,7 +56,7 @@ func (c *Client) ListListener(request *ListListenerRequest) (*[]ListenerResponse
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(LIST_LISTENER_SLB_URL, data)
+	body, err := c.HTTPPost(api.LIST_LISTENER_SLB_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

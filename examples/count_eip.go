@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	eip "github.com/shonenada/didiyun-go/eip"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/eip"
 )
 
 func main() {
@@ -21,6 +21,6 @@ func main() {
 	if r, e := client.Eip().Count(&req); e != nil {
 		fmt.Println(e)
 	} else {
-		fmt.Printf("Total: %d\n", r)
+		fmt.Printf("Total EIP count: %d\n", r)
 	}
 }

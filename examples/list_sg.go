@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	. "github.com/shonenada/didiyun-go/schema"
-	sg "github.com/shonenada/didiyun-go/sg"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/sg"
 )
 
-func PrettyPrint(data *[]SgInfo) {
+func PrettyPrint(data *[]schema.Sg) {
 	for i, e := range *data {
-		fmt.Printf("[%d] - Uuid: %s\tName: %s\tRegion : %s\tVpc: %s\n", i+1, e.SgUuid, e.Name, e.Region.Name, e.Vpc.Name)
+		fmt.Printf("[%d] - Uuid: %s\tName: %s\tRegion : %s\tVpc: %s\n", i+1, e.Uuid, e.Name, e.Region.Name, e.Vpc.Name)
 	}
 }
 

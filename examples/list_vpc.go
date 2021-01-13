@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	. "github.com/shonenada/didiyun-go/schema"
-	vpc "github.com/shonenada/didiyun-go/vpc"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/vpc"
 )
 
-func PrettyPrint(data *[]VpcInfo) {
+func PrettyPrint(data *[]schema.Vpc) {
 	for i, e := range *data {
 		fmt.Printf("[%d] - Uuid: %s\tName: %s\tRegion: %s\tDefault?: %t\tCidr: %s\n", i+1, e.Uuid, e.Name, e.Region.Name, e.IsDefault, e.CIDR)
 	}

@@ -4,16 +4,17 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type DetachRequest struct {
-	RegionId string        `json:"regionId"`
-	Eip      []DetachInput `json:"eip"`
+	RegionId string         `json:"regionId"`
+	Eip      []DetachParams `json:"eip"`
 }
 
-type DetachInput struct {
-	EipUuid string `json:"eipUuid"`
+type DetachParams struct {
+	Uuid string `json:"eipUuid"`
 }
 
 type DetachResponse struct {
@@ -28,7 +29,7 @@ func (c *Client) Detach(request *DetachRequest) (*Job, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DEATCH_EIP_URL, data)
+	body, err := c.HTTPPost(api.DEATCH_EIP_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

@@ -4,22 +4,20 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
 )
 
 type DeleteRequest struct {
-	PubKeyUuid string `json:"pubKeyUuid"`
+	Uuid string `json:"pubKeyUuid"`
 }
 
 type DeleteResponse struct {
-	Errno     int            `json:"errno"`
-	Errmsg    string         `json:"errmsg"`
-	RequestId string         `json:"requestId"`
-	Data      []DeleteResult `json:"data"`
-}
-
-type DeleteResult struct {
-	PubKeyUuid string `json:"pubKeyUuid"`
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
+	RequestId string `json:"requestId"`
+	Data      []struct {
+		PubKeyUuid string `json:"pubKeyUuid"`
+	} `json:"data"`
 }
 
 func (c *Client) Delete(request *DeleteRequest) (string, error) {
@@ -27,7 +25,7 @@ func (c *Client) Delete(request *DeleteRequest) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DELETE_SSHKEY_URL, data)
+	body, err := c.HTTPPost(api.DELETE_SSHKEY_URL, data)
 	ret := DeleteResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

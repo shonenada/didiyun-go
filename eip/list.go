@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type EipCondition struct {
@@ -13,27 +14,27 @@ type EipCondition struct {
 }
 
 type ListRequest struct {
-	RegionId  string       `json:"regionId"`
-	Start     int          `json:"start"`
-	Limit     int          `json:"limit"`
-	Simplify  bool         `json:"simplify,omitempty"`
-	condition EipCondition `json:"condition,omitempty"`
+	RegionId   string       `json:"regionId"`
+	Start      int          `json:"start"`
+	Limit      int          `json:"limit"`
+	IsSimplify bool         `json:"simplify,omitempty"`
+	condition  EipCondition `json:"condition,omitempty"`
 }
 
 type ListResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []EipInfo `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Eip `json:"data"`
 }
 
 type ListRequestBuilder struct {
-	regionId string
-	start    int
-	limit    int
-	simplify bool
-	uuids    []string
-	eip      string
+	regionId   string
+	start      int
+	limit      int
+	isSimplify bool
+	uuids      []string
+	eip        string
 }
 
 func (b *ListRequestBuilder) SetRegionId(regionId string) {
@@ -48,8 +49,8 @@ func (b *ListRequestBuilder) SetLimit(limit int) {
 	b.limit = limit
 }
 
-func (b *ListRequestBuilder) SetSimplify(isSimplify bool) {
-	b.simplify = isSimplify
+func (b *ListRequestBuilder) SetIsSimplify(isSimplify bool) {
+	b.isSimplify = isSimplify
 }
 
 func (b *ListRequestBuilder) SetUuids(uuids []string) {
@@ -72,10 +73,10 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 
 	return ListRequest{
-		RegionId: b.regionId,
-		Start:    start,
-		Limit:    limit,
-		Simplify: b.simplify,
+		RegionId:   b.regionId,
+		Start:      start,
+		Limit:      limit,
+		IsSimplify: b.isSimplify,
 		condition: EipCondition{
 			Uuids: b.uuids,
 			Eip:   b.eip,
@@ -83,12 +84,12 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 }
 
-func (c *Client) List(request *ListRequest) (*[]EipInfo, error) {
+func (c *Client) List(request *ListRequest) (*[]schema.Eip, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(LIST_EIP_URL, data)
+	body, err := c.HTTPPost(api.LIST_EIP_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

@@ -1,17 +1,15 @@
 package vpc
 
-// 查看指定 VPC 下是否有与指定网段重叠的 SUBNET
-
 import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
 )
 
 type CheckCIDROverlapRequest struct {
 	RegionId string `json:"regionId"`
-	VpcUuid  string `json:"vpcUuid"`
+	Uuid     string `json:"vpcUuid"`
 	CIDR     string `json:"cidr"`
 }
 
@@ -29,11 +27,11 @@ type CheckCIDROverlapResponse struct {
 func (c *Client) CheckCDIROverlap(request *CheckCIDROverlapRequest) (*[]IsOverLapOutput, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
-		"vpcUuid":  request.VpcUuid,
+		"vpcUuid":  request.Uuid,
 		"cidr":     request.CIDR,
 	}
 
-	body, err := c.HTTPGet(CHECK_SUBNET_VPC_URL, data)
+	body, err := c.HTTPGet(api.CHECK_SUBNET_VPC_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

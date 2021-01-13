@@ -4,32 +4,33 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
-type StopInput struct {
-	Dc2Uuid string `json:"dc2Uuid"`
+type StopParams struct {
+	Uuid string `json:"dc2Uuid"`
 }
 
 type StopRequest struct {
-	RegionId string    `json:"regionId"`
-	ZoneId   string    `json:"zoneId,omitempty"`
-	Dc2      StopInput `json:"dc2"`
+	RegionId string     `json:"regionId"`
+	ZoneId   string     `json:"zoneId,omitempty"`
+	Dc2      StopParams `json:"dc2"`
 }
 
 type StopResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) Stop(request *StopRequest) (*Job, error) {
+func (c *Client) Stop(request *StopRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(STOP_DC2_URL, data)
+	body, err := c.HTTPPost(api.STOP_DC2_URL, data)
 	ret := StopResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

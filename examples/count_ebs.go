@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	ebs "github.com/shonenada/didiyun-go/ebs"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/ebs"
 )
 
 func main() {
@@ -21,6 +21,6 @@ func main() {
 	if r, e := client.Ebs().Count(&req); e != nil {
 		fmt.Println(e)
 	} else {
-		fmt.Printf("Total: %d\n", r)
+		fmt.Printf("Total EBS count: %d\n", r)
 	}
 }

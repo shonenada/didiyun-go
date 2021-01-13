@@ -4,27 +4,28 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type CreateRuleRequest struct {
-	RegionId string              `json:"regionId"`
-	SgUuid   string              `json:"sgUuid"`
-	SgRule   []CreateSgRuleInput `json:"sgRule"`
+	RegionId string               `json:"regionId"`
+	Uuid     string               `json:"sgUuid"`
+	SgRule   []CreateSgRuleParams `json:"sgRule"`
 }
 type CreateRuleResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) CreateRule(request *CreateRuleRequest) (*Job, error) {
+func (c *Client) CreateRule(request *CreateRuleRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(CREATE_SG_RULE_URL, data)
+	body, err := c.HTTPPost(api.CREATE_SG_RULE_URL, data)
 	ret := CreateRuleResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

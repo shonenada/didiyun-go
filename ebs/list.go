@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type ListRequest struct {
@@ -20,18 +21,18 @@ type ListCondition struct {
 }
 
 type ListResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []EbsInfo `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Ebs `json:"data"`
 }
 
-func (c *Client) List(request *ListRequest) (*[]EbsInfo, error) {
+func (c *Client) List(request *ListRequest) (*[]schema.Ebs, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(LIST_EBS_URL, data)
+	body, err := c.HTTPPost(api.LIST_EBS_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

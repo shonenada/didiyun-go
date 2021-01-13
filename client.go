@@ -9,7 +9,7 @@ import (
 	"github.com/shonenada/didiyun-go/region"
 	"github.com/shonenada/didiyun-go/sg"
 	"github.com/shonenada/didiyun-go/slb"
-	"github.com/shonenada/didiyun-go/snap"
+	"github.com/shonenada/didiyun-go/snapshot"
 	"github.com/shonenada/didiyun-go/sshkey"
 	"github.com/shonenada/didiyun-go/tag"
 	"github.com/shonenada/didiyun-go/vpc"
@@ -67,8 +67,8 @@ func (c *Client) Slb() *slb.Client {
 	}
 }
 
-func (c *Client) Snap() *snap.Client {
-	return &snap.Client{
+func (c *Client) Snapshot() *snapshot.Client {
+	return &snapshot.Client{
 		AccessToken: c.AccessToken,
 	}
 }

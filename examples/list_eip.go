@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	eip "github.com/shonenada/didiyun-go/eip"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/eip"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
-func PrettyPrintEip(data *[]EipInfo) {
+func PrettyPrintEip(data *[]schema.Eip) {
 	for i, e := range *data {
 		fmt.Printf("[%d] - Uuid: %s\tIP: %s\t\n", i+1, e.Uuid, e.Ip)
 	}

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
 )
 
 type CountRequest struct {
@@ -25,7 +25,7 @@ func (c *Client) Count(request *CountRequest) (int, error) {
 	if err != nil {
 		return -1, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(COUNT_SLB_URL, data)
+	body, err := c.HTTPPost(api.COUNT_SLB_URL, data)
 	ret := CountResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

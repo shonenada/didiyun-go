@@ -4,24 +4,22 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
 )
 
 type CountRequest struct {
 	RegionId string   `json:"regionId"`
 	ZoneId   string   `json:"zoneId,omitempty"`
-	Dc2Uuids []string `json:"dc2Uuids,omitempty"`
+	Uuids    []string `json:"dc2Uuids,omitempty"`
 }
 
 type CountResponse struct {
-	Errno     int        `json:"errno"`
-	Errmsg    string     `json:"errmsg"`
-	RequestId string     `json:"requestId"`
-	Data      []EbsCount `json:"data"`
-}
-
-type EbsCount struct {
-	TotalCount int `json:"totalCnt"`
+	Errno     int    `json:"errno"`
+	Errmsg    string `json:"errmsg"`
+	RequestId string `json:"requestId"`
+	Data      []struct {
+		TotalCount int `json:"totalCnt"`
+	} `json:"data"`
 }
 
 func (c *Client) Count(request *CountRequest) (int, error) {
@@ -29,7 +27,7 @@ func (c *Client) Count(request *CountRequest) (int, error) {
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(COUNT_EBS_URL, data)
+	body, err := c.HTTPPost(api.COUNT_EBS_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}

@@ -4,39 +4,51 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
+type Dc2Condition struct {
+	Name      string   `json:"dc2Name"`
+	Uuids     []string `json:"dc2Uuids"`
+	Eip       string   `json:"eip"`
+	Ip        string   `json:"ip"`
+	SgUuid    string   `json:"sgUuid"`
+	SgExclude bool     `json:"sgExclude"`
+	VpcUuid   string   `json:"vpcUuid"`
+	VpcUuids  []string `json:"vpcUuids"`
+}
+
 type ListRequest struct {
-	RegionId  string       `json:"regionId"`           // 地域 ID
-	ZoneId    string       `json:"zondId,omitempty"`   // 可用区 ID，希望查询的可用区，不传则表示查询此地域下的所有可用区
-	Start     int          `json:"start"`              // 查询 DC2 列表起始 index，从 0 开始
-	Limit     int          `json:"limit"`              // 查询 DC2 列表元素数量
-	Simplify  bool         `json:"simplify,omitempty"` // 是否简化输出
-	Condition Dc2Condition `json:"condition"`          // 查询 DC2 列表筛选条件
+	RegionId   string       `json:"regionId"`
+	ZoneId     string       `json:"zondId,omitempty"`
+	Start      int          `json:"start"`
+	Limit      int          `json:"limit"`
+	IsSimplify bool         `json:"simplify,omitempty"`
+	Condition  Dc2Condition `json:"condition"`
 }
 
 type ListResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []Dc2Info `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Dc2 `json:"data"`
 }
 
 type ListRequestBuilder struct {
-	regionId  string
-	zoneId    string
-	start     int
-	limit     int
-	simplify  bool
-	vpcUuid   string
-	vpcUuids  []string
-	dc2Name   string
-	sgUuid    string
-	dc2Uuids  []string
-	sgExclude bool
-	ip        string
-	eip       string
+	regionId   string
+	zoneId     string
+	start      int
+	limit      int
+	isSimplify bool
+	vpcUuid    string
+	vpcUuids   []string
+	name       string
+	sgUuid     string
+	uuids      []string
+	sgExclude  bool
+	ip         string
+	eip        string
 }
 
 func (b *ListRequestBuilder) SetRegionId(regionId string) {
@@ -55,8 +67,8 @@ func (b *ListRequestBuilder) SetLimit(limit int) {
 	b.limit = limit
 }
 
-func (b *ListRequestBuilder) SetSimplify(simplify bool) {
-	b.simplify = simplify
+func (b *ListRequestBuilder) SetIsSimplify(isSimplify bool) {
+	b.isSimplify = isSimplify
 }
 
 func (b *ListRequestBuilder) SetVpcUuid(uuid string) {
@@ -67,16 +79,16 @@ func (b *ListRequestBuilder) SetVpcUuids(uuids []string) {
 	b.vpcUuids = uuids
 }
 
-func (b *ListRequestBuilder) SetDc2Name(dc2name string) {
-	b.dc2Name = dc2name
+func (b *ListRequestBuilder) SetName(name string) {
+	b.name = name
 }
 
 func (b *ListRequestBuilder) SetSgUuid(uuid string) {
 	b.sgUuid = uuid
 }
 
-func (b *ListRequestBuilder) SetDc2Uuids(uuids []string) {
-	b.dc2Uuids = uuids
+func (b *ListRequestBuilder) SetUuids(uuids []string) {
+	b.uuids = uuids
 }
 
 func (b *ListRequestBuilder) SetSgExclude(isExclude bool) {
@@ -103,16 +115,17 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 
 	return ListRequest{
-		RegionId: b.regionId,
-		ZoneId:   b.zoneId,
-		Start:    start,
-		Limit:    limit,
-		Simplify: b.simplify,
+		RegionId:   b.regionId,
+		ZoneId:     b.zoneId,
+		Start:      start,
+		Limit:      limit,
+		IsSimplify: b.isSimplify,
 		Condition: Dc2Condition{
+			Name:      b.name,
 			VpcUuids:  b.vpcUuids,
 			VpcUuid:   b.vpcUuid,
 			SgUuid:    b.sgUuid,
-			Dc2Uuids:  b.dc2Uuids,
+			Uuids:     b.uuids,
 			SgExclude: b.sgExclude,
 			Ip:        b.ip,
 			Eip:       b.eip,
@@ -120,12 +133,12 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 }
 
-func (c *Client) List(request *ListRequest) (*[]Dc2Info, error) {
+func (c *Client) List(request *ListRequest) (*[]schema.Dc2, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(LIST_DC2_URL, data)
+	body, err := c.HTTPPost(api.LIST_DC2_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

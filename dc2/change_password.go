@@ -4,33 +4,34 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
-type ChangePasswordInput struct {
-	Dc2Uuid  string `json:"dc2Uuid"`
+type ChangePasswordRequest struct {
+	RegionId string                 `json:"regionId"`
+	ZoneId   string                 `json:"zoneId,omitempty"`
+	Dc2      []ChangePasswordParams `json:"dc2"`
+}
+
+type ChangePasswordParams struct {
+	Uuid     string `json:"dc2Uuid"`
 	Password string `json:"password"`
 }
 
-type ChangePasswordRequest struct {
-	RegionId string                `json:"regionId"`
-	ZoneId   string                `json:"zoneId,omitempty"`
-	Dc2      []ChangePasswordInput `json:"dc2"`
-}
-
 type ChangePasswordResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) ChangePassword(request *ChangePasswordRequest) (*Job, error) {
+func (c *Client) ChangePassword(request *ChangePasswordRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(CHANGE_PASSWORD_DC2_URL, data)
+	body, err := c.HTTPPost(api.CHANGE_PASSWORD_DC2_URL, data)
 	ret := ChangePasswordResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 const METRIC_CPU_UTIL = "cpu.util"
@@ -17,15 +18,15 @@ const METRIC_RXPKTS = "rxpkts"
 const METRIC_TXBYTES = "txbytes"
 const METRIC_TXPKTS = "txpkts"
 
-type ResourceInput struct {
+type ResourceParams struct {
 	ResourceType  string   `json:"resourceType"`
 	ResourceUuids []string `json:"resourceUuids"`
 	Metric        []string `json:"metric"`
 }
 
 type GetMonitorCounterRequest struct {
-	RegionId  string          `json:"regionId"`
-	Resources []ResourceInput `json:"resources"`
+	RegionId  string           `json:"regionId"`
+	Resources []ResourceParams `json:"resources"`
 }
 
 type GetMonitorCounterResponse struct {
@@ -36,12 +37,12 @@ type GetMonitorCounterResponse struct {
 }
 
 type CounterOutput struct {
-	ResourceType string    `json:"resourceType"`
-	ResourceUuid string    `json:"resourceUuid"`
-	Alias        string    `json:"aliass"`
-	Metric       string    `json:"merics"`
-	MetricAlias  string    `json:"metricAlias"`
-	Counters     []Counter `json:"counters"`
+	ResourceType string           `json:"resourceType"`
+	ResourceUuid string           `json:"resourceUuid"`
+	Alias        string           `json:"aliass"`
+	Metric       string           `json:"merics"`
+	MetricAlias  string           `json:"metricAlias"`
+	Counters     []schema.Counter `json:"counters"`
 }
 
 func (c *Client) GetCounter(request *GetMonitorCounterRequest) (*[]CounterOutput, error) {
@@ -49,7 +50,7 @@ func (c *Client) GetCounter(request *GetMonitorCounterRequest) (*[]CounterOutput
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(GET_MONITOR_COUNTER_URL, data)
+	body, err := c.HTTPPost(api.GET_MONITOR_COUNTER_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

@@ -4,31 +4,32 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type DeleteRequest struct {
-	RegionId string        `json:"regionId"`
-	Ebs      []DeleteInput `json:"ebs"`
+	RegionId string         `json:"regionId"`
+	Ebs      []DeleteParams `json:"ebs"`
 }
 
-type DeleteInput struct {
-	EbsUuid string `json:"ebsUuid"`
+type DeleteParams struct {
+	Uuid string `json:"ebsUuid"`
 }
 
 type DeleteResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) Delete(request *DeleteRequest) (*Job, error) {
+func (c *Client) Delete(request *DeleteRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DELETE_EBS_URL, data)
+	body, err := c.HTTPPost(api.DELETE_EBS_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

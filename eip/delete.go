@@ -4,16 +4,17 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type DeleteRequest struct {
-	RegionId string        `json:"regionId"`
-	Eip      []DeleteInput `json:"eip"`
+	RegionId string         `json:"regionId"`
+	Eip      []DeleteParams `json:"eip"`
 }
 
-type DeleteInput struct {
-	EipUuid string `json:"eipUuid"`
+type DeleteParams struct {
+	Uuid string `json:"eipUuid"`
 }
 
 type DeleteResponse struct {
@@ -28,7 +29,7 @@ func (c *Client) Delete(request *DeleteRequest) (*Job, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DELETE_EIP_URL, data)
+	body, err := c.HTTPPost(api.DELETE_EIP_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

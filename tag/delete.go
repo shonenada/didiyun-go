@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
 )
 
 type DeleteResourceTagsInput struct {
@@ -28,7 +28,7 @@ func (c *Client) DeleteTag(request *DeleteTagRequest) (*[]string, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DELETE_TAG_URL, data)
+	body, err := c.HTTPPost(api.DELETE_TAG_URL, data)
 	ret := DeleteTagResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

@@ -4,32 +4,33 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type DeleteSubnetRequest struct {
-	RegionId string              `json:"regionId"`
-	VpcUuid  []DeleteSubnetInput `json:"vpcUuid"`
-	Subnet   []DeleteSubnetInput `json:"subnet"`
+	RegionId string               `json:"regionId"`
+	Uuid     string               `json:"vpcUuid"`
+	Subnet   []DeleteSubnetParams `json:"subnet"`
 }
 
-type DeleteSubnetInput struct {
-	subnetUuid string `json:"subnetUuid"`
+type DeleteSubnetParams struct {
+	Uuid string `json:"subnetUuid"`
 }
 
 type DeleteSubnetResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) DeleteSubnet(request *DeleteSubnetRequest) (*Job, error) {
+func (c *Client) DeleteSubnet(request *DeleteSubnetRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(DELETE_SUBNET_VPC_URL, data)
+	body, err := c.HTTPPost(api.DELETE_SUBNET_VPC_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

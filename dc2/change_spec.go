@@ -4,34 +4,35 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type ChangeSpecRequest struct {
-	RegionId string            `json:"regionId"`
-	ZoneId   string            `json:"zoneId,omitempty"`
-	CouponId string            `json:"couponId,omitempty"`
-	Dc2      []ChangeSpecInput `json:"dc2"`
+	RegionId string             `json:"regionId"`
+	ZoneId   string             `json:"zoneId,omitempty"`
+	CouponId string             `json:"couponId,omitempty"`
+	Dc2      []ChangeSpecParams `json:"dc2"`
+}
+
+type ChangeSpecParams struct {
+	Uuid  string `json:"dc2Uuid"`
+	Model string `json:"dc2Model"`
 }
 
 type ChangeSpecResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-type ChangeSpecInput struct {
-	Dc2Uuid  string `json:"dc2Uuid"`
-	Dc2Model string `json:"dc2Model"`
-}
-
-func (c *Client) ChangeSpec(request *ChangeSpecRequest) (*Job, error) {
+func (c *Client) ChangeSpec(request *ChangeSpecRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(CHANGE_SPEC_DC2_URL, data)
+	body, err := c.HTTPPost(api.CHANGE_SPEC_DC2_URL, data)
 	ret := ChangeSpecResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

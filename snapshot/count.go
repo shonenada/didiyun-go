@@ -1,17 +1,18 @@
-package snap
+package snapshot
 
 import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
 )
 
 type CountRequest struct {
 	RegionId string `json:"regionId"`
 	ZoneId   string `json:"zoneId,omitempty"`
+	Name     string `json:"snapName,omitempty"`
+	Dc2Uuid  string `json:"dc2Uuid,omitempty"`
 	EbsUuid  string `json:"ebsUuid,omitempty"`
-	SnapName string `json:"snapName,omitempty"`
 }
 
 type CountResponse struct {
@@ -30,7 +31,7 @@ func (c *Client) Count(request *CountRequest) (int, error) {
 	if err != nil {
 		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(COUNT_SNAP_URL, data)
+	body, err := c.HTTPPost(api.COUNT_SNAP_URL, data)
 	if err != nil {
 		fmt.Errorf("Error: %s", err)
 	}

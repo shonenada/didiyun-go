@@ -4,27 +4,28 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type ResultRequest struct {
 	RegionId string `json:"regionId"`
-	JobUuids string `json:"jobUuids"`
+	Uuids    string `json:"jobUuids"`
 }
 
 type ResultResponse struct {
-	Errno     int    `json:"errno"`
-	Errmsg    string `json:"errmsg"`
-	RequestId string `json:"requestId"`
-	Data      []Job  `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) GetResult(request *ResultRequest) (*[]Job, error) {
+func (c *Client) GetResult(request *ResultRequest) (*[]schema.Job, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
-		"jobUuids": request.JobUuids,
+		"jobUuids": request.Uuids,
 	}
-	body, err := c.HTTPGet(GET_RESULT_JOB_URL, data)
+	body, err := c.HTTPGet(api.GET_RESULT_JOB_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

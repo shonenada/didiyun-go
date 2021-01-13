@@ -4,29 +4,30 @@ import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type GetRequest struct {
-	RegionId string `json:"regionId"`         // 地域 ID
-	ZoneId   string `json:"zoneId,omitempty"` // 可用区 ID
-	Dc2Uuid  string `json:"dc2Uuid"`          // 所查询的 DC2 的 UUID
+	RegionId string `json:"regionId"`
+	ZoneId   string `json:"zoneId,omitempty"`
+	Uuid     string `json:"dc2Uuid"`
 }
 
 type GetResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []Dc2Info `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Dc2 `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*Dc2Info, error) {
+func (c *Client) Get(request *GetRequest) (*schema.Dc2, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
 		"zoneId":   request.ZoneId,
-		"dc2Uuid":  request.Dc2Uuid,
+		"dc2Uuid":  request.Uuid,
 	}
-	body, err := c.HTTPGet(GET_DC2_URL, data)
+	body, err := c.HTTPGet(api.GET_DC2_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

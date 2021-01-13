@@ -4,19 +4,20 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
 type CreateRequest struct {
-	RegionId       string   `json:"regionId"`
-	AutoContinue   bool     `json:"autoContinue,omitempty"`
-	PayPeriod      int      `json:"payPeriod,omitempty"`
-	CouponId       string   `json:"couponId,omitempty"`
-	Count          int      `json:"count,omitempty"`
-	BandWidth      int      `json:bandwidth,omitempty"`
-	ChargeWithFlow bool     `json:"chargeWithFlow,omitempty"`
-	BindingUuid    string   `json:"bindingUuid,omitempty"`
-	EipTags        []string `json:"EipTags"`
+	RegionId         string   `json:"regionId"`
+	IsAutoContinue   bool     `json:"autoContinue,omitempty"`
+	PayPeriod        int      `json:"payPeriod,omitempty"`
+	CouponId         string   `json:"couponId,omitempty"`
+	Count            int      `json:"count,omitempty"`
+	BandWidth        int      `json:bandwidth,omitempty"`
+	IsChargeWithFlow bool     `json:"chargeWithFlow,omitempty"`
+	BindingUuid      string   `json:"bindingUuid,omitempty"`
+	Tags             []string `json:"EipTags"`
 }
 
 type CreateResponse struct {
@@ -31,7 +32,7 @@ func (c *Client) Create(request *CreateRequest) (*Job, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(CREATE_EIP_URL, data)
+	body, err := c.HTTPPost(api.CREATE_EIP_URL, data)
 	ret := CreateResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {

@@ -1,43 +1,44 @@
-package snap
+package snapshot
 
 import (
 	"encoding/json"
 	"fmt"
 
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type SnapCondition struct {
-	Dc2Uuid  string `json:"dc2Uuid,omitempty"`
-	EbsUuid  string `json:"ebsUuid,omitempty"`
-	SnapName string `json:"snapName,omitempty"`
+	Name    string `json:"snapName,omitempty"`
+	Dc2Uuid string `json:"dc2Uuid,omitempty"`
+	EbsUuid string `json:"ebsUuid,omitempty"`
 }
 
 type ListRequest struct {
-	RegionId  string        `json:"regionId"`
-	ZoneId    string        `json:"zoneId,omitempty"`
-	Start     int           `json:"start"`
-	Limit     int           `json:"limit"`
-	Simplify  bool          `json:"simplify,omitempty"`
-	condition SnapCondition `json:"condition,omitempty"`
+	RegionId   string        `json:"regionId"`
+	ZoneId     string        `json:"zoneId,omitempty"`
+	Start      int           `json:"start"`
+	Limit      int           `json:"limit"`
+	IsSimplify bool          `json:"simplify,omitempty"`
+	condition  SnapCondition `json:"condition,omitempty"`
 }
 
 type ListResponse struct {
-	Errno     int        `json:"errno"`
-	Errmsg    string     `json:"errmsg"`
-	RequestId string     `json:"requestId"`
-	Data      []SnapInfo `json:"data"`
+	Errno     int               `json:"errno"`
+	Errmsg    string            `json:"errmsg"`
+	RequestId string            `json:"requestId"`
+	Data      []schema.Snapshot `json:"data"`
 }
 
 type ListRequestBuilder struct {
-	regionId string
-	zoneId   string
-	start    int
-	limit    int
-	simplify bool
-	dc2Uuid  string
-	ebsUuid  string
-	snapName string
+	regionId   string
+	zoneId     string
+	start      int
+	limit      int
+	isSimplify bool
+	dc2Uuid    string
+	ebsUuid    string
+	name       string
 }
 
 func (b *ListRequestBuilder) SetRegionId(regionId string) {
@@ -56,8 +57,8 @@ func (b *ListRequestBuilder) SetLimit(limit int) {
 	b.limit = limit
 }
 
-func (b *ListRequestBuilder) SetSimplify(isSimplify bool) {
-	b.simplify = isSimplify
+func (b *ListRequestBuilder) SetIsSimplify(isSimplify bool) {
+	b.isSimplify = isSimplify
 }
 
 func (b *ListRequestBuilder) SetDc2Uuids(uuid string) {
@@ -69,7 +70,7 @@ func (b *ListRequestBuilder) SetEbsUuid(uuid string) {
 }
 
 func (b *ListRequestBuilder) SetSnapName(name string) {
-	b.snapName = name
+	b.name = name
 }
 
 func (b *ListRequestBuilder) Build() ListRequest {
@@ -84,25 +85,25 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 
 	return ListRequest{
-		RegionId: b.regionId,
-		ZoneId:   b.zoneId,
-		Start:    start,
-		Limit:    limit,
-		Simplify: b.simplify,
+		RegionId:   b.regionId,
+		ZoneId:     b.zoneId,
+		Start:      start,
+		Limit:      limit,
+		IsSimplify: b.isSimplify,
 		condition: SnapCondition{
-			Dc2Uuid:  b.dc2Uuid,
-			EbsUuid:  b.ebsUuid,
-			SnapName: b.snapName,
+			Dc2Uuid: b.dc2Uuid,
+			EbsUuid: b.ebsUuid,
+			Name:    b.name,
 		},
 	}
 }
 
-func (c *Client) List(request *ListRequest) ([]SnapInfo, error) {
+func (c *Client) List(request *ListRequest) ([]schema.Snapshot, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(LIST_SNAP_URL, data)
+	body, err := c.HTTPPost(api.LIST_SNAP_URL, data)
 	if err != nil {
 		return nil, fmt.Errorf("Error: %s", err)
 	}

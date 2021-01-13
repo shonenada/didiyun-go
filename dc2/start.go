@@ -4,17 +4,18 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/shonenada/didiyun-go/api"
 	. "github.com/shonenada/didiyun-go/schema"
 )
 
-type StartInput struct {
-	Dc2Uuid string `json:"dc2Uuid"`
+type StartParams struct {
+	Uuid string `json:"dc2Uuid"`
 }
 
 type StartRequest struct {
-	RegionId string     `json:"regionId"`
-	ZoneId   string     `json:"zoneId,omitempty"`
-	Dc2      StartInput `json:"dc2"`
+	RegionId string      `json:"regionId"`
+	ZoneId   string      `json:"zoneId,omitempty"`
+	Dc2      StartParams `json:"dc2"`
 }
 
 type StartResponse struct {
@@ -29,7 +30,7 @@ func (c *Client) Start(request *StartRequest) (*Job, error) {
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(START_DC2_URL, data)
+	body, err := c.HTTPPost(api.START_DC2_URL, data)
 	ret := StartResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
