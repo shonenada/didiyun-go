@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type EipCondition struct {
@@ -22,10 +22,10 @@ type ListRequest struct {
 }
 
 type ListResponse struct {
-	Errno     int       `json:"errno"`
-	Errmsg    string    `json:"errmsg"`
-	RequestId string    `json:"requestId"`
-	Data      []EipInfo `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Eip `json:"data"`
 }
 
 type ListRequestBuilder struct {
@@ -84,7 +84,7 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 }
 
-func (c *Client) List(request *ListRequest) (*[]EipInfo, error) {
+func (c *Client) List(request *ListRequest) (*[]schema.Eip, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

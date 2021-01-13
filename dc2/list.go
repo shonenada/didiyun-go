@@ -9,23 +9,23 @@ import (
 )
 
 type Dc2Condition struct {
-	Name      string   `json:"dc2Name"`   // 模糊查询 DC2 名字
-	Uuids     []string `json:"dc2Uuids"`  // 查询包含在此 UUID 列表内的 DC2
-	Eip       string   `json:"eip"`       // 精确匹配公网EIP
-	Ip        string   `json:"ip"`        // 精确匹配内网IP
-	SgUuid    string   `json:"sgUuid"`    // 查询此 SG 下的 DC2 列表
-	SgExclude bool     `json:"sgExclude"` // 为 `true` 时表示查询不在此 SG 下的 DC2 列表
-	VpcUuid   string   `json:"vpcUuid"`   // 查询指定 VPC 下的 DC2 列表
-	VpcUuids  []string `json:"vpcUuids"`  // 查询多个 VPC 下的 DC2 列表
+	Name      string   `json:"dc2Name"`
+	Uuids     []string `json:"dc2Uuids"`
+	Eip       string   `json:"eip"`
+	Ip        string   `json:"ip"`
+	SgUuid    string   `json:"sgUuid"`
+	SgExclude bool     `json:"sgExclude"`
+	VpcUuid   string   `json:"vpcUuid"`
+	VpcUuids  []string `json:"vpcUuids"`
 }
 
 type ListRequest struct {
-	RegionId   string       `json:"regionId"`           // 地域 ID
-	ZoneId     string       `json:"zondId,omitempty"`   // 可用区 ID，希望查询的可用区，不传则表示查询此地域下的所有可用区
-	Start      int          `json:"start"`              // 查询 DC2 列表起始 index，从 0 开始
-	Limit      int          `json:"limit"`              // 查询 DC2 列表元素数量
-	IsSimplify bool         `json:"simplify,omitempty"` // 是否简化输出
-	Condition  Dc2Condition `json:"condition"`          // 查询 DC2 列表筛选条件
+	RegionId   string       `json:"regionId"`
+	ZoneId     string       `json:"zondId,omitempty"`
+	Start      int          `json:"start"`
+	Limit      int          `json:"limit"`
+	IsSimplify bool         `json:"simplify,omitempty"`
+	Condition  Dc2Condition `json:"condition"`
 }
 
 type ListResponse struct {

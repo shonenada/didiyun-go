@@ -14,28 +14,13 @@ type GetRequest struct {
 }
 
 type GetResponse struct {
-	Errno     int           `json:"errno"`
-	Errmsg    string        `json:"errmsg"`
-	RequestId string        `json:"requestId"`
-	Data      []SlbResponse `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Slb `json:"data"`
 }
 
-type SlbResponse struct {
-	Job        schema.Job     `json:"job"`
-	SlbUuid    string         `json:"slbUuid"`
-	Name       string         `json:"name"`
-	Ip         string         `json:"ip"`
-	WafStatus  string         `json:"wafStatus"`
-	CreateTime int            `json:"createTime"`
-	Updateime  int            `json:"updateTime"`
-	BeIP       schema.BEIP    `json:"beip"`
-	Vpc        schema.VPC     `json:"vpc"`
-	Flow       schema.Flow    `json:"flow"`
-	Spec       schema.SlbSpec `json:"spec"`
-	Region     schema.Region  `json:"region"`
-}
-
-func (c *Client) Get(request *GetRequest) (*[]SlbResponse, error) {
+func (c *Client) Get(request *GetRequest) (*[]schema.Slb, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

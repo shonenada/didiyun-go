@@ -1,24 +1,24 @@
 package schema
 
 type Dc2 struct {
-	Charge     Charge   `json:"charge"`
-	CreateTime int64    `json:"createTime"`
-	Ebs        []Ebs    `json:"ebs"`
-	Eip        Dc2Eip   `json:"eip"`
 	Id         string   `json:"dc2Id"`
-	ImageUuid  string   `json:"imgUuid"`
-	Ip         string   `json:"ip"`
+	Uuid       string   `json:"dc2Uuid"`
 	Name       string   `json:"name"`
-	Job        Job      `json:"job"`
+	Ip         string   `json:"ip"`
 	OSType     string   `json:"osType"`
 	Platform   string   `json:"platform"`
-	Region     Region   `json:"region"`
-	Spec       Dc2Spec  `json:"spec"`
 	Status     string   `json:"status"`
+	ImageUuid  string   `json:"imgUuid"`
 	Tags       []string `json:"dc2Tags"`
-	UpdateTime int64    `json:"updateTime"`
-	Uuid       string   `json:"dc2Uuid"`
+	Charge     Charge   `json:"charge"`
+	Ebs        []Dc2Ebs `json:"ebs"`
+	Eip        Dc2Eip   `json:"eip"`
+	Spec       Dc2Spec  `json:"spec"`
 	Vpc        Dc2Vpc   `json:"vpc"`
+	Region     Region   `json:"region"`
+	Job        Job      `json:"job"`
+	CreateTime int64    `json:"createTime"`
+	UpdateTime int64    `json:"updateTime"`
 }
 
 type Dc2Spec struct {
@@ -54,29 +54,24 @@ type Dc2EbsSpec struct {
 }
 
 type Dc2Ebs struct {
-	Attr       string     `json:"attr"`
-	CreateTime int64      `json:"createTime"`
-	Dc2        Dc2        `json:"dc2"`
-	EbsTags    []string   `json:"ebsTags"`
-	EbsUuid    string     `json:"ebsUuid"`
-	Job        Job        `json:"job"`
-	Name       string     `json:"name"`
-	Region     Region     `json:"region"`
-	Size       int64      `json:"size"`
-	Spec       Dc2EbsSpec `json:"spec"`
-	UpdateTime int64      `json:"updateTime"`
+	Name       string `json:"name"`
+	Uuid       string `json:"ebsUuid"`
+	Attr       string `json:"attr"`
+	Region     Region `json:"region"`
+	CreateTime int64  `json:"createTime"`
+	UpdateTime int64  `json:"updateTime"`
 }
 
 type Dc2Eip struct {
-	Charge     Charge   `json:"charge"`
-	CreateTime string   `json:"createTime"`
 	EipId      string   `json:"eipId"`
 	EipTags    []string `json:"eipTags"`
 	Ip         string   `json:"ip"`
-	Region     Region   `json:"region"`
-	Spec       EipSpec  `json:"spec"`
 	State      string   `json:"state"`
 	Status     string   `json:"status"`
-	UpdateTime string   `json:"updateTime"`
 	Uuid       string   `json:"eipUuid"`
+	Charge     Charge   `json:"charge"`
+	Region     Region   `json:"region"`
+	Spec       EipSpec  `json:"spec"`
+	CreateTime string   `json:"createTime"`
+	UpdateTime string   `json:"updateTime"`
 }

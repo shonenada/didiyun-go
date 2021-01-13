@@ -1,4 +1,4 @@
-package snap
+package snapshot
 
 import (
 	"encoding/json"
@@ -8,32 +8,27 @@ import (
 	"github.com/shonenada/didiyun-go/schema"
 )
 
-type DeleteRequest struct {
-	RegionId string         `json:"regionId"`
-	Snap     []DeleteParams `json:"snap"`
+type CreateRequest struct {
+	RegionId string `json:"regionId"`
+	Name     string `json:"snapName"`
+	Dc2Uuid  string `json:"dc2Uuid"`
+	EbsUuid  string `json:"ebsUuid"`
 }
 
-type DeleteParams struct {
-	Uuid string `json:"ebsUuid"`
-}
-
-type DeleteResponse struct {
+type CreateResponse struct {
 	Errno     int          `json:"errno"`
 	Errmsg    string       `json:"errmsg"`
 	RequestId string       `json:"requestId"`
 	Data      []schema.Job `json:"data"`
 }
 
-func (c *Client) Delete(request *DeleteRequest) (*schema.Job, error) {
+func (c *Client) Create(request *CreateRequest) (*schema.Job, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
-		return nil, fmt.Errorf("Failed to marshal body: %s", err)
+		fmt.Errorf("Failed to marshal body: %s", err)
 	}
-	body, err := c.HTTPPost(api.DELETE_SNAP_URL, data)
-	if err != nil {
-		return nil, fmt.Errorf("Error: %s", err)
-	}
-	ret := DeleteResponse{}
+	body, err := c.HTTPPost(api.CREATE_SNAP_URL, data)
+	ret := CreateResponse{}
 	json.Unmarshal(body, &ret)
 	if ret.Errno != 0 {
 		return nil, fmt.Errorf("Failed to request [%s]: %s", ret.RequestId, ret.Errmsg)

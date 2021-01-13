@@ -5,13 +5,6 @@ type Flow struct {
 	Out float32 `json:"float32"`
 }
 
-type BEIP struct {
-	BeipUuid   string `json:"beipUuid"`
-	Ip         string `json:"ip"`
-	CreateTime int    `json:"createTime"`
-	UpdateTime int    `json:"updateTime"`
-}
-
 type EIP struct {
 	Name           string `json:"name",omitempty`
 	Bandwidth      string `json:"bandwidth"`
@@ -19,14 +12,14 @@ type EIP struct {
 }
 
 type Listener struct {
-	SlbListenerUuid string           `json:"slbListenerUuid,omitempty"`
-	Name            string           `json:"listener"`
-	Algorithm       string           `json:"algorithm"`
-	Protocol        string           `json:"protocol"`
-	ListenerPort    int              `json:"listenerPort"`
-	BackProtocol    string           `json:"backProtocol"`
-	Monitor         Monitor          `json:"monitor"`
-	Members         []ListenerMember `json:"members,omitempty"`
+	Uuid         string           `json:"slbListenerUuid,omitempty"`
+	Name         string           `json:"listener"`
+	Algorithm    string           `json:"algorithm"`
+	Protocol     string           `json:"protocol"`
+	ListenerPort int              `json:"listenerPort"`
+	BackProtocol string           `json:"backProtocol"`
+	Monitor      Monitor          `json:"monitor"`
+	Members      []ListenerMember `json:"members,omitempty"`
 }
 type Monitor struct {
 	Protocol           string `json:"protocol"`
@@ -43,17 +36,17 @@ type ListenerMember struct {
 	UnhealthState string    `json:"unhealthState,omitempty"`
 	Port          int       `json:"port",omitempty`
 	Weight        int       `json:"weight",omitempty`
+	Dc2           MemberDc2 `json:"dc2,omitempty"`
 	CreateTime    int       `json:"createTime,omitempty"`
 	UpdateTime    int       `json:"updateTime,omitempty"`
-	Dc2           MemberDc2 `json:"dc2,omitempty"`
 }
 
 type MemberDc2 struct {
-	Dc2Uuid    string `json:"dc2Uuid"`
+	Uuid       string `json:"dc2Uuid"`
 	Name       string `json:"name"`
 	Ip         string `json:"ip"`
-	createTime int    `json:"createTime"`
-	updateTime int    `json:"updateTime"`
+	CreateTime int    `json:"createTime"`
+	UpdateTime int    `json:"updateTime"`
 }
 
 type Algorithm struct {
@@ -63,4 +56,12 @@ type Algorithm struct {
 
 type SlbSpec struct {
 	OfferingUuid string `json:"offeringUuid"`
+}
+
+type SlbVpc struct {
+	Uuid       string `json:"vpcUuid"`
+	Name       string `json:"name"`
+	IsDefault  bool   `json:"isDefault"`
+	CreateTime int    `json:"createTime"`
+	UpdateTime int    `json:"updateTime"`
 }

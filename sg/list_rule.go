@@ -22,10 +22,10 @@ type ListRuleRequest struct {
 }
 
 type ListRuleResponse struct {
-	Errno     int                 `json:"errno"`
-	Errmsg    string              `json:"errmsg"`
-	RequestId string              `json:"requestId"`
-	Data      []schema.SgRuleInfo `json:"data"`
+	Errno     int             `json:"errno"`
+	Errmsg    string          `json:"errmsg"`
+	RequestId string          `json:"requestId"`
+	Data      []schema.SgRule `json:"data"`
 }
 
 type ListRuleRequestBuilder struct {
@@ -84,7 +84,7 @@ func (b *ListRuleRequestBuilder) Build() ListRuleRequest {
 	}
 }
 
-func (c *Client) ListRule(request *ListRuleRequest) (*[]schema.SgRuleInfo, error) {
+func (c *Client) ListRule(request *ListRuleRequest) (*[]schema.SgRule, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/shonenada/didiyun-go/api"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
 type SlbCondition struct {
@@ -23,13 +24,13 @@ type ListRequest struct {
 }
 
 type ListResponse struct {
-	Errno     int           `json:"errno"`
-	Errmsg    string        `json:"errmsg"`
-	RequestId string        `json:"requestId"`
-	Data      []SlbResponse `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Slb `json:"data"`
 }
 
-func (c *Client) List(request *ListRequest) (*[]SlbResponse, error) {
+func (c *Client) List(request *ListRequest) (*[]schema.Slb, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

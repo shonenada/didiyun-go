@@ -14,13 +14,13 @@ type CreateRequest struct {
 }
 
 type CreateResponse struct {
-	Errno     int                 `json:"errno"`
-	Errmsg    string              `json:"errmsg"`
-	RequestId string              `json:"requestId"`
-	Data      []schema.SSHKeyInfo `json:"data"`
+	Errno     int             `json:"errno"`
+	Errmsg    string          `json:"errmsg"`
+	RequestId string          `json:"requestId"`
+	Data      []schema.SSHKey `json:"data"`
 }
 
-func (c *Client) Create(request *CreateRequest) (*schema.SSHKeyInfo, error) {
+func (c *Client) Create(request *CreateRequest) (*schema.SSHKey, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

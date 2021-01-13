@@ -14,13 +14,13 @@ type GetRequest struct {
 }
 
 type GetResponse struct {
-	Errno     int              `json:"errno"`
-	Errmsg    string           `json:"errmsg"`
-	RequestId string           `json:"requestId"`
-	Data      []schema.EipInfo `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Eip `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*schema.EipInfo, error) {
+func (c *Client) Get(request *GetRequest) (*schema.Eip, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
 		"eipUuid":  request.Uuid,

@@ -23,10 +23,10 @@ type ListRequest struct {
 }
 
 type ListResponse struct {
-	Errno     int             `json:"errno"`
-	Errmsg    string          `json:"errmsg"`
-	RequestId string          `json:"requestId"`
-	Data      []schema.SgInfo `json:"data"`
+	Errno     int         `json:"errno"`
+	Errmsg    string      `json:"errmsg"`
+	RequestId string      `json:"requestId"`
+	Data      []schema.Sg `json:"data"`
 }
 
 type ListRequestBuilder struct {
@@ -91,7 +91,7 @@ func (b *ListRequestBuilder) Build() ListRequest {
 	}
 }
 
-func (c *Client) List(request *ListRequest) (*[]schema.SgInfo, error) {
+func (c *Client) List(request *ListRequest) (*[]schema.Sg, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

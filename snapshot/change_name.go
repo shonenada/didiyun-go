@@ -1,4 +1,4 @@
-package snap
+package snapshot
 
 import (
 	"encoding/json"
@@ -10,7 +10,7 @@ import (
 
 type ChangeNameRequest struct {
 	RegionId string             `json:"regionId"`
-	Snap     []ChangeNameParams `json:"snap"`
+	Snapshot []ChangeNameParams `json:"snap"`
 }
 
 type ChangeNameParams struct {

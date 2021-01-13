@@ -15,13 +15,13 @@ type ListRequest struct {
 }
 
 type ListResponse struct {
-	Errno     int              `json:"errno"`
-	Errmsg    string           `json:"errmsg"`
-	RequestId string           `json:"requestId"`
-	Data      []schema.VpcInfo `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Vpc `json:"data"`
 }
 
-func (c *Client) List(request *ListRequest) (*[]schema.VpcInfo, error) {
+func (c *Client) List(request *ListRequest) (*[]schema.Vpc, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

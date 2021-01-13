@@ -1,5 +1,19 @@
 package schema
 
+type Ebs struct {
+	Id         string   `json:"ebsId"`
+	Name       string   `json:"name"`
+	Uuid       string   `json:"ebsUuid"`
+	DeviceName string   `json:"deviceName"`
+	Tags       []string `json:"ebsTags"`
+	Attr       string   `json:"attr"`
+	Size       int64    `json:"size"`
+	Dc2        EbsDc2   `json:"dc2"`
+	Region     Region   `json:"region"`
+	CreateTime int64    `json:"createTime"`
+	UpdateTime int64    `json:"updateTime"`
+}
+
 type EbsDc2 struct {
 	Uuid       string `json:"dc2Uuid"`
 	Name       string `json:"name"`
@@ -7,18 +21,4 @@ type EbsDc2 struct {
 	OsType     string `json:"osType"`
 	CreateTime int64  `json:"createTime"`
 	UpdateTime int64  `json:"updateTime"`
-}
-
-type Ebs struct {
-	Attr       string   `json:"attr"`
-	CreateTime int64    `json:"createTime"`
-	DeviceName string   `json:"deviceName"`
-	EbsId      string   `json:"ebsId"`
-	EbsUuid    string   `json:"ebsUuid"`
-	EbsTags    []string `json:"ebsTags"`
-	Name       string   `json:"name"`
-	Region     Region   `json:"region"`
-	Size       int64    `json:"size"`
-	UpdateTime int64    `json:"updateTime"`
-	Dc2        EbsDc2   `json:"dc2"`
 }

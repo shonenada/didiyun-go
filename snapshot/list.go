@@ -1,4 +1,4 @@
-package snap
+package snapshot
 
 import (
 	"encoding/json"
@@ -27,7 +27,7 @@ type ListResponse struct {
 	Errno     int               `json:"errno"`
 	Errmsg    string            `json:"errmsg"`
 	RequestId string            `json:"requestId"`
-	Data      []schema.SnapInfo `json:"data"`
+	Data      []schema.Snapshot `json:"data"`
 }
 
 type ListRequestBuilder struct {
@@ -38,7 +38,7 @@ type ListRequestBuilder struct {
 	isSimplify bool
 	dc2Uuid    string
 	ebsUuid    string
-	snapName   string
+	name       string
 }
 
 func (b *ListRequestBuilder) SetRegionId(regionId string) {
@@ -70,7 +70,7 @@ func (b *ListRequestBuilder) SetEbsUuid(uuid string) {
 }
 
 func (b *ListRequestBuilder) SetSnapName(name string) {
-	b.snapName = name
+	b.name = name
 }
 
 func (b *ListRequestBuilder) Build() ListRequest {
@@ -93,12 +93,12 @@ func (b *ListRequestBuilder) Build() ListRequest {
 		condition: SnapCondition{
 			Dc2Uuid: b.dc2Uuid,
 			EbsUuid: b.ebsUuid,
-			Name:    b.snapName,
+			Name:    b.name,
 		},
 	}
 }
 
-func (c *Client) List(request *ListRequest) ([]schema.SnapInfo, error) {
+func (c *Client) List(request *ListRequest) ([]schema.Snapshot, error) {
 	data, err := json.Marshal(request)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to marshal body: %s", err)

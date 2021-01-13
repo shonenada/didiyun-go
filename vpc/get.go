@@ -14,13 +14,13 @@ type GetRequest struct {
 }
 
 type GetResponse struct {
-	Errno     int              `json:"errno"`
-	Errmsg    string           `json:"errmsg"`
-	RequestId string           `json:"requestId"`
-	Data      []schema.VpcInfo `json:"data"`
+	Errno     int          `json:"errno"`
+	Errmsg    string       `json:"errmsg"`
+	RequestId string       `json:"requestId"`
+	Data      []schema.Vpc `json:"data"`
 }
 
-func (c *Client) Get(request *GetRequest) (*schema.VpcInfo, error) {
+func (c *Client) Get(request *GetRequest) (*schema.Vpc, error) {
 	data := map[string]string{
 		"regionId": request.RegionId,
 		"vpcUuid":  request.Uuid,
