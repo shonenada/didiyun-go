@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	dc2 "github.com/shonenada/didiyun-go/dc2"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/dc2"
 )
 
 func main() {
@@ -21,6 +21,6 @@ func main() {
 	if r, e := client.Dc2().Count(&req); e != nil {
 		fmt.Println(e)
 	} else {
-		fmt.Printf("Total: %d\n", r)
+		fmt.Printf("Total DC2 count: %d\n", r)
 	}
 }

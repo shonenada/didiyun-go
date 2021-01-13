@@ -5,12 +5,12 @@ import (
 	"log"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	job "github.com/shonenada/didiyun-go/job"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/job"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
-func PrettyPrintJob(data *[]Job) {
+func PrettyPrintJob(data *[]schema.Job) {
 	for i, e := range *data {
 		fmt.Printf("[%d] Uuid: %s\tResourceUuid: %s\tType: %sProgress: %d\tResult: %s\n", i+1, e.Uuid, e.ResourceUuid, e.Type, e.Progress, e.Result)
 	}
@@ -23,14 +23,14 @@ func main() {
 		log.Fatal("jobUuid is not defined")
 	}
 
-	jobUuid := os.Args[1]
+	uuid := os.Args[1]
 
 	client := &didiyun.Client{
 		AccessToken: accessToken,
 	}
 	req := job.ResultRequest{}
 	req.RegionId = "gz"
-	req.JobUuids = jobUuid
+	req.Uuids = uuid
 
 	if r, e := client.Job().GetResult(&req); e != nil {
 		fmt.Println(e)

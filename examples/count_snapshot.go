@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	snap "github.com/shonenada/didiyun-go/snap"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/snapshot"
 )
 
 func main() {
@@ -14,13 +14,13 @@ func main() {
 	client := &didiyun.Client{
 		AccessToken: accessToken,
 	}
-	req := snap.CountRequest{
+	req := snapshot.CountRequest{
 		RegionId: "gz",
 	}
 
 	if r, e := client.Snap().Count(&req); e != nil {
 		fmt.Println(e)
 	} else {
-		fmt.Printf("Total: %d\n", r)
+		fmt.Printf("Total snapshot count: %d\n", r)
 	}
 }

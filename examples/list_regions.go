@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
-func PretyPrint(data *[]Region) {
+func PretyPrint(data *[]schema.Region) {
 	for i, e := range *data {
 		fmt.Printf("- [%d] AreaName: %s\tId: %s\n", i+1, e.AreaName, e.Id)
 		for j, z := range e.Zone {

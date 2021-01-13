@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	eip "github.com/shonenada/didiyun-go/eip"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/eip"
 )
 
 func main() {
@@ -21,12 +21,12 @@ func main() {
 		AccessToken: accessToken,
 	}
 	request := eip.CreateRequest{
-		RegionId:       region,
-		AutoContinue:   false,
-		Count:          1,
-		BandWidth:      1,
-		ChargeWithFlow: true,
-		EipTags:        []string{"Create By Didiyun-Go"},
+		RegionId:         region,
+		IsAutoContinue:   false,
+		Count:            1,
+		BandWidth:        1,
+		IsChargeWithFlow: true,
+		Tags:             []string{"Create By Didiyun-Go"},
 	}
 	if r, e := client.Eip().Create(&request); e != nil {
 		fmt.Println(e)

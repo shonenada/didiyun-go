@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	vpc "github.com/shonenada/didiyun-go/vpc"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/vpc"
 )
 
 func main() {
@@ -21,6 +21,6 @@ func main() {
 	if r, e := client.Vpc().Count(&req); e != nil {
 		fmt.Println(e)
 	} else {
-		fmt.Printf("Total: %d\n", r)
+		fmt.Printf("Total VPC: %d\n", r)
 	}
 }

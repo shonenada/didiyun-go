@@ -5,12 +5,12 @@ import (
 	"log"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	. "github.com/shonenada/didiyun-go/schema"
-	vpc "github.com/shonenada/didiyun-go/vpc"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go/vpc"
 )
 
-func PrettyPrint(data *VpcInfo) {
+func PrettyPrint(data *schema.Vpc) {
 	fmt.Printf("- Uuid: %s\tName: %s\tIsDefault: %l\tCidr: %s\tRegion: %s\n", data.Uuid, data.Name, data.IsDefault, data.CIDR, data.Region.Name)
 }
 
@@ -20,14 +20,14 @@ func main() {
 		log.Fatal("vpcUuid is not defined")
 	}
 
-	vpcUuid := os.Args[1]
+	uuid := os.Args[1]
 
 	client := &didiyun.Client{
 		AccessToken: accessToken,
 	}
 	req := vpc.GetRequest{}
 	req.RegionId = "gz"
-	req.VpcUuid = vpcUuid
+	req.Uuid = uuid
 
 	if r, e := client.Vpc().Get(&req); e != nil {
 		fmt.Println(e)

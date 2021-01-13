@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	. "github.com/shonenada/didiyun-go/schema"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/schema"
 )
 
-func PrettyPrintSSHKeyInfo(data *[]SSHKeyInfo) {
+func PrettyPrintSSHKey(data *[]schema.SSHKey) {
 	for i, e := range *data {
-		fmt.Printf("[%d] - Uuid: %s\tName: %s\n", i+1, e.PubKeyUuid, e.Name)
+		fmt.Printf("[%d] - Uuid: %s\tName: %s\n", i+1, e.Uuid, e.Name)
 	}
 }
 
@@ -22,6 +22,6 @@ func main() {
 	if r, e := client.SSHKey().List(); e != nil {
 		fmt.Println(e)
 	} else {
-		PrettyPrintSSHKeyInfo(r)
+		PrettyPrintSSHKey(r)
 	}
 }

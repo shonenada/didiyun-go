@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	didiyun "github.com/shonenada/didiyun-go"
-	sg "github.com/shonenada/didiyun-go/sg"
+	"github.com/shonenada/didiyun-go"
+	"github.com/shonenada/didiyun-go/sg"
 )
 
 func main() {
@@ -21,6 +21,6 @@ func main() {
 	if r, e := client.Sg().Count(&req); e != nil {
 		fmt.Println(e)
 	} else {
-		fmt.Printf("Total: %d\n", r)
+		fmt.Printf("Total SG count: %d\n", r)
 	}
 }

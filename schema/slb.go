@@ -1,5 +1,25 @@
 package schema
 
+type Slb struct {
+	Uuid      string `json:"slbUuid"`
+	Name      string `json:"name"`
+	Ip        string `json:"ip"`
+	WafStatus string `json:"wafStatus"`
+	BeIP      struct {
+		Uuid       string `json:"beipUuid"`
+		Ip         string `json:"ip"`
+		CreateTime int    `json:"createTime"`
+		UpdateTime int    `json:"updateTime"`
+	} `json:"beip,omitempty"`
+	Vpc        SlbVpc  `json:"vpc"`
+	Flow       Flow    `json:"flow"`
+	Spec       SlbSpec `json:"spec"`
+	Job        Job     `json:"job"`
+	Region     Region  `json:"region"`
+	CreateTime int     `json:"createTime"`
+	Updateime  int     `json:"updateTime"`
+}
+
 type Flow struct {
 	In  float32 `json:"float32"`
 	Out float32 `json:"float32"`

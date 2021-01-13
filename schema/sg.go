@@ -1,7 +1,6 @@
 package schema
 
-type SgInfo struct {
-	Job         Job    `json:"job"`
+type Sg struct {
 	Uuid        string `json:"sgUuid"`
 	Name        string `json:"name"`
 	IsDefault   bool   `json:"isDefault"`
@@ -9,6 +8,7 @@ type SgInfo struct {
 	SgRuleCount int    `json:"sgRuleCnt"`
 	Region      Region `json:"region"`
 	Vpc         SgVpc  `json:"vpc"`
+	Job         Job    `json:"job"`
 	CreateTime  int64  `json:"createTime"`
 	UpdateTime  int64  `json:"updateTime"`
 }
