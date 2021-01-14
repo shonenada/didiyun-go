@@ -11,7 +11,7 @@ import (
 
 func PrettyPrintDc2(data *[]schema.Dc2) {
 	for i, e := range *data {
-		fmt.Printf("[%d] - Uuid: %s\tName: %s\tIP: %s\tEip: %s\tRegion: %s\n", i+1, e.Uuid, e.Name, e.Ip, e.Eip.Ip, e.Region.Name)
+		fmt.Printf("[%d] - Uuid: %s\tName: %s\tIP: %s\tEip: %s\tRegion: %s\tZone:%s \n", i+1, e.Uuid, e.Name, e.Ip, e.Eip.Ip, e.Region.Name, e.Region.Zone.Name)
 	}
 }
 
