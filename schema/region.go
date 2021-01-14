@@ -7,6 +7,13 @@ type Region struct {
 	Zone     Zone   `json:"zone"`
 }
 
+type RegionDetail struct {
+	AreaName string `json:"areaName"`
+	Id       string `json:"id"`
+	Name     string `json:"name"`
+	Zone     []Zone `json:"zone"`
+}
+
 type Zone struct {
 	Id   string `json:"id"`
 	Name string `json:"name"`

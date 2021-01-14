@@ -20,13 +20,13 @@ type ListRegionRequest struct {
 }
 
 type ListRegionResponse struct {
-	Errno     int             `json:"errno"`
-	Errmsg    string          `json:"errmsg"`
-	RequestId string          `json:"requestId"`
-	Data      []schema.Region `json:"data"`
+	Errno     int                   `json:"errno"`
+	Errmsg    string                `json:"errmsg"`
+	RequestId string                `json:"requestId"`
+	Data      []schema.RegionDetail `json:"data"`
 }
 
-func (c *Client) ListRegion(product string) (*[]schema.Region, error) {
+func (c *Client) ListRegion(product string) (*[]schema.RegionDetail, error) {
 	httpClient := &http.Client{}
 	reqBody := &ListRegionRequest{
 		Condition: ListRegionAndZoneCondition{
@@ -64,25 +64,25 @@ func (c *Client) ListRegion(product string) (*[]schema.Region, error) {
 	return &ret.Data, nil
 }
 
-func (c *Client) ListDc2Regions() (*[]schema.Region, error) {
+func (c *Client) ListDc2Regions() (*[]schema.RegionDetail, error) {
 	return c.ListRegion("dc2")
 }
 
-func (c *Client) ListEbsRegions() (*[]schema.Region, error) {
+func (c *Client) ListEbsRegions() (*[]schema.RegionDetail, error) {
 	return c.ListRegion("ebs")
 }
 
-func (c *Client) ListEipRegions() (*[]schema.Region, error) {
+func (c *Client) ListEipRegions() (*[]schema.RegionDetail, error) {
 	return c.ListRegion("eip")
 }
 
-func (c *Client) ListSgRegions() (*[]schema.Region, error) {
+func (c *Client) ListSgRegions() (*[]schema.RegionDetail, error) {
 	return c.ListRegion("sg")
 }
 
-func (c *Client) ListSnapRegions() (*[]schema.Region, error) {
+func (c *Client) ListSnapRegions() (*[]schema.RegionDetail, error) {
 	return c.ListRegion("snap")
 }
-func (c *Client) ListVpcRegions() (*[]schema.Region, error) {
+func (c *Client) ListVpcRegions() (*[]schema.RegionDetail, error) {
 	return c.ListRegion("vpc")
 }

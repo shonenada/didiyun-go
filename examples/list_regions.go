@@ -8,7 +8,7 @@ import (
 	"github.com/shonenada/didiyun-go/schema"
 )
 
-func PretyPrint(data *[]schema.Region) {
+func PretyPrint(data *[]schema.RegionDetail) {
 	for i, e := range *data {
 		fmt.Printf("- [%d] AreaName: %s\tId: %s\n", i+1, e.AreaName, e.Id)
 		for j, z := range e.Zone {
