@@ -28,7 +28,7 @@ func main() {
 	}
 	req := eip.GetRequest{}
 	req.RegionId = "gz"
-	req.EipUuid = uuid
+	req.Uuid = uuid
 
 	if r, e := client.Eip().Get(&req); e != nil {
 		fmt.Println(e)
