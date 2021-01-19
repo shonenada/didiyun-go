@@ -54,12 +54,17 @@ type Dc2EbsSpec struct {
 }
 
 type Dc2Ebs struct {
-	Uuid       string `json:"ebsUuid"`
-	Name       string `json:"name"`
-	Attr       string `json:"attr"`
-	Region     Region `json:"region"`
-	CreateTime int64  `json:"createTime"`
-	UpdateTime int64  `json:"updateTime"`
+	Uuid               string `json:"ebsUuid"`
+	Name               string `json:"name"`
+	Count              int64  `json:"count",omitempty`
+	DiskType           string `json:"diskType",omitempty`
+	SnapUuid           string `json:"snapUuid",omitempty`
+	InitializeAndMount bool   `json:"initializeAndMount",omitempty`
+	MountFileSystem    string `json:"mountFileSystem",omitempty`
+	Attr               string `json:"attr",omitempty`
+	Region             Region `json:"region"`
+	CreateTime         int64  `json:"createTime"`
+	UpdateTime         int64  `json:"updateTime"`
 }
 
 type Dc2Eip struct {
