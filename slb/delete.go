@@ -8,10 +8,12 @@ import (
 	"github.com/shonenada/didiyun-go/schema"
 )
 
+type DeleteParam struct {
+	Uuid string `json:"slbUuid"`
+}
+
 type DeleteRequest struct {
-	Slb []struct {
-		Uuid string `json:"slbUuid"`
-	} `json:"slb"`
+	Slb []DeleteParam `json:"slb"`
 }
 
 type DeleteResponse struct {
