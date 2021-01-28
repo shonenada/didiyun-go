@@ -8,11 +8,13 @@ import (
 	"github.com/shonenada/didiyun-go/schema"
 )
 
+type ChangeNameParams struct {
+	Uuid string `json:"slbUuid"`
+	Name string `json:"name"`
+}
+
 type ChangeNameRequest struct {
-	Slb []struct {
-		Uuid string `json:"slbUuid"`
-		Name string `json:"name"`
-	} `json:"slb"`
+	Slb []ChangeNameParams `json:"slb"`
 }
 
 type ChangeNameResponse struct {
